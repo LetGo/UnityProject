@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class UIPanelBase : MonoBehaviour {
+//excel 2.1.0.0 sysytem.data.dll 2.0.0.0
+public abstract class UIPanelBase : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	public abstract void Init();
+
+	public abstract void UnInit();
+
+	public abstract bool OnMsg(UIMsgID id);
 }
+
+
