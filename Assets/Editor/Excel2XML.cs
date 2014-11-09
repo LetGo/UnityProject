@@ -17,8 +17,6 @@ public class Excel2XML : EditorWindow
     static List<FileInfo> m_lstFiles = new List<FileInfo>();
     static bool m_bDataListing = false;
     static bool[] m_bLstEceleFileCheck;
-    static string[] expectStr ;
-    static int[] expectNum;
     static Vector2 m_v2ScrollPos = Vector2.zero;
 
     [MenuItem("GameTool/ExcelToXML New")]
@@ -49,7 +47,6 @@ public class Excel2XML : EditorWindow
             }
         }
 
-
         GUILayout.Label("保存文件路径：" + m_strTargetPath, GUILayout.Height(15));
         if (GUILayout.Button("保存文件路径", GUILayout.Height(30)))
         {
@@ -69,30 +66,9 @@ public class Excel2XML : EditorWindow
         SelectEceleData();
     }
 
-    void XLSX()
+    static int Compare(FileInfo a, FileInfo b)
     {
-        string path = Application.dataPath + "/test.xlsx";
-        FileStream stream = File.Open(path, FileMode.Open, FileAccess.Read);
-        IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
-
-        DataSet result = excelReader.AsDataSet();
-        if (result == null)
-        {
-            Debug.Log("path =====" + path);
-            return;
-        }
-        int columns = result.Tables[0].Columns.Count;
-        int rows = result.Tables[0].Rows.Count;
-
-
-        for (int i = 0; i < rows; i++)
-        {
-            for (int j = 0; j < columns; j++)
-            {
-                string nvalue = result.Tables[0].Rows[i][j].ToString();
-                Debug.Log(nvalue);
-            }
-        }
+        return a.Name.CompareTo(b.Name);
     }
 
     static void LoadData(string path)
@@ -100,10 +76,8 @@ public class Excel2XML : EditorWindow
         m_lstFiles.Clear();
         var directoryInfo = new DirectoryInfo(path);
         GetFiles(directoryInfo, ref m_lstFiles);
-        //m_lstFiles.Sort();
-        Debug.Log("files :" + m_lstFiles.Count);
+        m_lstFiles.Sort(Compare);
         m_bLstEceleFileCheck = new bool[m_lstFiles.Count];
-        expectNum = new int[m_lstFiles.Count];
     }
 
 
@@ -145,16 +119,10 @@ public class Excel2XML : EditorWindow
                 m_bLstEceleFileCheck[i] = GUILayout.Toggle(m_bLstEceleFileCheck[i], "", GUILayout.Width(30));
                 GUILayout.TextArea(m_lstFiles[i].Name, GUILayout.Width(100));
 
-                expectNum[i] = EditorGUILayout.IntField("不输出项", expectNum[i]);
-
-                if (GUILayout.Button("确定", GUILayout.Width(50)))
-                {
-                    Debug.Log("count :" + expectNum[i]);
-                }
-
                 if (GUILayout.Button("导出", GUILayout.Width(50)))
                 {
-                    ReadExeleData(m_lstFiles[i].Name);
+                   string name = ReadExeleData(m_lstFiles[i].Name);
+                   EditorUtility.DisplayDialog("提示", "生成文件" + name +"成功", "OK");
                 }
 
                 EditorGUILayout.EndHorizontal();
@@ -164,7 +132,6 @@ public class Excel2XML : EditorWindow
         GUILayout.EndScrollView();
 
     }
-
 
     string ReadExeleData(string fileName)
     {
@@ -199,8 +166,6 @@ public class Excel2XML : EditorWindow
         int rowCount = table0.Rows.Count; //行
         int colCount = table0.Columns.Count;//列
         
-        Debug.Log("col:" + colCount + "row :" + rowCount);
-
         int index = fileName.LastIndexOf(".");
         string tabelName = string.Empty;
         if (index != -1)

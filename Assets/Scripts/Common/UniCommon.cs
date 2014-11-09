@@ -83,5 +83,17 @@ namespace UniCommon
             t.localScale = scale;
             return go;
         }
+    
+        /// <summary>
+        /// 使用此方法设置text 方便后期本地化
+        /// </summary>
+        /// <param name="label"></param>
+        /// <param name="content"></param>
+        public static void SetString(this UILabel label,string content)
+        {
+            //TODO 根据content获取相应的text
+            label.text = content;
+        }
     }
+
 }

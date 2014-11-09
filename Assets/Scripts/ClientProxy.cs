@@ -1,6 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public static class ProgramRoot
+{
+    private static GameObject ms_node = null;
+
+    public static Transform Node
+    {
+        get
+        {
+            if (ms_node == null)
+            {
+                ms_node = new GameObject("ProgramRoot");
+                GameObject.DontDestroyOnLoad(ms_node);
+            }
+            return ms_node.transform;
+        }
+    }
+}
+
 public class ClientProxy : MonoBehaviour {
 
     [SerializeField]
@@ -9,10 +27,12 @@ public class ClientProxy : MonoBehaviour {
     private bool m_bshowFPS = true;
     private FPSCounter m_fpsCounter = null;
 
-	void Awake () {
+	void Awake () 
+    {
         Application.targetFrameRate = m_itargetFPS;
         GameObject.DontDestroyOnLoad(this);
         CreateFPSCounter();
+        transform.parent = ProgramRoot.Node;
 	}
 
     void Start()
@@ -53,7 +73,8 @@ public class ClientProxy : MonoBehaviour {
         System.GC.Collect();
     }
 
-    void OnDestroy()
+
+    void OnApplicationQuit()
     {
         GameManager.Instance.UnInitialize();
     }
