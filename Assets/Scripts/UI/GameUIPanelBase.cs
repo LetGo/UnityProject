@@ -10,7 +10,7 @@ public abstract class GameUIPanelBase : MonoBehaviour
 
     }
 
-    protected virtual void InitWhileOpen()
+    public virtual void InitWhileOpen()
     {
 
     }

@@ -8,14 +8,15 @@ public class GameManager : Singleton<GameManager> {
     public override void Initialize()
     {
         Debug.Log("GameManager Initialize");
+        DictMgr.Instance.Initialize();
         UIManager.Instance.Initialize();
-        base.Initialize();
     }
 
     public override void UnInitialize()
     {
         Debug.Log("GameManager UnInitialize");
         UIManager.Instance.UnInitialize();
+        DictMgr.Instance.UnInitialize();
         base.UnInitialize();
     }
 

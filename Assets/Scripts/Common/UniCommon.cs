@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using System.Security.Cryptography;
 
 namespace UniCommon
 {
-    public static class UniCommon
+    public static class CommonTool
     {
         public static void ApplyAll<T>(this List<T> sourList, Action<T> action)
         {
@@ -50,7 +51,7 @@ namespace UniCommon
             }
         }
 
-        public static GameObject AddGameObject(this GameObject parent, 
+        public static GameObject AddGameObject(GameObject parent, 
             string path,Vector3 pos,Vector3 scale,
             Quaternion q,bool bLocalPos,string name = null)
         {
@@ -62,7 +63,11 @@ namespace UniCommon
             }
 
             GameObject go = GameObject.Instantiate(prefab) as GameObject;
-            go.layer = parent.layer;
+            if (parent != null)
+            {
+                go.transform.parent = parent.transform;
+                go.layer = parent.layer;
+            }
 
             if (!string.IsNullOrEmpty(name))
             {
@@ -93,6 +98,65 @@ namespace UniCommon
         {
             //TODO 根据content获取相应的text
             label.text = content;
+        }
+
+        //加密和解密采用相同的key,可以任意数字，但是必须为32位
+        //private string strkeyValue = "12345678901234567890198915689039";
+        /// <summary>
+        /// 内容加密
+        /// </summary>
+        /// <param name="ContentInfo">要加密内容</param>
+        /// <param name="strkey">key值  加密和解密采用相同的key,可以任意数字，但是必须为32位</param>
+        /// <returns></returns>
+        public static string EncryptionContent(string ContentInfo, string strkey = "12345678901234567890198915689039")
+        {
+
+            byte[] keyArray = UTF8Encoding.UTF8.GetBytes(strkey);
+
+            RijndaelManaged encryption = new RijndaelManaged();
+
+            encryption.Key = keyArray;
+
+            encryption.Mode = CipherMode.ECB;
+
+            encryption.Padding = PaddingMode.PKCS7;
+
+            ICryptoTransform cTransform = encryption.CreateEncryptor();
+
+            byte[] _EncryptArray = UTF8Encoding.UTF8.GetBytes(ContentInfo);
+
+            byte[] resultArray = cTransform.TransformFinalBlock(_EncryptArray, 0, _EncryptArray.Length);
+
+            return Convert.ToBase64String(resultArray, 0, resultArray.Length);
+        }
+
+        /// <summary>
+        /// 内容解密
+        /// </summary>
+        /// <param name="encryptionContent">被加密内容</param>
+        /// <param name="strkey">key值</param>
+        /// <returns></returns>
+        public static string DecipheringContent(string encryptionContent, string strkey = "12345678901234567890198915689039")
+        {
+
+            byte[] keyArray = UTF8Encoding.UTF8.GetBytes(strkey);
+
+            RijndaelManaged decipher = new RijndaelManaged();
+
+            decipher.Key = keyArray;
+
+            decipher.Mode = CipherMode.ECB;
+
+            decipher.Padding = PaddingMode.PKCS7;
+
+            ICryptoTransform cTransform = decipher.CreateDecryptor();
+
+            byte[] _EncryptArray = Convert.FromBase64String(encryptionContent);
+            Debug.LogError(_EncryptArray.Length);
+            byte[] resultArray = cTransform.TransformFinalBlock(_EncryptArray, 0, _EncryptArray.Length);
+
+            return UTF8Encoding.UTF8.GetString(resultArray);
+
         }
     }
 

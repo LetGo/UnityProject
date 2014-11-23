@@ -124,7 +124,23 @@ public class Excel2XML : EditorWindow
                    string name = ReadExeleData(m_lstFiles[i].Name);
                    EditorUtility.DisplayDialog("提示", "生成文件" + name +"成功", "OK");
                 }
+                if (GUILayout.Button("导出并加密", GUILayout.Width(80)))
+                {
+                    string path = ReadExeleData(m_lstFiles[i].Name);
+                    FileStream stream = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Read);
+                    StreamReader sr = new StreamReader(stream);
+                    string strEncry = CommonTool.EncryptionContent(sr.ReadToEnd());
+                    sr.Close();
+                    stream.Close();
+                    File.Delete(path);
 
+                    FileStream stream1 = new FileStream(path, FileMode.Create, FileAccess.Write);
+                    StreamWriter sw1 = new StreamWriter(stream1);
+                    sw1.Write(strEncry);
+                    sw1.Close();
+                    stream1.Close();
+                    EditorUtility.DisplayDialog("提示", "生成文件" + path + "成功", "OK");
+                }
                 EditorGUILayout.EndHorizontal();
             }
 
@@ -205,7 +221,7 @@ public class Excel2XML : EditorWindow
 
     string Write(string name,List<string> attributeList)
     {
-        string strStart = "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\" ?><Root>";
+        string strStart = "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?><Root>";
         string strEnd = "</Root>";
         string strTargetPath = m_strTargetPath + "/" + name +".xml";
         Debug.Log("strTargetPath :" + strTargetPath);

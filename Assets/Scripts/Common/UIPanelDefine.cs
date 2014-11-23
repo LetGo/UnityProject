@@ -9,7 +9,7 @@ using System.Text;
 public enum UIPanelID
 {
     ePanel_None = 0,
-
+    ePanel_Loading = 1,
     ePanel_Count,
 }
 

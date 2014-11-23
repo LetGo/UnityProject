@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Xml;
+using System.IO;
 
 public static class ProgramRoot
 {
@@ -32,13 +34,21 @@ public class ClientProxy : MonoBehaviour {
         Application.targetFrameRate = m_itargetFPS;
         GameObject.DontDestroyOnLoad(this);
         CreateFPSCounter();
+        GameManager.Instance.ClientProxy = this;
         transform.parent = ProgramRoot.Node;
 	}
 
     void Start()
     {
+        string str = "测试加密";
+        Debug.LogError(str);
+        str = UniCommon.CommonTool.EncryptionContent(str);
+        Debug.LogError(str);
+
+        Debug.Log(Application.dataPath);
+        Debug.LogError(UniCommon.CommonTool.DecipheringContent(str));
+
         GameManager.Instance.Initialize();
-        GameManager.Instance.ClientProxy = this;
         m_fpsCounter.Start();
     }
 
@@ -58,6 +68,11 @@ public class ClientProxy : MonoBehaviour {
         if (m_bshowFPS)
         {
             GUI.Label(new Rect(0, Screen.height - 30, 200, 200), "FPS:" + m_fpsCounter.FPS.ToString("f2"));
+        }
+
+        if (Application.platform == RuntimePlatform.Android && (Input.GetKeyDown(KeyCode.Escape)))
+        {
+            Application.Quit();
         }
     }
 

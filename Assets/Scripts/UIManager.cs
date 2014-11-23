@@ -26,6 +26,9 @@ public class UIManager :Singleton<UIManager>
         m_dicPanelUI =  new Dictionary<UIPanelID, GameUIPanelBase>();
         m_dicPanelUIDisableTimeCount = new Dictionary<UIPanelID, float>();
         m_lstReadyDestroyPanel = new List<UIPanelID>();
+
+        GameObject go = CommonTool.AddGameObject(null, "UI/UI Root", Vector3.zero, Vector3.one, Quaternion.identity, true);
+        m_UIMgrComponent = go.GetComponent<UIMgrComponent>();
     }
 
     public override void UnInitialize()
@@ -166,9 +169,20 @@ public class UIManager :Singleton<UIManager>
     private GameUIPanelBase InstanceUIPanel(UIPanelID id, bool bShowWhileCreat)
     {
         //从配置获取资源路径 todo
-        string resPath = "";
+        string resPath;
+        if (!DictMgr.Instance.UIConfigDic.ContainsKey((int)id))
+        {
+            Debug.LogError("NO Contains key :" + (int)id);
+            resPath = "UI/Panel/LoadingPanel";
+        }
+        else
+        {
+            resPath = DictMgr.Instance.UIConfigDic[(int)id].path;
+        }
+       
 
-        GameObject go = m_UIMgrComponent.CenterAnchor.AddGameObject(resPath,
+
+        GameObject go = CommonTool.AddGameObject(m_UIMgrComponent.CenterAnchor,resPath,
             Vector3.zero,Vector3.one,Quaternion.identity,true);
 
         GameUIPanelBase panel = go.GetComponent<GameUIPanelBase>();
