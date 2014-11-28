@@ -40,14 +40,6 @@ public class ClientProxy : MonoBehaviour {
 
     void Start()
     {
-        string str = "测试加密";
-        Debug.LogError(str);
-        str = UniCommon.CommonTool.EncryptionContent(str);
-        Debug.LogError(str);
-
-        Debug.Log(Application.dataPath);
-        Debug.LogError(UniCommon.CommonTool.DecipheringContent(str));
-
         GameManager.Instance.Initialize();
         m_fpsCounter.Start();
     }

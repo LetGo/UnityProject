@@ -36,7 +36,8 @@ public class DictMgr : Singleton<DictMgr>
 
     void LoadComplete()
     {
-        UIManager.Instance.OpenUIpanel(UIPanelID.ePanel_Loading);
+        GameState.GameSceneManager.Instance.Initialize();
+       // UIManager.Instance.OpenUIpanel(UIPanelID.ePanel_Loading);
     }
 
     void OnLoadUIManagerData(XmlNode node)

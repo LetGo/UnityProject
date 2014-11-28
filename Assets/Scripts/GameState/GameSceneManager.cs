@@ -9,10 +9,15 @@ namespace GameState
         bool m_isTransaction = false;
         GameSceneBase m_currentTickScene = null;
         GameSceneBase m_destScene = null;
-
+        
+        GameSceneBase[] m_scenes;
+        
         public override void Initialize()
         {
             base.Initialize();
+            m_scenes = new GameSceneBase[(int)GameStateId.Count];
+            m_scenes[(int)GameStateId.World] = new WorldState();
+            LaunchGameScene(m_scenes[(int)GameStateId.World]);
         }
 
         public void Update(float deltaTime)
