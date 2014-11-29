@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><Root>
+	<UIManeger ID="1" ShareID="1" ParentID="0" Path="UI\Panel\LoadingPanel"/>
+	<UIManeger ID="2" ShareID="2" Path="asd/asqq"/>
+	<UIManeger ID="3" ShareID="3" Path="aw/ssa"/>
+</Root>
