@@ -19,11 +19,13 @@ public class UICenterOnClick : MonoBehaviour
 
 		if (center != null)
 		{
+            Debug.Log("center != null");
 			if (center.enabled)
 				center.CenterOn(transform);
 		}
 		else if (panel != null && panel.clipping != UIDrawCall.Clipping.None)
 		{
+            Debug.Log("center = null");
 			UIScrollView sv = panel.GetComponent<UIScrollView>();
 			Vector3 offset = -panel.cachedTransform.InverseTransformPoint(transform.position);
 			if (!sv.canMoveHorizontally) offset.x = panel.cachedTransform.localPosition.x;
