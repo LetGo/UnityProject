@@ -24,6 +24,7 @@
 				output.posInObjectCoords = input.texcoord;   
 				return output;
 			}
+
 			float4 frag(vertexOutput input) : COLOR
 			{
 				//当坐标的y值大于0.5的时候擦除片段
