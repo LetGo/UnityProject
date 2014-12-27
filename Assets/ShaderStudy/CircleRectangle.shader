@@ -5,12 +5,11 @@
 		_RoundRadius("Radius",float) = 0.1 //半径
 	}
 	SubShader {
-		Pass{
+			pass{
 			CGPROGRAM
 // Upgrade NOTE: excluded shader from OpenGL ES 2.0 because it does not contain a surface program or both vertex and fragment programs.
 #pragma exclude_renderers gles
 			#pragma fragment frag  
-			#include "UnityCG.cginc" //Unity内建的预定义输入结构体
 			 struct FragInput{  
                 float2 texcoord:TEXCOORD0;  
             };  

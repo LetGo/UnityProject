@@ -288,16 +288,7 @@ public class UIWrapContent : MonoBehaviour
 	/// </summary>
 
 	protected virtual void UpdateItem (Transform item, int index)
-	{
-        ScrollItem scrollItem = item.GetComponent<ScrollItem>();
-        if (scrollItem != null)
-        {
-            int realIndex = (mScroll.movement == UIScrollView.Movement.Vertical) ?
-    Mathf.RoundToInt(item.localPosition.y / itemSize) :
-    Mathf.RoundToInt(item.localPosition.x / itemSize);
-            scrollItem.label.text = "" + index + "_" + realIndex;
-        }
-        
+	{      
 		if (onInitializeItem != null)
 		{
 			int realIndex = (mScroll.movement == UIScrollView.Movement.Vertical) ?
