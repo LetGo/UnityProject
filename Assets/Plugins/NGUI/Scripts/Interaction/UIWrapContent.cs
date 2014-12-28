@@ -288,7 +288,7 @@ public class UIWrapContent : MonoBehaviour
 	/// </summary>
 
 	protected virtual void UpdateItem (Transform item, int index)
-	{      
+	{
 		if (onInitializeItem != null)
 		{
 			int realIndex = (mScroll.movement == UIScrollView.Movement.Vertical) ?
