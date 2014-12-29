@@ -15,7 +15,13 @@ namespace SkillEditor
 	public class AnimationController: Singleton<AnimationController>
 	{
 		public AnimationClip[] modelAnimationClips;
-
+		public override void UnInitialize ()
+		{
+			base.UnInitialize ();
+			if (modelAnimationClips != null) {
+				modelAnimationClips = null;		
+			}
+		}
 		public AnimationController ()
 		{
 		}

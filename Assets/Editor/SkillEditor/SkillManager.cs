@@ -18,6 +18,14 @@ namespace SkillEditor
 			RoleLoader.Instance.Initialize ();
 			AnimationController.Instance.Initialize ();
 		}
+
+		public override void UnInitialize ()
+		{
+			base.UnInitialize ();
+			AnimationController.Instance.UnInitialize();
+			RoleLoader.Instance.UnInitialize ();
+
+		}
 	}
 }
 

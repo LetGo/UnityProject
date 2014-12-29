@@ -16,7 +16,14 @@ namespace SkillEditor
 	{
 		string modelPath = "Character/";
 		public GameObject roleObj;
-		
+
+		public override void UnInitialize ()
+		{
+			base.UnInitialize ();
+			if (roleObj != null) {
+				GameObject.Destroy(roleObj);			
+			}
+		}
 		public void Load(string role){
 			if (roleObj != null && !role.Equals(roleObj.name)) {
 				GameObject.Destroy(roleObj);	
@@ -36,7 +43,10 @@ namespace SkillEditor
 		}
 
 		public void Delete(string role){
-			
+			if (roleObj != null) {
+				GameObject.Destroy(roleObj);	
+			}
+			SkillEditorWindow.Instance.Reset ();
 		}
 
 		private void GetModelInfo(){

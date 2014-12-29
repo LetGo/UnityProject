@@ -16,6 +16,7 @@ namespace SkillEditor{
 
 		Vector2 scrollPos = Vector2.zero;
 		float modelActionSlider = 0;
+		float animationPlaySpeed = 0;
 		[MenuItem("GameTool/SkillEditor %E")]
 		static void Init(){
 			if (EditorApplication.isPlaying && !EditorApplication.isPaused) {
@@ -44,11 +45,10 @@ namespace SkillEditor{
 
 			EditorGUILayout.BeginHorizontal ();
 			if (GUILayout.Button ("添加模型")) {
-				//TODO roleLoader.load
 				RoleLoader.Instance.Load(roleModels[RoleIndex]);
 			}
 			if (GUILayout.Button ("删除模型")) {
-				//TODO roleLoader.delete
+				RoleLoader.Instance.Delete(roleModels[RoleIndex]);
 			}
 			EditorGUILayout.EndHorizontal ();
 
@@ -61,6 +61,34 @@ namespace SkillEditor{
 			modelActionSlider = EditorGUILayout.Slider (modelActionSlider, 0, 1);
 
 			EditorGUILayout.EndScrollView ();
+
+			EditorGUILayout.BeginHorizontal ();
+			if (GUILayout.Button ("添加受击对象")) {
+				RoleLoader.Instance.Load(roleModels[RoleIndex]);
+			}
+			if (GUILayout.Button ("删除受击对象")) {
+				RoleLoader.Instance.Delete(roleModels[RoleIndex]);
+			}
+			EditorGUILayout.EndHorizontal ();
+
+			EditorGUILayout.Space ();
+			EditorGUILayout.LabelField("播放速度");
+			animationPlaySpeed = EditorGUILayout.Slider (animationPlaySpeed,0,1);
+			if (GUILayout.Button ("预览效果")) {
+
+			}
+
+			EditorGUILayout.BeginHorizontal ();
+			if (GUILayout.Button ("保存技能")) {
+
+			}
+			if (GUILayout.Button ("读取技能")) {
+				
+			}
+			EditorGUILayout.EndHorizontal ();
+			EditorGUILayout.BeginHorizontal ();
+			EditorGUILayout.Space ();
+			EditorGUILayout.EndHorizontal ();
 		}
 	}
 }
