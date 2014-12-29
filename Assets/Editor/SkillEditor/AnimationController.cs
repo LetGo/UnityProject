@@ -8,10 +8,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using System;
+using UnityEngine;
+
 namespace SkillEditor
 {
-	public class AnimationController: Singleton<SkillManager>
+	public class AnimationController: Singleton<AnimationController>
 	{
+		public AnimationClip[] modelAnimationClips;
+
 		public AnimationController ()
 		{
 		}

@@ -105,7 +105,6 @@ public class Excel2XML : EditorWindow
         }
     }
 
-    bool update = false;
     void SelectEceleData()
     {
         m_bDataListing = EditorGUILayout.Foldout(m_bDataListing, "Exele配置文件");

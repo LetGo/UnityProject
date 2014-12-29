@@ -6,13 +6,13 @@ using System.Linq;
 
 namespace SkillEditor{
 	public class SkillEditorWindow : EditorWindow {
-		static SkillEditorWindow Instance = null;
+		public static SkillEditorWindow Instance = null;
 
 		public int RoleIndex = 0;
 		public int RolePreAction = 0;
 		public int RoleAttackActiom = 0;
 		string[] roleModels = new string[1];
-		string[] roleModelAnimation = new string[1];
+		public string[] roleModelAnimation = new string[1];
 
 		Vector2 scrollPos = Vector2.zero;
 		float modelActionSlider = 0;
@@ -21,6 +21,7 @@ namespace SkillEditor{
 			if (EditorApplication.isPlaying && !EditorApplication.isPaused) {
 				Instance = EditorWindow.GetWindow<SkillEditorWindow> ("技能编辑器", false, typeof(SkillEditorWindow));	
 				GetAllModels();
+				SkillManager.Instance.Initialize();
 			}
 			else
 				Debug.Log("运行场景");
@@ -28,6 +29,12 @@ namespace SkillEditor{
 
 		static void GetAllModels(){
 					
+		}
+
+		public void Reset(){
+			RolePreAction = 0;	
+			RoleAttackActiom = 0;
+			roleModelAnimation = new string[1];
 		}
 
 		void OnGUI(){
@@ -38,6 +45,7 @@ namespace SkillEditor{
 			EditorGUILayout.BeginHorizontal ();
 			if (GUILayout.Button ("添加模型")) {
 				//TODO roleLoader.load
+				RoleLoader.Instance.Load(roleModels[RoleIndex]);
 			}
 			if (GUILayout.Button ("删除模型")) {
 				//TODO roleLoader.delete

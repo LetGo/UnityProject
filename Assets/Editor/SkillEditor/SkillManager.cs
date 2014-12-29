@@ -12,7 +12,12 @@ namespace SkillEditor
 {
 	public class SkillManager : Singleton<SkillManager>
 	{
-
+		public override void Initialize ()
+		{
+			base.Initialize ();
+			RoleLoader.Instance.Initialize ();
+			AnimationController.Instance.Initialize ();
+		}
 	}
 }
 

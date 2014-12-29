@@ -12,17 +12,50 @@ using UnityEngine;
 
 namespace SkillEditor
 {
-	public class RoleLoader: Singleton<SkillManager>
+	public class RoleLoader: Singleton<RoleLoader>
 	{
-		string modelPath = "";
+		string modelPath = "Character/";
 		public GameObject roleObj;
-	
-		public void Load(){
-
+		
+		public void Load(string role){
+			if (roleObj != null && !role.Equals(roleObj.name)) {
+				GameObject.Destroy(roleObj);	
+				LoadModel(role);
+			}else
+			{
+				LoadModel(role);
+			}
+			GetModelInfo ();
 		}
 
-		public void Delete(){
+		private void LoadModel(string model){
+			SkillEditorWindow.Instance.Reset ();
+			string path = string.Format ("{0}/{1}{2}", Application.dataPath, modelPath, model);
+			roleObj = GameObject.Instantiate (Resources.Load (path) as GameObject) as GameObject;
+			roleObj.transform.localPosition = new Vector3 (0, 0, -6);
+		}
+
+		public void Delete(string role){
 			
+		}
+
+		private void GetModelInfo(){
+			if(roleObj == null) return;
+			if (roleObj.animation == null) {
+				Debug.Log("animation is null");
+				return;
+			}
+			AnimationClip[] modelAnimationClips = AnimationController.Instance.modelAnimationClips;
+			modelAnimationClips = UnityEditor.AnimationUtility.GetAnimationClips (roleObj);
+
+			int clips = modelAnimationClips.Length;
+			string[] roleModelAnimation = SkillEditorWindow.Instance.roleModelAnimation;
+			roleModelAnimation = new string[clips + 1];		
+
+			for (int i = 0; i < clips; ++i) {
+				roleModelAnimation[i] = modelAnimationClips[i].name; 	
+			}
+			roleModelAnimation [clips + 1] = "None";
 		}
 	}
 }
