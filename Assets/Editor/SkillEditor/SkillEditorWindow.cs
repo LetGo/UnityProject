@@ -63,6 +63,15 @@ namespace SkillEditor{
 			EditorGUILayout.EndScrollView ();
 
 			EditorGUILayout.BeginHorizontal ();
+			if (GUILayout.Button ("添加特效")) {
+
+			}
+			if (GUILayout.Button ("删除特效")) {
+
+			}
+			EditorGUILayout.EndHorizontal ();
+
+			EditorGUILayout.BeginHorizontal ();
 			if (GUILayout.Button ("添加受击对象")) {
 				RoleLoader.Instance.Load(roleModels[RoleIndex]);
 			}
