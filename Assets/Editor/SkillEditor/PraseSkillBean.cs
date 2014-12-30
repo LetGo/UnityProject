@@ -6,7 +6,7 @@ public class PraseSkillBean {
 	PraseAnimation[] praseAnimations;
 
 	public PraseSkillBean(){
-		praseAnimations = new PraseAnimation[SKillType.Count];
+		praseAnimations = new PraseAnimation[(int)SKillType.Count];
 		praseAnimations [(int)SKillType.SingleMovement] = new PraseSingleMovementAnim ();
 	}
 
