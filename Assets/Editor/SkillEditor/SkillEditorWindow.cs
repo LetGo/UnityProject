@@ -64,7 +64,12 @@ namespace SkillEditor{
 
 			EditorGUILayout.BeginHorizontal ();
 			if (GUILayout.Button ("添加特效")) {
-
+				//TEST
+				ScriptableObjectTest sot = ScriptableObject.CreateInstance<ScriptableObjectTest>();
+				sot.content = "test sstring";
+				sot.id = 110;
+				AssetDatabase.CreateAsset(sot,"Assets/Test.asset");
+				AssetDatabase.Refresh();
 			}
 			if (GUILayout.Button ("删除特效")) {
 

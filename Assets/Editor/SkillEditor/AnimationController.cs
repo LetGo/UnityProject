@@ -15,6 +15,8 @@ namespace SkillEditor
 	public class AnimationController: Singleton<AnimationController>
 	{
 		public AnimationClip[] modelAnimationClips;
+		private PraseSkillBean praseSkillBean = new PraseSkillBean();
+
 		public override void UnInitialize ()
 		{
 			base.UnInitialize ();
@@ -24,6 +26,14 @@ namespace SkillEditor
 		}
 		public AnimationController ()
 		{
+		}
+
+		public void DisplaySkill(){
+
+		}
+
+		void InitSkillBean(SkillBean bean){
+
 		}
 	}
 }
