@@ -15,6 +15,7 @@ namespace SkillEditor
 				GameObject.Destroy(roleObj);			
 			}
 		}
+
 		public void Load(string role){
 			if (roleObj != null && !role.Equals(roleObj.name)) {
 				GameObject.Destroy(roleObj);	
@@ -56,16 +57,19 @@ namespace SkillEditor
 				Debug.Log("animation is null");
 				return;
 			}
-			AnimationClip[] modelAnimationClips = AnimationController.Instance.modelAnimationClips;
-			modelAnimationClips = UnityEditor.AnimationUtility.GetAnimationClips (roleObj);
+			AnimationClip[] modelAnimationClips = UnityEditor.AnimationUtility.GetAnimationClips (roleObj);
+            AnimationController.Instance.modelAnimationClips = modelAnimationClips;
 
 			int clips = modelAnimationClips.Length;
             string[] roleModelAnimation = new string[clips + 1];
-            roleModelAnimation[0] = "None";
+            
 			for (int i = 0; i < clips; ++i) {
-				roleModelAnimation[i + 1] = modelAnimationClips[i].name;
+				roleModelAnimation[i] = modelAnimationClips[i].name;
 			}
+            roleModelAnimation[clips] = "None";
             SkillEditorWindow.Instance.roleModelAnimation = roleModelAnimation;
+            SkillEditorWindow.Instance.RolePreAction = clips;
+            SkillEditorWindow.Instance.RoleAttackActiom = clips;
 		}
 	}
 }

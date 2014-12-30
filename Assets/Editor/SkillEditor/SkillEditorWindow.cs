@@ -97,7 +97,7 @@ namespace SkillEditor{
 			EditorGUILayout.LabelField("播放速度");
 			animationPlaySpeed = EditorGUILayout.Slider (animationPlaySpeed,0,1);
 			if (GUILayout.Button ("预览效果")) {
-
+                AnimationController.Instance.DisplaySkill();
 			}
 
 			EditorGUILayout.BeginHorizontal ();
