@@ -1,0 +1,2347 @@
+fileFormatVersion: 2
+guid: 6663f3c45fea9d14ebf8bc30d0a5fc2a
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: bone007
+    100002: bone008
+    100004: bone009
+    100006: bone010
+    100008: bone011
+    100010: bone012
+    100012: p_m_1_002
+    100014: p_m_calfl
+    100016: p_m_calfr
+    100018: p_m_claviclel
+    100020: p_m_clavicler
+    100022: p_m_footl
+    100024: p_m_footr
+    100026: p_m_forearml
+    100028: p_m_forearmr
+    100030: p_m_handl
+    100032: p_m_handr
+    100034: p_m_head
+    100036: p_m_neck
+    100038: p_m_root
+    100040: p_m_shoulderl
+    100042: p_m_shoulderr
+    100044: p_m_skirt01l
+    100046: p_m_skirt01r
+    100048: p_m_skirt02l
+    100050: p_m_skirt02r
+    100052: p_m_spine
+    100054: p_m_spine1
+    100056: p_m_thighl
+    100058: p_m_thighr
+    100060: p_m_toel
+    100062: p_m_toer
+    100064: p_m_upperarml
+    100066: p_m_upperarmr
+    100068: p_m_weaponl
+    100070: p_m_weaponr
+    100072: //RootNode
+    100074: zhujue
+    100076: bip001footsteps
+    100078: Dummy001
+    100080: p_m_originh
+    100082: p_m_originl
+    100084: p_m_originr
+    100086: p_m_wing
+    100088: p_m_wingl_01
+    100090: p_m_wingl_02
+    100092: p_m_wingl_03
+    100094: p_m_wingr_01
+    100096: p_m_wingr_02
+    100098: p_m_wingr_03
+    100100: w_1_1
+    100102: w_1_100
+    100104: w_dao_002
+    100106: w_dun_002
+    400000: bone007
+    400002: bone008
+    400004: bone009
+    400006: bone010
+    400008: bone011
+    400010: bone012
+    400012: p_m_1_002
+    400014: p_m_calfl
+    400016: p_m_calfr
+    400018: p_m_claviclel
+    400020: p_m_clavicler
+    400022: p_m_footl
+    400024: p_m_footr
+    400026: p_m_forearml
+    400028: p_m_forearmr
+    400030: p_m_handl
+    400032: p_m_handr
+    400034: p_m_head
+    400036: p_m_neck
+    400038: p_m_root
+    400040: p_m_shoulderl
+    400042: p_m_shoulderr
+    400044: p_m_skirt01l
+    400046: p_m_skirt01r
+    400048: p_m_skirt02l
+    400050: p_m_skirt02r
+    400052: p_m_spine
+    400054: p_m_spine1
+    400056: p_m_thighl
+    400058: p_m_thighr
+    400060: p_m_toel
+    400062: p_m_toer
+    400064: p_m_upperarml
+    400066: p_m_upperarmr
+    400068: p_m_weaponl
+    400070: p_m_weaponr
+    400072: //RootNode
+    400074: zhujue
+    400076: bip001footsteps
+    400078: Dummy001
+    400080: p_m_originh
+    400082: p_m_originl
+    400084: p_m_originr
+    400086: p_m_wing
+    400088: p_m_wingl_01
+    400090: p_m_wingl_02
+    400092: p_m_wingl_03
+    400094: p_m_wingr_01
+    400096: p_m_wingr_02
+    400098: p_m_wingr_03
+    400100: w_1_1
+    400102: w_1_100
+    400104: w_dao_002
+    400106: w_dun_002
+    4300000: p_m_1_002
+    4300002: w_1_100
+    4300004: w_1_1
+    4300006: w_dun_002
+    4300008: w_dao_002
+    7400000: idle
+    7400002: battleready
+    7400004: run
+    7400006: stop
+    7400008: cast
+    7400010: baseattack1
+    7400012: baseattack2
+    7400014: skillcast1
+    7400016: skillcast2
+    7400018: skillcast3
+    7400020: skillcast4
+    7400022: skillcast5
+    7400024: skillcast6
+    7400026: dead
+    7400028: stun
+    7400030: block
+    7400032: dodge
+    7400034: victory
+    7400036: change
+    7400038: skillcast7
+    7400040: buff
+    11100000: //RootNode
+    13700000: p_m_1_002
+    13700002: w_1_1
+    13700004: w_1_100
+    13700006: w_dao_002
+    13700008: w_dun_002
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 3
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 0
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: idle
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: p_m_1_002
+        weight: 1
+      - path: zhujue
+        weight: 1
+      - path: zhujue/p_m_root
+        weight: 1
+      - path: zhujue/p_m_root/bone007
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008/bone009
+        weight: 1
+      - path: zhujue/p_m_root/bone010
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011/bone012
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l/p_m_skirt02l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r/p_m_skirt02r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_shoulderl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl/p_m_weaponl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_shoulderr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr/p_m_weaponr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_head
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl/p_m_toel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr/p_m_toer
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: battleready
+      takeName: Take 001
+      firstFrame: 50
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: p_m_1_002
+        weight: 1
+      - path: zhujue
+        weight: 1
+      - path: zhujue/p_m_root
+        weight: 1
+      - path: zhujue/p_m_root/bone007
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008/bone009
+        weight: 1
+      - path: zhujue/p_m_root/bone010
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011/bone012
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l/p_m_skirt02l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r/p_m_skirt02r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_shoulderl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl/p_m_weaponl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_shoulderr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr/p_m_weaponr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_head
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl/p_m_toel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr/p_m_toer
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: run
+      takeName: Take 001
+      firstFrame: 90
+      lastFrame: 110
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: p_m_1_002
+        weight: 1
+      - path: zhujue
+        weight: 1
+      - path: zhujue/p_m_root
+        weight: 1
+      - path: zhujue/p_m_root/bone007
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008/bone009
+        weight: 1
+      - path: zhujue/p_m_root/bone010
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011/bone012
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l/p_m_skirt02l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r/p_m_skirt02r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_shoulderl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl/p_m_weaponl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_shoulderr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr/p_m_weaponr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_head
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl/p_m_toel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr/p_m_toer
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: stop
+      takeName: Take 001
+      firstFrame: 115
+      lastFrame: 145
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: p_m_1_002
+        weight: 1
+      - path: zhujue
+        weight: 1
+      - path: zhujue/p_m_root
+        weight: 1
+      - path: zhujue/p_m_root/bone007
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008/bone009
+        weight: 1
+      - path: zhujue/p_m_root/bone010
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011/bone012
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l/p_m_skirt02l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r/p_m_skirt02r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_shoulderl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl/p_m_weaponl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_shoulderr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr/p_m_weaponr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_head
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl/p_m_toel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr/p_m_toer
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: cast
+      takeName: Take 001
+      firstFrame: 170
+      lastFrame: 200
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: p_m_1_002
+        weight: 1
+      - path: zhujue
+        weight: 1
+      - path: zhujue/p_m_root
+        weight: 1
+      - path: zhujue/p_m_root/bone007
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008/bone009
+        weight: 1
+      - path: zhujue/p_m_root/bone010
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011/bone012
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l/p_m_skirt02l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r/p_m_skirt02r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_shoulderl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl/p_m_weaponl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_shoulderr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr/p_m_weaponr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_head
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl/p_m_toel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr/p_m_toer
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: baseattack1
+      takeName: Take 001
+      firstFrame: 210
+      lastFrame: 240
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: p_m_1_002
+        weight: 1
+      - path: zhujue
+        weight: 1
+      - path: zhujue/p_m_root
+        weight: 1
+      - path: zhujue/p_m_root/bone007
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008/bone009
+        weight: 1
+      - path: zhujue/p_m_root/bone010
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011/bone012
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l/p_m_skirt02l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r/p_m_skirt02r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_shoulderl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl/p_m_weaponl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_shoulderr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr/p_m_weaponr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_head
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl/p_m_toel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr/p_m_toer
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: baseattack2
+      takeName: Take 001
+      firstFrame: 250
+      lastFrame: 282
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: p_m_1_002
+        weight: 1
+      - path: zhujue
+        weight: 1
+      - path: zhujue/p_m_root
+        weight: 1
+      - path: zhujue/p_m_root/bone007
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008/bone009
+        weight: 1
+      - path: zhujue/p_m_root/bone010
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011/bone012
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l/p_m_skirt02l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r/p_m_skirt02r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_shoulderl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl/p_m_weaponl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_shoulderr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr/p_m_weaponr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_head
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl/p_m_toel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr/p_m_toer
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: skillcast1
+      takeName: Take 001
+      firstFrame: 303
+      lastFrame: 333
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: p_m_1_002
+        weight: 1
+      - path: zhujue
+        weight: 1
+      - path: zhujue/p_m_root
+        weight: 1
+      - path: zhujue/p_m_root/bone007
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008/bone009
+        weight: 1
+      - path: zhujue/p_m_root/bone010
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011/bone012
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l/p_m_skirt02l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r/p_m_skirt02r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_shoulderl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl/p_m_weaponl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_shoulderr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr/p_m_weaponr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_head
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl/p_m_toel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr/p_m_toer
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: skillcast2
+      takeName: Take 001
+      firstFrame: 350
+      lastFrame: 385
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: p_m_1_002
+        weight: 1
+      - path: zhujue
+        weight: 1
+      - path: zhujue/p_m_root
+        weight: 1
+      - path: zhujue/p_m_root/bone007
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008/bone009
+        weight: 1
+      - path: zhujue/p_m_root/bone010
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011/bone012
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l/p_m_skirt02l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r/p_m_skirt02r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_shoulderl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl/p_m_weaponl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_shoulderr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr/p_m_weaponr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_head
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl/p_m_toel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr/p_m_toer
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: skillcast3
+      takeName: Take 001
+      firstFrame: 400
+      lastFrame: 427
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: p_m_1_002
+        weight: 1
+      - path: zhujue
+        weight: 1
+      - path: zhujue/p_m_root
+        weight: 1
+      - path: zhujue/p_m_root/bone007
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008/bone009
+        weight: 1
+      - path: zhujue/p_m_root/bone010
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011/bone012
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l/p_m_skirt02l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r/p_m_skirt02r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_shoulderl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl/p_m_weaponl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_shoulderr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr/p_m_weaponr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_head
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl/p_m_toel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr/p_m_toer
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: skillcast4
+      takeName: Take 001
+      firstFrame: 450
+      lastFrame: 535
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: p_m_1_002
+        weight: 1
+      - path: zhujue
+        weight: 1
+      - path: zhujue/p_m_root
+        weight: 1
+      - path: zhujue/p_m_root/bone007
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008/bone009
+        weight: 1
+      - path: zhujue/p_m_root/bone010
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011/bone012
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l/p_m_skirt02l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r/p_m_skirt02r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_shoulderl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl/p_m_weaponl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_shoulderr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr/p_m_weaponr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_head
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl/p_m_toel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr/p_m_toer
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: skillcast5
+      takeName: Take 001
+      firstFrame: 551
+      lastFrame: 608
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: p_m_1_002
+        weight: 1
+      - path: zhujue
+        weight: 1
+      - path: zhujue/p_m_root
+        weight: 1
+      - path: zhujue/p_m_root/bone007
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008/bone009
+        weight: 1
+      - path: zhujue/p_m_root/bone010
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011/bone012
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l/p_m_skirt02l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r/p_m_skirt02r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_shoulderl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl/p_m_weaponl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_shoulderr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr/p_m_weaponr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_head
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl/p_m_toel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr/p_m_toer
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: skillcast6
+      takeName: Take 001
+      firstFrame: 620
+      lastFrame: 660
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: p_m_1_002
+        weight: 1
+      - path: zhujue
+        weight: 1
+      - path: zhujue/p_m_root
+        weight: 1
+      - path: zhujue/p_m_root/bone007
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008/bone009
+        weight: 1
+      - path: zhujue/p_m_root/bone010
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011/bone012
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l/p_m_skirt02l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r/p_m_skirt02r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_shoulderl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl/p_m_weaponl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_shoulderr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr/p_m_weaponr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_head
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl/p_m_toel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr/p_m_toer
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: dead
+      takeName: Take 001
+      firstFrame: 670
+      lastFrame: 739
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: p_m_1_002
+        weight: 1
+      - path: zhujue
+        weight: 1
+      - path: zhujue/p_m_root
+        weight: 1
+      - path: zhujue/p_m_root/bone007
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008/bone009
+        weight: 1
+      - path: zhujue/p_m_root/bone010
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011/bone012
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l/p_m_skirt02l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r/p_m_skirt02r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_shoulderl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl/p_m_weaponl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_shoulderr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr/p_m_weaponr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_head
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl/p_m_toel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr/p_m_toer
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: stun
+      takeName: Take 001
+      firstFrame: 750
+      lastFrame: 791
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: p_m_1_002
+        weight: 1
+      - path: zhujue
+        weight: 1
+      - path: zhujue/p_m_root
+        weight: 1
+      - path: zhujue/p_m_root/bone007
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008/bone009
+        weight: 1
+      - path: zhujue/p_m_root/bone010
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011/bone012
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l/p_m_skirt02l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r/p_m_skirt02r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_shoulderl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl/p_m_weaponl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_shoulderr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr/p_m_weaponr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_head
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl/p_m_toel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr/p_m_toer
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: block
+      takeName: Take 001
+      firstFrame: 801
+      lastFrame: 820
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: p_m_1_002
+        weight: 1
+      - path: zhujue
+        weight: 1
+      - path: zhujue/p_m_root
+        weight: 1
+      - path: zhujue/p_m_root/bone007
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008/bone009
+        weight: 1
+      - path: zhujue/p_m_root/bone010
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011/bone012
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l/p_m_skirt02l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r/p_m_skirt02r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_shoulderl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl/p_m_weaponl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_shoulderr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr/p_m_weaponr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_head
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl/p_m_toel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr/p_m_toer
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: dodge
+      takeName: Take 001
+      firstFrame: 830
+      lastFrame: 848
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: p_m_1_002
+        weight: 1
+      - path: zhujue
+        weight: 1
+      - path: zhujue/p_m_root
+        weight: 1
+      - path: zhujue/p_m_root/bone007
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008/bone009
+        weight: 1
+      - path: zhujue/p_m_root/bone010
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011/bone012
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l/p_m_skirt02l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r/p_m_skirt02r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_shoulderl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl/p_m_weaponl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_shoulderr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr/p_m_weaponr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_head
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl/p_m_toel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr/p_m_toer
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: victory
+      takeName: Take 001
+      firstFrame: 920
+      lastFrame: 980
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: p_m_1_002
+        weight: 1
+      - path: zhujue
+        weight: 1
+      - path: zhujue/p_m_root
+        weight: 1
+      - path: zhujue/p_m_root/bone007
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008/bone009
+        weight: 1
+      - path: zhujue/p_m_root/bone010
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011/bone012
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l/p_m_skirt02l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r/p_m_skirt02r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_shoulderl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl/p_m_weaponl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_shoulderr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr/p_m_weaponr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_head
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl/p_m_toel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr/p_m_toer
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: change
+      takeName: Take 001
+      firstFrame: 869
+      lastFrame: 899
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: p_m_1_002
+        weight: 1
+      - path: zhujue
+        weight: 1
+      - path: zhujue/p_m_root
+        weight: 1
+      - path: zhujue/p_m_root/bone007
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008/bone009
+        weight: 1
+      - path: zhujue/p_m_root/bone010
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011/bone012
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l/p_m_skirt02l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r/p_m_skirt02r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_shoulderl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl/p_m_weaponl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_shoulderr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr/p_m_weaponr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_head
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl/p_m_toel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr/p_m_toer
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: skillcast7
+      takeName: Take 001
+      firstFrame: 1000
+      lastFrame: 1040
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: p_m_1_002
+        weight: 1
+      - path: w_dao_002
+        weight: 1
+      - path: w_dun_002
+        weight: 1
+      - path: zhujue
+        weight: 1
+      - path: zhujue/p_m_root
+        weight: 1
+      - path: zhujue/p_m_root/bone007
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008/bone009
+        weight: 1
+      - path: zhujue/p_m_root/bone010
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011/bone012
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l/p_m_skirt02l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r/p_m_skirt02r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_shoulderl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl/p_m_weaponl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_shoulderr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr/p_m_weaponr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_head
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl/p_m_toel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr/p_m_toer
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: buff
+      takeName: Take 001
+      firstFrame: 1060
+      lastFrame: 1090
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: p_m_1_002
+        weight: 1
+      - path: w_dao_002
+        weight: 1
+      - path: w_dun_002
+        weight: 1
+      - path: zhujue
+        weight: 1
+      - path: zhujue/p_m_root
+        weight: 1
+      - path: zhujue/p_m_root/bone007
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008
+        weight: 1
+      - path: zhujue/p_m_root/bone007/bone008/bone009
+        weight: 1
+      - path: zhujue/p_m_root/bone010
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011
+        weight: 1
+      - path: zhujue/p_m_root/bone010/bone011/bone012
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01l/p_m_skirt02l
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_skirt01r/p_m_skirt02r
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_shoulderl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl/p_m_weaponl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_shoulderr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr/p_m_weaponr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_spine1/p_m_neck/p_m_head
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighl/p_m_calfl/p_m_footl/p_m_toel
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr
+        weight: 1
+      - path: zhujue/p_m_root/p_m_spine/p_m_thighr/p_m_calfr/p_m_footr/p_m_toer
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  userData: 

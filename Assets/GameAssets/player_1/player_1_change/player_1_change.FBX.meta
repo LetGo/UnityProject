@@ -1,0 +1,290 @@
+fileFormatVersion: 2
+guid: 5588fbae557f2ee469f0d37e271d04a5
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: bip001 headnub
+    100002: bip001 l toe0nub
+    100004: bip001 r toe0nub
+    100006: bone001
+    100008: bone002
+    100010: bone003
+    100012: bone005
+    100014: bone006
+    100016: bone007
+    100018: Bone009
+    100020: bone010
+    100022: bone012
+    100024: bone013
+    100026: bone014
+    100028: bone015
+    100030: bone016
+    100032: bone017
+    100034: bone018
+    100036: bone019
+    100038: bone020
+    100040: p_m_ head
+    100042: p_m_calfl
+    100044: p_m_calfr
+    100046: p_m_claviclel
+    100048: p_m_clavicler
+    100050: p_m_foot
+    100052: p_m_footl
+    100054: p_m_footr
+    100056: p_m_forearml
+    100058: p_m_forearmr
+    100060: p_m_handl
+    100062: p_m_handr
+    100064: p_m_neck
+    100066: p_m_spine1
+    100068: p_m_spine2
+    100070: p_m_thighl
+    100072: p_m_thighr
+    100074: p_m_toel
+    100076: p_m_toer
+    100078: p_m_upperarml
+    100080: p_m_upperarmr
+    100082: //RootNode
+    100084: player_1_change
+    100086: player_1_change_w01
+    100088: player_1_change_w02
+    100090: player_2_1
+    400000: bip001 headnub
+    400002: bip001 l toe0nub
+    400004: bip001 r toe0nub
+    400006: bone001
+    400008: bone002
+    400010: bone003
+    400012: bone005
+    400014: bone006
+    400016: bone007
+    400018: Bone009
+    400020: bone010
+    400022: bone012
+    400024: bone013
+    400026: bone014
+    400028: bone015
+    400030: bone016
+    400032: bone017
+    400034: bone018
+    400036: bone019
+    400038: bone020
+    400040: p_m_ head
+    400042: p_m_calfl
+    400044: p_m_calfr
+    400046: p_m_claviclel
+    400048: p_m_clavicler
+    400050: p_m_foot
+    400052: p_m_footl
+    400054: p_m_footr
+    400056: p_m_forearml
+    400058: p_m_forearmr
+    400060: p_m_handl
+    400062: p_m_handr
+    400064: p_m_neck
+    400066: p_m_spine1
+    400068: p_m_spine2
+    400070: p_m_thighl
+    400072: p_m_thighr
+    400074: p_m_toel
+    400076: p_m_toer
+    400078: p_m_upperarml
+    400080: p_m_upperarmr
+    400082: player_1_change
+    400084: //RootNode
+    400086: player_1_change_w01
+    400088: player_1_change_w02
+    400090: player_2_1
+    4300000: player_1_change_w01
+    4300002: player_1_change
+    4300004: player_1_change_w02
+    7400000: baseattack1
+    7400002: battleready
+    7400004: changebody
+    7400006: run
+    7400008: stop
+    7400010: player_1_2_h_2
+    7400012: baseattack2
+    7400014: skillcast1
+    7400016: skillcast2
+    7400018: hit
+    7400020: stun
+    7400022: block
+    7400024: victory
+    11100000: //RootNode
+    13700000: player_1_change
+    13700002: player_1_change_w01
+    13700004: player_1_change_w02
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 3
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 0
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: player_1_2_h_2
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 90
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: player_1_change
+        weight: 1
+      - path: player_1_change_w01
+        weight: 1
+      - path: player_1_change_w02
+        weight: 1
+      - path: player_2_1
+        weight: 1
+      - path: player_2_1/p_m_foot
+        weight: 1
+      - path: player_2_1/p_m_foot/bone013
+        weight: 1
+      - path: player_2_1/p_m_foot/bone013/bone014
+        weight: 1
+      - path: player_2_1/p_m_foot/bone013/bone014/bone015
+        weight: 1
+      - path: player_2_1/p_m_foot/bone013/bone014/bone015/bone016
+        weight: 1
+      - path: player_2_1/p_m_foot/bone017
+        weight: 1
+      - path: player_2_1/p_m_foot/bone017/bone018
+        weight: 1
+      - path: player_2_1/p_m_foot/bone017/bone018/bone019
+        weight: 1
+      - path: player_2_1/p_m_foot/bone017/bone018/bone019/bone020
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_spine2
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_spine2/bone001
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_spine2/bone001/bone002
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_spine2/bone001/bone002/bone003
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_spine2/bone005
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_spine2/bone005/bone006
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_spine2/bone005/bone006/bone007
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_spine2/p_m_neck
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_spine2/p_m_neck/p_m_ head
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_spine2/p_m_neck/p_m_ head/bip001
+          headnub
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_spine2/p_m_neck/p_m_claviclel
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_spine2/p_m_neck/p_m_claviclel/bone012
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_spine2/p_m_neck/p_m_claviclel/p_m_upperarml
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_spine2/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_spine2/p_m_neck/p_m_claviclel/p_m_upperarml/p_m_forearml/p_m_handl
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_spine2/p_m_neck/p_m_clavicler
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_spine2/p_m_neck/p_m_clavicler/bone010
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_spine2/p_m_neck/p_m_clavicler/p_m_upperarmr
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_spine2/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_spine2/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_spine2/p_m_neck/p_m_clavicler/p_m_upperarmr/p_m_forearmr/p_m_handr/Bone009
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_thighl
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_thighl/p_m_calfl
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_thighl/p_m_calfl/p_m_footl
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_thighl/p_m_calfl/p_m_footl/p_m_toel
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_thighl/p_m_calfl/p_m_footl/p_m_toel/bip001
+          l toe0nub
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_thighr
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_thighr/p_m_calfr
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_thighr/p_m_calfr/p_m_footr
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_thighr/p_m_calfr/p_m_footr/p_m_toer
+        weight: 1
+      - path: player_2_1/p_m_foot/p_m_spine1/p_m_thighr/p_m_calfr/p_m_footr/p_m_toer/bip001
+          r toe0nub
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  userData: 

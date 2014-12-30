@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEditor;
 using System.IO;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace SkillEditor{
 	public class SkillEditorWindow : EditorWindow {
@@ -11,7 +12,7 @@ namespace SkillEditor{
 		public int RoleIndex = 0;
 		public int RolePreAction = 0;
 		public int RoleAttackActiom = 0;
-		string[] roleModels = new string[1];
+        List<string> roleModels = new List<string>();
 		public string[] roleModelAnimation = new string[1];
 
 		Vector2 scrollPos = Vector2.zero;
@@ -20,16 +21,23 @@ namespace SkillEditor{
 		[MenuItem("GameTool/SkillEditor %E")]
 		static void Init(){
 			if (EditorApplication.isPlaying && !EditorApplication.isPaused) {
-				Instance = EditorWindow.GetWindow<SkillEditorWindow> ("技能编辑器", false, typeof(SkillEditorWindow));	
-				GetAllModels();
-				SkillManager.Instance.Initialize();
+				Instance = EditorWindow.GetWindow<SkillEditorWindow> ("技能编辑器", false, typeof(SkillEditorWindow));
+                Instance.GetAllModels();
+                SkillManager.Instance.Initialize();
 			}
 			else
 				Debug.Log("运行场景");
 		}
 
-		static void GetAllModels(){
-					
+	     void GetAllModels(){
+            DirectoryInfo dic = new DirectoryInfo(Application.dataPath + "/Resources/Character/player_1");
+            foreach (FileInfo file in dic.GetFiles())
+            {
+                if (file.Name.EndsWith(".prefab"))
+                {
+                    roleModels.Add( file.Name.Substring(0,file.Name.IndexOf('.') ) );
+                }
+            }
 		}
 
 		public void Reset(){
@@ -41,7 +49,7 @@ namespace SkillEditor{
 		void OnGUI(){
 			scrollPos = EditorGUILayout.BeginScrollView (scrollPos);
 
-			RoleIndex = EditorGUILayout.Popup ("角色模型", RoleIndex, roleModels);
+			RoleIndex = EditorGUILayout.Popup ("角色模型", RoleIndex, roleModels.ToArray());
 
 			EditorGUILayout.BeginHorizontal ();
 			if (GUILayout.Button ("添加模型")) {
@@ -65,11 +73,11 @@ namespace SkillEditor{
 			EditorGUILayout.BeginHorizontal ();
 			if (GUILayout.Button ("添加特效")) {
 				//TEST
-				ScriptableObjectTest sot = ScriptableObject.CreateInstance<ScriptableObjectTest>();
-				sot.content = "test sstring";
-				sot.id = 110;
-				AssetDatabase.CreateAsset(sot,"Assets/Test.asset");
-				AssetDatabase.Refresh();
+                //ScriptableObjectTest sot = ScriptableObject.CreateInstance<ScriptableObjectTest>();
+                //sot.content = "test sstring";
+                //sot.id = 110;
+                //AssetDatabase.CreateAsset(sot,"Assets/Test.asset");
+                //AssetDatabase.Refresh();
 			}
 			if (GUILayout.Button ("删除特效")) {
 
