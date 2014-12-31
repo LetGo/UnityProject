@@ -17,6 +17,26 @@ namespace SkillEditor
 			AnimationController.Instance.UnInitialize();
 			RoleLoader.Instance.UnInitialize ();
 		}
+
+		public SKillType GetSkillType(){
+
+			SKillType type = SKillType.None;
+			if (SkillEditorWindow.Instance.RoleAttackActiom != AnimationController.Instance.modelAnimationClips.Length) {
+				if(SkillEditorWindow.Instance.RolePreAction != AnimationController.Instance.modelAnimationClips.Length){
+					type = SKillType.SingleSkillMovement;
+				}		
+				else if(SkillEditorWindow.Instance.RolePreAction == AnimationController.Instance.modelAnimationClips.Length){
+					type = SKillType.SingleSkillMovement;
+				}
+				if(SkillEditorWindow.Instance.RolePreAction != AnimationController.Instance.modelAnimationClips.Length){
+					type = SKillType.SingleSkillMovement;
+				}
+				if(SkillEditorWindow.Instance.RolePreAction != AnimationController.Instance.modelAnimationClips.Length){
+					type = SKillType.SingleSkillMovement;
+				}
+			}
+			return type;
+		}
 	}
 }
 
