@@ -7,7 +7,7 @@ public class PraseSkillBean {
 
 	public PraseSkillBean(){
 		praseAnimations = new PraseAnimation[(int)SKillType.Count];
-		praseAnimations [(int)SKillType.SingleMovement] = new PraseSingleMovementAnim ();
+		praseAnimations [(int)SKillType.SingleSkill] = new PraseSingleMovementAnim ();
 	}
 
 	public void Play(GameObject role,SkillBean bean){
