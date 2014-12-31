@@ -13,7 +13,9 @@ public class SkillBean : ScriptableObject {
 [System.Serializable]
 public enum SKillType{
 	None = -1,
-	SingleMovement, //单技能不冲锋
-	SingleMovementMove,
+	SingleSkill, //单技能不冲锋
+	SingleSkillMovement,
+	DoubleSKill,
+	DoubleSkillMovement,
 	Count,
 }
