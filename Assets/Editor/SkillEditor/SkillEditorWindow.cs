@@ -7,6 +7,7 @@ using System.Collections.Generic;
 
 namespace SkillEditor{
 	public class SkillEditorWindow : EditorWindow {
+
 		/// <summary>
 		/// The SkillEditorWindow instance.
 		/// </summary>
@@ -31,6 +32,11 @@ namespace SkillEditor{
 		/// One role model All animations.
 		/// </summary>
 		public string[] roleModelAnimations = new string[1];
+
+		ActionEvent actionEvent = ActionEvent.None;
+		int roleMovementAction = 0;
+		public MovementActionBean movementActionBean = new MovementActionBean ();
+		float movementTimeValue = 0;
 
 		Vector2 scrollPos = Vector2.zero;
 		float modelActionSlider = 0; //用于采样动作
@@ -93,21 +99,54 @@ namespace SkillEditor{
 			EditorGUILayout.LabelField("调整模型动作");
 			modelActionSlider = EditorGUILayout.Slider (modelActionSlider, 0, 1);
 
-			EditorGUILayout.EndScrollView ();
+			actionEvent = (ActionEvent)EditorGUILayout.EnumPopup ("插入动作事件类型", actionEvent);
+			switch (actionEvent) {
+			case ActionEvent.MovementActionBean:
 
+				EditorGUILayout.Space();
+				EditorGUILayout.BeginHorizontal();
+				for(int i = 0;i < roleModelAnimations.Length; ++i){
+					if(roleModelAnimations[i] != null && roleModelAnimations[i].Contains("Move")){
+						roleMovementAction = i;
+						break;
+					}
+				}
+				roleMovementAction = EditorGUILayout.Popup ("移动动作", roleMovementAction, roleModelAnimations);
+				movementActionBean.moveAnimationClip = AnimationController.Instance.modelAnimationClips[ roleMovementAction ];
+
+				movementActionBean.isUseAnimationTime = EditorGUILayout.Toggle("使用动画时间",movementActionBean.isUseAnimationTime);
+				if(movementActionBean.isUseAnimationTime){
+					movementActionBean.moveTime = roleModelAnimations[roleMovementAction].Length;
+				}else{
+					movementActionBean.moveTime = EditorGUILayout.FloatField("移动时间",roleModelAnimations[roleMovementAction].Length);
+				}
+				EditorGUILayout.EndHorizontal();
+
+				EditorGUILayout.BeginHorizontal();
+				movementTimeValue = EditorGUILayout.Slider(movementTimeValue,0,1);
+
+				EditorGUILayout.EndHorizontal();
+
+				break;
+			case ActionEvent.NormalEffectActionBean:
+				break;
+			}
 			EditorGUILayout.BeginHorizontal ();
-			if (GUILayout.Button ("添加特效")) {
+			if (GUILayout.Button ("添加动作事件")) {
 				//TEST
                 //ScriptableObjectTest sot = ScriptableObject.CreateInstance<ScriptableObjectTest>();
                 //sot.content = "test sstring";
                 //sot.id = 110;
                 //AssetDatabase.CreateAsset(sot,"Assets/Test.asset");
                 //AssetDatabase.Refresh();
+				SkillManager.Instance.AddActionEvent(actionEvent);
 			}
-			if (GUILayout.Button ("删除特效")) {
+			if (GUILayout.Button ("删除事件")) {
 
 			}
 			EditorGUILayout.EndHorizontal ();
+
+			EditorGUILayout.EndScrollView ();
 
 			EditorGUILayout.BeginHorizontal ();
 			if (GUILayout.Button ("添加受击对象")) {

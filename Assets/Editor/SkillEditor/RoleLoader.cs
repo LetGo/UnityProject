@@ -6,6 +6,7 @@ namespace SkillEditor
 {
 	public class RoleLoader: Singleton<RoleLoader>
 	{
+
         string modelPath = "Character/player_1";
 		public GameObject roleObj;
 		public List<GameObject> enemyList = new List<GameObject>();

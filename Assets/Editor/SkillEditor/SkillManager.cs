@@ -1,9 +1,13 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace SkillEditor
 {
 	public class SkillManager : Singleton<SkillManager>
 	{
+		public List<System.Object> ActionList = new List<System.Object>();
+
 		public override void Initialize ()
 		{
 			base.Initialize ();
@@ -36,6 +40,16 @@ namespace SkillEditor
 //				}
 			}
 			return type;
+		}
+
+		public void AddActionEvent(ActionEvent type ){
+			switch (type) {
+				case ActionEvent.MovementActionBean:
+					ActionList.Add(SkillEditorWindow.Instance.movementActionBean);
+					break;
+				case ActionEvent.NormalEffectActionBean:
+					break;
+			}
 		}
 	}
 }

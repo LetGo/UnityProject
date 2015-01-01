@@ -9,11 +9,13 @@ public class PraseSkillBean {
 
 	bool bInit = false;
 	bool bPlayedPre = false; //是否播放完准备动作
+	bool bMovetEnd = false; //是否移动完
+	public float startMoveTime = 0;
 
 	public PraseSkillBean(){
 		//TODO 添加事件
 		animationPlay = new PraseAnimation();
-
+		animationPlay.parent = this;
 	}
 
 	public void Init(GameObject role,SkillBean bean,ActionStatus status){
@@ -31,12 +33,12 @@ public class PraseSkillBean {
 		animationPlay.Init(bean,roleObj,attackTargetPos);
 		bInit = true;
 		bPlayedPre = false;
+		bMovetEnd = false;
 		ChangeStatus (status);
 	}
 
 	public void ChangeStatus( ActionStatus status ){
-		actionStatus = status;
-		switch(actionStatus){
+		switch(status){
 			case ActionStatus.Idle:
 				
 				break;
@@ -53,6 +55,7 @@ public class PraseSkillBean {
 				animationPlay.Resume();
 				break;
 		}
+		actionStatus = status;
 	}
 
 	public void Update(float realtimeSinceStartup){
@@ -64,14 +67,28 @@ public class PraseSkillBean {
 				Debug.Log("actionPreTime end");
 				bPlayedPre = true;
 				//1-1判断是否冲锋 是播放冲锋 否播放攻击
-				animationPlay.PlayAttack();
+				if (bean.Movement) {
+					startMoveTime = realtimeSinceStartup;
+					Debug.Log("move now :" + realtimeSinceStartup);
+					animationPlay.MoveToTarget();
+				}else{
+					animationPlay.PlayAttack();
+				}
 			}
 			else {
 				return;
 			}
 		}
 		//2 是否冲锋 移动
-
+		if (bean.Movement && !bMovetEnd) {
+			if(realtimeSinceStartup - startMoveTime >= bean.movementActionBeanList[0].moveTime ){
+				Debug.Log("Movement end :" + realtimeSinceStartup);
+				bMovetEnd = true;
+				animationPlay.PlayAttack();
+			}else{
+				return;
+			}			
+		}
 		//3攻击动作
 		if( bean.attackAnimation != null && !roleObj.animation.IsPlaying(bean.attackAnimation.name) ){
 			Debug.Log("attackAnimation end");

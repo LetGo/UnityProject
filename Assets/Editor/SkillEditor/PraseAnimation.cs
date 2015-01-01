@@ -7,6 +7,7 @@ public class PraseAnimation  {
 	public GameObject roleObj{ get; set;}
 	public Animation roleAnimation{ get; set;}
 	public Vector3 attackTargetPos{ get; set;}
+	public PraseSkillBean parent;
 
 	protected string currentAnimationClip = string.Empty;
 	public bool havePreAction = false;
@@ -34,7 +35,10 @@ public class PraseAnimation  {
 		else{
 			havePreAction = false;
 			//判断是否冲锋 是播放冲锋 否播放攻击
-			PlayAttack();
+			if(skillBean.Movement)
+				MoveToTarget();
+			else
+				PlayAttack();
 		}
 	}
 	
@@ -66,6 +70,20 @@ public class PraseAnimation  {
 	}
 
 	public void MoveToTarget(){
-		
+		roleAnimation.Stop ();
+		parent.startMoveTime = Time.realtimeSinceStartup;
+		Debug.Log("move now :" + parent.startMoveTime);
+		MovementActionBean moveBean = skillBean.movementActionBeanList [0];
+		currentAnimationClip = moveBean.moveAnimationClip.name;
+		roleAnimation [currentAnimationClip].wrapMode = WrapMode.Loop;
+		roleAnimation.Play(currentAnimationClip);
+		roleAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+
+		roleObj.transform.LookAt (attackTargetPos);
+		Move();
+	}
+
+	void Move(){
+		Debug.Log ("Move");
 	}
 }

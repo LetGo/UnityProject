@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace SkillEditor
 {
@@ -27,7 +29,11 @@ namespace SkillEditor
 			SkillBean bean = ScriptableObject.CreateInstance<SkillBean> ();
 
 			if (InitSkillBean (bean)) {
-				if(bean.isMovement){
+				if(bean.Movement){
+					if(RoleLoader.Instance.enemyList.Count <= 0){
+						UnityEditor.EditorUtility.DisplayDialog("添加敌人","添加敌人","O K");
+						return;
+					}
 					if(RoleLoader.Instance.enemyList.Count > 1){
 						actionPlayer.Init(RoleLoader.Instance.roleObj,bean,RoleLoader.Instance.enemyList[1].transform.position,ActionStatus.Play);
 					}else{
@@ -65,6 +71,18 @@ namespace SkillEditor
 			}
 
 			//TODO 事件添加
+			List<System.Object> actionList = SkillManager.Instance.ActionList;
+			int count = actionList.Count;
+			for (int i = 0; i < count; ++i) {
+				if(actionList[i] is MovementActionBean){
+					bean.movementActionBeanList.Add( (actionList[i] as MovementActionBean).Clone() );
+				}
+				if(actionList[i] is NormalEffectActionBean){
+					bean.normalEffectActionBeanList.Add( (actionList[i] as NormalEffectActionBean).Clone() );
+				}
+			}
+
+
 			return true;
 		}
 
