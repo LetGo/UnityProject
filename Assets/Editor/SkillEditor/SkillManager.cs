@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -51,6 +51,17 @@ namespace SkillEditor
 					break;
 			}
 		}
+
+        public void DeleteActionEvent(List<bool> selects)
+        {
+            for (int i = selects.Count - 1; i >= 0; --i )
+            {
+                if (selects[i])
+                {
+                    ActionList.RemoveAt(i);
+                }
+            }
+        }
 	}
 }
 

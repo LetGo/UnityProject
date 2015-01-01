@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
 
@@ -36,6 +36,12 @@ namespace SkillEditor
 			GetModelInfo ();
 		}
 
+        public void ResetPos()
+        {
+            if (roleObj == null) return;
+            roleObj.transform.localPosition = new Vector3(0, 0, -6);
+        }
+
 		//暂时加载一个
 		public void LoadEnemy(string role){
 
@@ -67,6 +73,7 @@ namespace SkillEditor
 			if (roleObj != null) {
 				GameObject.Destroy(roleObj);	
 			}
+            SkillManager.Instance.ActionList.Clear();
 			SkillEditorWindow.Instance.Reset ();
 		}
 
@@ -76,6 +83,7 @@ namespace SkillEditor
 			}	
 			enemyList.Clear ();
 		}
+
 		private void GetModelInfo(){
 			if(roleObj == null) return;
 			if (roleObj.animation == null) {

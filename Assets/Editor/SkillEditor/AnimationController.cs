@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,12 +8,12 @@ namespace SkillEditor
 	public class AnimationController: Singleton<AnimationController>
 	{
 		public AnimationClip[] modelAnimationClips;
-		public PraseSkillBean actionPlayer = null;
+		public SkillBeanPlayer actionPlayer = null;
 
         public override void Initialize()
         {
             base.Initialize();
-            actionPlayer = new PraseSkillBean();
+            actionPlayer = new SkillBeanPlayer();
         }
 
 		public override void UnInitialize ()
@@ -26,6 +26,12 @@ namespace SkillEditor
 		}
 
 		public void DisplaySkill(){
+            if (RoleLoader.Instance.roleObj == null)
+            {
+                UnityEditor.EditorUtility.DisplayDialog("添加模型", "添加模型", "O K");
+				return;
+            }
+
 			SkillBean bean = ScriptableObject.CreateInstance<SkillBean> ();
 
 			if (InitSkillBean (bean)) {
@@ -93,20 +99,41 @@ namespace SkillEditor
 			}
 			SkillEditorWindow window = SkillEditorWindow.Instance;
 			SKillType type = SkillManager.Instance.GetSkillType ();
+            float clipPoint = 0;
+            AnimationClip clip = null;
+
 			switch(type){
 				case SKillType.SingleSkill:
-				float clipPoint = modelAnimationClips[window.RoleAttackAction].length * value;
-				RoleLoader.Instance.roleObj.SampleAnimation(modelAnimationClips[window.RoleAttackAction],clipPoint);
+                    clip = modelAnimationClips[window.RoleAttackAction];
+                    clipPoint = clip.length * value;
 					break;
 				case SKillType.SingleSkillMovement:
 					
 					break;
 				case SKillType.DoubleSKill:
+                    if (value < 0.5) //准备动作
+                    {
+                        clip = modelAnimationClips[window.RolePreAction];
+                        clipPoint = clip.length * value * 2;
+                    } 
+                    else
+                    {
+                        //0.5 - 0
+                        //0.55--0.1
+                        //0.6--0.2
+                        //0.65--0.3
+                        //0.7--0.4
+                        //0.75--0.5
+                        //1- 1
+                        clip = modelAnimationClips[window.RoleAttackAction];
+                        clipPoint = clip.length * (value - 0.5f) / 0.05f * 0.1f;
+                    }
 					break;
 				case SKillType.DoubleSkillMovement:
 					
 					break;
 			}
+            RoleLoader.Instance.roleObj.SampleAnimation(clip, clipPoint);
 		}
 	}
 }
