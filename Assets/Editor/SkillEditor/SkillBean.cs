@@ -6,16 +6,17 @@ public class SkillBean : ScriptableObject {
 	public uint enityId;
 	public SKillType skillType;
 	public AnimationClip preAnimation;
-	public AnimationClip animation;
+	public AnimationClip attackAnimation;
+	public bool isMovement = false; //是否冲锋
 
 }
 
 [System.Serializable]
 public enum SKillType{
 	None = -1,
-	SingleSkill, //单技能不冲锋
-	SingleSkillMovement,
-	DoubleSKill,
-	DoubleSkillMovement,
+	SingleSkill = 0, //单技能不冲锋
+	SingleSkillMovement = 1,
+	DoubleSKill = 2,
+	DoubleSkillMovement = 3,
 	Count,
 }

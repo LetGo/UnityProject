@@ -1,41 +1,89 @@
 ﻿using UnityEngine;
 using System.Collections;
-//技能动作播放器
+//技能动作播放控制器
 public class PraseSkillBean {
-
-	PraseAnimation[] praseAnimations;
+	PraseAnimation animationPlay ;
 	GameObject roleObj;
 	SkillBean bean;
+	ActionStatus actionStatus = ActionStatus.Idle;
+
+	bool bInit = false;
+	bool bPlayedPre = false; //是否播放完准备动作
+
 	public PraseSkillBean(){
 		//TODO 添加事件
-		praseAnimations = new PraseAnimation[(int)SKillType.Count];
-		praseAnimations [(int)SKillType.SingleSkill] = new PraseSingleMovementAnim ();
+		animationPlay = new PraseAnimation();
+
 	}
 
-	public void Play(GameObject role,SkillBean bean){
-		Stop ();
+	public void Init(GameObject role,SkillBean bean,ActionStatus status){
 		this.roleObj = role;
 		this.bean = bean;
-		for (int i = 0; i<praseAnimations.Length; ++i) {
-			praseAnimations[i].Play();
+		animationPlay.Init(bean,roleObj);
+		bInit = true;
+		bPlayedPre = false;
+		ChangeStatus (status);
+	}
+
+	public void Init(GameObject role,SkillBean bean,Vector3 attackTargetPos,ActionStatus status){
+		this.roleObj = role;
+		this.bean = bean;
+		animationPlay.Init(bean,roleObj,attackTargetPos);
+		bInit = true;
+		bPlayedPre = false;
+		ChangeStatus (status);
+	}
+
+	public void ChangeStatus( ActionStatus status ){
+		actionStatus = status;
+		switch(actionStatus){
+			case ActionStatus.Idle:
+				
+				break;
+			case ActionStatus.Play:
+				animationPlay.Start();
+				break;
+			case ActionStatus.Stop:
+				animationPlay.Stop();
+				break;
+			case ActionStatus.Pause:
+				animationPlay.Pause();
+				break;
+			case ActionStatus.Resume:
+				animationPlay.Resume();
+				break;
 		}
 	}
 
-	public void Stop(){
-		for (int i = 0; i<praseAnimations.Length; ++i) {
-			praseAnimations[i].Stop();
+	public void Update(float realtimeSinceStartup){
+		if (!bInit || actionStatus != ActionStatus.Play)
+			return;
+		//1 准备动作
+		if( animationPlay.havePreAction && !bPlayedPre ){
+			if( !roleObj.animation.IsPlaying(bean.preAnimation.name) ){
+				Debug.Log("actionPreTime end");
+				bPlayedPre = true;
+				//1-1判断是否冲锋 是播放冲锋 否播放攻击
+				animationPlay.PlayAttack();
+			}
+			else {
+				return;
+			}
 		}
-	}
+		//2 是否冲锋 移动
 
-	public void Pause(){
-		for (int i = 0; i<praseAnimations.Length; ++i) {
-			praseAnimations[i].Pause();
+		//3攻击动作
+		if( bean.attackAnimation != null && !roleObj.animation.IsPlaying(bean.attackAnimation.name) ){
+			Debug.Log("attackAnimation end");
+			actionStatus = ActionStatus.Idle;
 		}
 	}
+}
 
-	public void Resume(){
-		for (int i = 0; i<praseAnimations.Length; ++i) {
-			praseAnimations[i].Resume();
-		}
-	}
+public enum ActionStatus{
+	Idle,
+	Play,
+	Stop,
+	Pause,
+	Resume,
 }

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace SkillEditor
 {
@@ -7,50 +8,73 @@ namespace SkillEditor
 	{
         string modelPath = "Character/player_1";
 		public GameObject roleObj;
+		public List<GameObject> enemyList = new List<GameObject>();
+		Vector3[] postionArray = {new Vector3 (2, 0, 6),new Vector3 (0, 0, 6),new Vector3 (-2, 0, 6),
+								new Vector3 (2, 0, 8),new Vector3 (0, 0, 8),new Vector3 (-2, 0, 8),
+								new Vector3 (2, 0, 10),new Vector3 (0, 0, 10),new Vector3 (-2, 0, 10)};
 
 		public override void UnInitialize ()
 		{
-			base.UnInitialize ();
 			if (roleObj != null) {
 				GameObject.Destroy(roleObj);			
 			}
+			base.UnInitialize ();
 		}
 
 		public void Load(string role){
+			SkillEditorWindow.Instance.Reset ();
 			if (roleObj != null && !role.Equals(roleObj.name)) {
 				GameObject.Destroy(roleObj);	
-				LoadModel(role);
+				roleObj = LoadModel(role);
 			}else
 			{
-				LoadModel(role);
+				roleObj = LoadModel(role);
 			}
+			roleObj.transform.localPosition = new Vector3(0, 0, -6);
+			roleObj.name = role;
 			GetModelInfo ();
 		}
 
-		private void LoadModel(string model){
-			SkillEditorWindow.Instance.Reset ();
+		//暂时加载一个
+		public void LoadEnemy(string role){
+
+			DeleteEnemy ();
+
+			GameObject go = LoadModel (role);
+			go.transform.localPosition = postionArray [1];
+			go.transform.localRotation = Quaternion.Euler (new Vector3 (0, 180, 0));
+			go.name = "Enemy_" + role;
+			enemyList.Add (go);
+		}
+
+		private GameObject LoadModel(string model){
 			string path = string.Format ("{0}/{1}", modelPath, model);
-        
             GameObject prefab = Resources.Load(path) as GameObject;
+			GameObject go = null;
             if (prefab != null)
             {
-                roleObj = GameObject.Instantiate(prefab) as GameObject;
-                roleObj.transform.localPosition = new Vector3(0, 0, -6);
+				go = GameObject.Instantiate(prefab) as GameObject;
             }
             else
             {
                 Debug.LogError("load error :" + path);
             }
-
+			return go;
 		}
 
-		public void Delete(string role){
+		public void Delete(){
 			if (roleObj != null) {
 				GameObject.Destroy(roleObj);	
 			}
 			SkillEditorWindow.Instance.Reset ();
 		}
 
+		public void DeleteEnemy(){
+			for (int i = 0; i< enemyList.Count; ++i) {
+				GameObject.Destroy(enemyList[i]);			
+			}	
+			enemyList.Clear ();
+		}
 		private void GetModelInfo(){
 			if(roleObj == null) return;
 			if (roleObj.animation == null) {
@@ -67,9 +91,9 @@ namespace SkillEditor
 				roleModelAnimation[i] = modelAnimationClips[i].name;
 			}
             roleModelAnimation[clips] = "None";
-            SkillEditorWindow.Instance.roleModelAnimation = roleModelAnimation;
+            SkillEditorWindow.Instance.roleModelAnimations = roleModelAnimation;
             SkillEditorWindow.Instance.RolePreAction = clips;
-            SkillEditorWindow.Instance.RoleAttackActiom = clips;
+            SkillEditorWindow.Instance.RoleAttackAction = clips;
 		}
 	}
 }
