@@ -16,7 +16,7 @@ namespace SkillEditor
         bool bPlayedPre = false;        //是否播放完准备动作
         bool bMovetEnd = false;         //是否移动完
         public float startMoveTime = 0;
-
+		float startPlayTime = 0;
         public SkillBeanPlayer()
         {
             //TODO 添加事件
@@ -54,6 +54,7 @@ namespace SkillEditor
                     break;
                 case ActionStatus.Play:
                     animationPlay.Start();
+				startPlayTime = Time.realtimeSinceStartup;
                     break;
                 case ActionStatus.Stop:
                     animationPlay.Stop();
@@ -72,51 +73,78 @@ namespace SkillEditor
         {
             if (!bInit || actionStatus != ActionStatus.Play)
                 return;
+			//触发事件
+			for (int i = 0; i <bean.attackEventBeanList.Count; ++i) {
+				if( !bean.attackEventBeanList[i].bInvoke ){
+					if(realtimeSinceStartup - startPlayTime >= bean.attackEventBeanList[i].startTime + bean.attackEventBeanList[i].delayTime){
+						Debug.Log("attackEventBeanList invoke");
+						bean.attackEventBeanList[i].bInvoke = true;
+					}
+				}			
+			}
+
             //1 准备动作
-            if (animationPlay.havePreAction && !bPlayedPre)
-            {
-                if (!roleObj.animation.IsPlaying(bean.preAnimation.name))
-                {
-                    Debug.Log("actionPreTime end");
-                    bPlayedPre = true;
-                    //1-1判断是否冲锋 是播放冲锋 否播放攻击
-                    if (bean.Movement)
-                    {
-                        startMoveTime = realtimeSinceStartup;
-                        Debug.Log("move now :" + realtimeSinceStartup);
-                        animationPlay.MoveToTarget();
-                    }
-                    else
-                    {
-                        animationPlay.PlayAttack();
-                    }
-                }
-                else
-                {
-                    return;
-                }
-            }
+			if ( !IsPreActionOver (realtimeSinceStartup)) {
+				return;		
+			}
             //2 是否冲锋 移动
-            if (bean.Movement && !bMovetEnd)
-            {
-                if (realtimeSinceStartup - startMoveTime >= bean.movementActionBeanList[0].moveTime)
-                {
-                    Debug.Log("Movement end :" + realtimeSinceStartup);
-                    bMovetEnd = true;
-                    animationPlay.PlayAttack();
-                }
-                else
-                {
-                    return;
-                }
-            }
+			if (!IsMoveOver (realtimeSinceStartup)) {
+				return;			
+			}
             //3攻击动作
-            if (bean.attackAnimation != null && !roleObj.animation.IsPlaying(bean.attackAnimation.name))
-            {
-                Debug.Log("attackAnimation end " + bean.attackAnimation.name);
-                actionStatus = ActionStatus.Idle;
-            }
+            CheckAttackOver ();
+
+
         }
+
+		bool IsPreActionOver (float realtimeSinceStartup)
+		{
+			if (animationPlay.havePreAction && !bPlayedPre) {
+				if (!roleObj.animation.IsPlaying (bean.preAnimation.name)) {
+					Debug.Log ("actionPreTime end");
+					bPlayedPre = true;
+					//1-1判断是否冲锋 是播放冲锋 否播放攻击
+					if (bean.Movement) {
+						startMoveTime = realtimeSinceStartup;
+						Debug.Log ("move now :" + realtimeSinceStartup);
+						animationPlay.MoveToTarget ();
+					}
+					else {
+						animationPlay.PlayAttack ();
+					}
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+			return true;
+		}
+
+		bool IsMoveOver (float realtimeSinceStartup)
+		{
+			if (bean.Movement && !bMovetEnd) {
+				if (realtimeSinceStartup - startMoveTime >= bean.movementActionBeanList [0].moveTime) {
+					Debug.Log ("Movement end :" + realtimeSinceStartup);
+					bMovetEnd = true;
+					animationPlay.PlayAttack ();
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+			return true;
+		}
+
+		void CheckAttackOver ()
+		{
+			if (bean.attackAnimation != null && !roleObj.animation.IsPlaying (bean.attackAnimation.name)) {
+				Debug.Log ("attackAnimation end " + bean.attackAnimation.name);
+				actionStatus = ActionStatus.Idle;
+				animationPlay.MoveBack ();
+			}
+		}
     }
 
     public enum ActionStatus

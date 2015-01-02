@@ -31,19 +31,27 @@ namespace SkillEditor{
 		/// <summary>
 		/// One role model All animations.
 		/// </summary>
-		public string[] roleModelAnimations = new string[1];
+		public string[] roleModelAnimations = new string[0];
+		public int roleActionEventIndex = -1; //事件列表索引
+		int currRoleActionEventIndex = -1; //当前事件列表索引
+		public string[] roleActionEvents = new string[0];
 
-		ActionEvent actionEvent = ActionEvent.None;
+		public ActionEvent ActionEventType = ActionEvent.None;//插入事件类型
+		//move
 		int roleMovementAction = 0;
 		public MovementActionBean movementActionBean = new MovementActionBean ();
 		float movementTimeValue = 0;
+		float currentMovementTimeValue = 0;
+		//AttackEvent
+		public float eventInvokeDelayTime = 0f;
+		public float eventInvokeTime = 0f;
 
 		Vector2 scrollPos = Vector2.zero;
         Vector2 scrollPos2 = Vector2.zero;
-		float modelActionSlider = 0; //用于采样动作
+		public float ModelActionSlider = 0; //用于采样动作
 		float animationPlaySpeed = 0; //播放速度
+	
 
-        List<bool> actionEventSelects = new List<bool>();
 
 		[MenuItem("GameTool/SkillEditor %E")]
 		static void Init(){
@@ -58,6 +66,7 @@ namespace SkillEditor{
 				}
 				Camera.main.transform.rotation = Quaternion.Euler (new Vector3 (35, 320, 0));
 				Camera.main.transform.position = new Vector3 (5,5,-10);
+
 			}
 			else
 				Debug.Log("运行场景");
@@ -74,13 +83,17 @@ namespace SkillEditor{
             }
 		}
 
+		void Start(){
+			Reset();		
+		}
+
 		public void Reset(){
 			RolePreAction = 0;	
 			RoleAttackAction = 0;
 			roleModelAnimations = new string[1];
             roleMovementAction = 0;
-            actionEvent = ActionEvent.None;
-            actionEventSelects.Clear();
+            ActionEventType = ActionEvent.None;
+			RestMovementActionBean ();
 		}
 
 		void OnGUI(){
@@ -103,14 +116,20 @@ namespace SkillEditor{
 			EditorGUILayout.EndHorizontal ();
 
 			EditorGUILayout.LabelField("调整模型动作");
-			modelActionSlider = EditorGUILayout.Slider (modelActionSlider, 0, 1);
+			ModelActionSlider = EditorGUILayout.Slider (ModelActionSlider, 0, 1);
 
-			actionEvent = (ActionEvent)EditorGUILayout.EnumPopup ("插入动作事件类型", actionEvent);
-			switch (actionEvent) {
+			ActionEventType = (ActionEvent)EditorGUILayout.EnumPopup ("插入动作事件类型", ActionEventType);
+			switch (ActionEventType) {
     			case ActionEvent.MovementActionBean:
                     OnMovementActionBean();
 			    	break;
 	    		case ActionEvent.NormalEffectActionBean:
+				break;
+			case ActionEvent.AttackActionBean:
+				EditorGUILayout.BeginHorizontal ();
+				eventInvokeTime = EditorGUILayout.FloatField("触发开始时间:",SkillManager.Instance.GetStartInvokeTime());
+				eventInvokeDelayTime = EditorGUILayout.FloatField("触发延迟时间",eventInvokeDelayTime);
+				EditorGUILayout.EndHorizontal ();
 		    		break;
 			}
 			EditorGUILayout.BeginHorizontal ();
@@ -121,60 +140,22 @@ namespace SkillEditor{
                 //sot.id = 110;
                 //AssetDatabase.CreateAsset(sot,"Assets/Test.asset");
                 //AssetDatabase.Refresh();
-				SkillManager.Instance.AddActionEvent(actionEvent);
+				SkillManager.Instance.AddActionEvent(ActionEventType);
 			}
 			if (GUILayout.Button ("删除事件")) {
-                SkillManager.Instance.DeleteActionEvent(actionEventSelects);
-                for (int i = 0; i < actionEventSelects.Count; ++i)
-                {
-                    actionEventSelects[i] = false;
-                }
+               SkillManager.Instance.DeleteActionEvent();
 			}
 			EditorGUILayout.EndHorizontal ();
 
-            List<System.Object> currActionList = SkillManager.Instance.ActionList;
-            if (actionEventSelects.Count < currActionList.Count)
-            {
-                int i = actionEventSelects.Count > 0 ? actionEventSelects.Count : 0;
-                for (int n = 0; n < actionEventSelects.Count; ++n )
-                {
-                    actionEventSelects[n] = false;
-                }
-                for ( ; i < currActionList.Count; ++i)
-                {
-                    actionEventSelects.Add(false);
-                }
-                actionEventSelects[actionEventSelects.Count - 1] = true;
-            }
-
-            for (int i = 0; i < currActionList.Count; ++i)
-            {
-                if (currActionList[i] is MovementActionBean)
-                {
-                    Debug.Log("select i = " + i);
-                    EditorGUILayout.BeginHorizontal();
-                    actionEventSelects[i] = EditorGUILayout.Toggle(actionEventSelects[i]);
-                    EditorGUILayout.LabelField("移动事件" + i);
-                    EditorGUILayout.EndHorizontal();
-                    if (actionEventSelects[i])
-                        actionEvent = ActionEvent.MovementActionBean;
-                    else
-                        actionEvent = ActionEvent.None;
-                }
-                else if (currActionList[i] is NormalEffectActionBean)
-                {
-                    EditorGUILayout.BeginHorizontal();
-                    actionEventSelects[i] = EditorGUILayout.Toggle(actionEventSelects[i]);
-                    EditorGUILayout.LabelField("普通特效事件");
-                    EditorGUILayout.EndHorizontal();
-                }
-            }
-
-
-            EditorGUILayout.EndScrollView();
-
+			//事件列表
             scrollPos2 = EditorGUILayout.BeginScrollView(scrollPos2);
-			
+			roleActionEventIndex = GUILayout.SelectionGrid (roleActionEventIndex, roleActionEvents, 1);
+			if (currRoleActionEventIndex != roleActionEventIndex) {
+				currRoleActionEventIndex = roleActionEventIndex;
+				SkillManager.Instance.PraseWindowSelectActionEvent();			
+			}
+			EditorGUILayout.EndScrollView();
+
             EditorGUILayout.BeginHorizontal ();
 			if (GUILayout.Button ("添加受击对象")) {
 				RoleLoader.Instance.LoadEnemy(roleModels[RoleIndex]);
@@ -199,10 +180,10 @@ namespace SkillEditor{
             EditorGUILayout.EndHorizontal();
 			EditorGUILayout.BeginHorizontal ();
 			if (GUILayout.Button ("保存技能")) {
-
+				SkillFile.Save();
 			}
 			if (GUILayout.Button ("读取技能")) {
-				
+				SkillFile.Load();
 			}
 			EditorGUILayout.EndHorizontal ();
 			EditorGUILayout.BeginHorizontal ();
@@ -210,7 +191,7 @@ namespace SkillEditor{
 			EditorGUILayout.EndHorizontal ();
             EditorGUILayout.EndScrollView();
 		}
-
+		
         private void OnMovementActionBean()
         {
             EditorGUILayout.Space();
@@ -241,39 +222,83 @@ namespace SkillEditor{
                 {
                     movementActionBean.moveTime = 0;
                 }
+				if(roleActionEventIndex != -1){
+					if(GUILayout.Button("设置")){
+						MovementActionBean moveAction = SkillManager.Instance.ActionList[roleActionEventIndex] as MovementActionBean;
+						if(moveAction != null){
+							moveAction.moveTime = movementActionBean.moveTime;
+						}else{
+							Debug.LogError("设置移动时间失败");
+						}
+					}
+				}
             }
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal();
             movementTimeValue = EditorGUILayout.Slider(movementTimeValue, 0, 1);
+			if (currentMovementTimeValue != movementTimeValue) {
+				currentMovementTimeValue = movementTimeValue;
+				AnimationController.Instance.SamepleMovemtentClip(currentMovementTimeValue);
+			}
 
+			if (GUILayout.Button ("设置为移动开始时间" + movementActionBean.startTime)) {
+				movementActionBean.startTime = movementTimeValue;
+				if(roleActionEventIndex != -1){
+					MovementActionBean moveAction = SkillManager.Instance.ActionList[roleActionEventIndex] as MovementActionBean;
+					if(moveAction != null){
+						moveAction.startTime = movementActionBean.startTime;
+					}
+				}
+			}
+			if (GUILayout.Button ("设置为移动结束时间" + movementActionBean.endTime)) {
+				movementActionBean.endTime = movementTimeValue;
+				if(roleActionEventIndex != -1){
+					MovementActionBean moveAction = SkillManager.Instance.ActionList[roleActionEventIndex] as MovementActionBean;
+					if(moveAction != null){
+						moveAction.endTime = movementActionBean.endTime;
+					}
+				}
+			}
             EditorGUILayout.EndHorizontal();
 
         }
+		public void RestMovementActionBean(){
+			movementActionBean.moveTime = 0;
+			movementActionBean.moveAnimationClip = null;
+			movementActionBean.endTime = 1;
+			movementActionBean.startTime = 0;
+			movementActionBean.isUseAnimationTime = true;
+		}
 
 		float currModelActionSlider = 0;
 		void Update(){
-			if (currModelActionSlider != modelActionSlider) {
-				currModelActionSlider = modelActionSlider;
+			if (currModelActionSlider != ModelActionSlider) {
+				currModelActionSlider = ModelActionSlider;
 				AnimationController.Instance.SampleClipBySlider(currModelActionSlider);
 			}
-
-			AnimationController.Instance.actionPlayer.Update (Time.realtimeSinceStartup);
+			if(AnimationController.Instance.actionPlayer != null)
+				AnimationController.Instance.actionPlayer.Update (Time.realtimeSinceStartup);
 
 			if (!EditorApplication.isPlaying) {
-				Instance.Close();			
+				if(Instance != null)
+					Instance.Close();	
 			}
 		}
 
-		void Destroy(){
-            actionEventSelects.Clear();
-            actionEventSelects = null;
+		void OnDestroy(){
             movementActionBean = null;
             roleModelAnimations = null;
             roleModels.Clear(); 
             roleModels = null;
-
+			ActionEventType = ActionEvent.None;
 			SkillManager.Instance.UnInitialize ();
+		}
+
+		public void UpdateLoadSkillBean(SkillBean bean){
+			Reset ();
+			SkillManager.Instance.UnInitialize ();
+
 		}
 	}
 }

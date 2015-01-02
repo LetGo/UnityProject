@@ -12,7 +12,7 @@ namespace SkillEditor
         public bool Movement { get { return movementActionBeanList.Count > 0; } }//是否冲锋
         public List<MovementActionBean> movementActionBeanList = new List<MovementActionBean>();
         public List<NormalEffectActionBean> normalEffectActionBeanList = new List<NormalEffectActionBean>();
-
+		public List<AttackEventBean> attackEventBeanList = new List<AttackEventBean>();
     }
 
     [System.Serializable]
@@ -26,14 +26,26 @@ namespace SkillEditor
         Count,
     }
 
+	[System.Serializable]
+	public class AttackEventBean//触发受击事件
+	{
+		public float startTime; //触发开始时间
+		public float delayTime; //延迟时间 
+		public bool bInvoke;
+		public AttackEventBean Clone()
+		{
+			return MemberwiseClone() as AttackEventBean;
+		}
+	}
+
     [System.Serializable]
     public class MovementActionBean
     {
         public bool isUseAnimationTime;
-        public float moveTime;
+        public float moveTime; 						//总的移动时间
         public AnimationClip moveAnimationClip;
-        public float startTime;
-        public float endTime;
+        public float startTime;						//总的移动时间的百分比 0-1 作为开始时间
+		public float endTime;						//总的移动时间的百分比 0-1 作为结束时间
 
         public MovementActionBean Clone()
         {
@@ -77,5 +89,6 @@ namespace SkillEditor
         None,
         NormalEffectActionBean,
         MovementActionBean,
+		AttackActionBean,
     }
 }

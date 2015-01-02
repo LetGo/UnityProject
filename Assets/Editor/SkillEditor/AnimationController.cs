@@ -55,26 +55,7 @@ namespace SkillEditor
 		
 		bool InitSkillBean(SkillBean bean){
 
-			SKillType type = SkillManager.Instance.GetSkillType ();
-			Debug.Log ("skill type " + type);
-			bean.skillType = type;
-			if (type == SKillType.None || type == SKillType.Count)
-				return false;
-			switch(type){
-				case SKillType.SingleSkill:
-					bean.attackAnimation = modelAnimationClips[SkillEditorWindow.Instance.RoleAttackAction];
-					break;
-				case SKillType.SingleSkillMovement:
-
-					break;
-				case SKillType.DoubleSKill:
-					bean.attackAnimation = modelAnimationClips[SkillEditorWindow.Instance.RoleAttackAction];
-					bean.preAnimation = modelAnimationClips[SkillEditorWindow.Instance.RolePreAction];
-					break;
-				case SKillType.DoubleSkillMovement:
-					
-					break;
-			}
+			SetSkillBeanAnimation (bean);
 
 			//TODO 事件添加
 			List<System.Object> actionList = SkillManager.Instance.ActionList;
@@ -86,10 +67,35 @@ namespace SkillEditor
 				if(actionList[i] is NormalEffectActionBean){
 					bean.normalEffectActionBeanList.Add( (actionList[i] as NormalEffectActionBean).Clone() );
 				}
+				if(actionList[i] is AttackEventBean){
+					bean.attackEventBeanList.Add( (actionList[i] as AttackEventBean).Clone() );
+				}
 			}
 
 
 			return true;
+		}
+
+		public void SetSkillBeanAnimation (SkillBean bean)
+		{
+			SKillType type = SkillManager.Instance.GetSkillType ();
+			Debug.Log ("skill type " + type);
+			bean.skillType = type;
+			if (type == SKillType.None || type == SKillType.Count)
+				return;
+			switch (type) {
+				case SKillType.SingleSkill:
+					bean.attackAnimation = modelAnimationClips [SkillEditorWindow.Instance.RoleAttackAction];
+					break;
+				case SKillType.SingleSkillMovement:
+					break;
+				case SKillType.DoubleSKill:
+					bean.attackAnimation = modelAnimationClips [SkillEditorWindow.Instance.RoleAttackAction];
+					bean.preAnimation = modelAnimationClips [SkillEditorWindow.Instance.RolePreAction];
+					break;
+				case SKillType.DoubleSkillMovement:
+					break;
+			}
 		}
 
 		public void SampleClipBySlider(float value){
@@ -134,6 +140,16 @@ namespace SkillEditor
 					break;
 			}
             RoleLoader.Instance.roleObj.SampleAnimation(clip, clipPoint);
+		}
+
+		public void SamepleMovemtentClip(float value){
+			if (RoleLoader.Instance.roleObj == null) {
+				Debug.LogError("RoleLoader.Instance.roleObj is null");
+				return;			
+			}
+
+			float clipPoint = SkillEditorWindow.Instance.movementActionBean.moveAnimationClip.length * value;
+			RoleLoader.Instance.roleObj.SampleAnimation(SkillEditorWindow.Instance.movementActionBean.moveAnimationClip, clipPoint);
 		}
 	}
 }

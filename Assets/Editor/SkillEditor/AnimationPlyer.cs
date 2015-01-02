@@ -17,11 +17,14 @@ namespace SkillEditor
         protected string currentAnimationClip = string.Empty;
         public bool havePreAction = false;
 
+		Vector3 roleLoacalPos;
+
         public void Init(SkillBean bean, GameObject role)
         {
             skillBean = bean;
             roleObj = role;
             roleAnimation = role.animation;
+			roleLoacalPos = role.transform.localPosition;
             Stop();
         }
 
@@ -31,6 +34,7 @@ namespace SkillEditor
             roleObj = role;
             roleAnimation = role.animation;
             this.attackTargetPos = attackTargetPos;
+			roleLoacalPos = role.transform.localPosition;
             Stop();
         }
 
@@ -103,9 +107,25 @@ namespace SkillEditor
 
         void Move(MovementActionBean moveBean)
         {
-            TweenPosition.Begin(roleObj, moveBean.moveTime, attackTargetPos);
+			Vector3 desPos = Vector3.zero; //目标位置
+
+			Vector3 dir = Vector3.Normalize (attackTargetPos - roleObj.transform.position); //目标位置与自身的单位向量
+			desPos = attackTargetPos - dir;
+
+			roleObj.transform.position = desPos; //设置自身到目标点 用于计算目标点的相对位置
+			desPos = roleObj.transform.localPosition; //目标点的相对位置
+			roleObj.transform.localPosition = roleLoacalPos; //设置回原来的位置
+
+			float time = moveBean.moveTime * (moveBean.endTime - moveBean.startTime);
+
+			TweenPosition.Begin(roleObj,time, desPos);
 
             Debug.Log("Move");
         }
+
+		public void MoveBack(){
+			roleObj.transform.LookAt(attackTargetPos);
+			TweenPosition.Begin(roleObj,0.01f, roleLoacalPos);
+		}
     }
 }

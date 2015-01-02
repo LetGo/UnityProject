@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
 
 namespace SkillEditor
 {
@@ -25,6 +27,8 @@ namespace SkillEditor
 		public SKillType GetSkillType(){
 
 			SKillType type = SKillType.None;
+			if (AnimationController.Instance.modelAnimationClips == null)
+								return type;
 			if (SkillEditorWindow.Instance.RoleAttackAction != AnimationController.Instance.modelAnimationClips.Length) {
 				if(SkillEditorWindow.Instance.RolePreAction != AnimationController.Instance.modelAnimationClips.Length){
 					type = SKillType.DoubleSKill;
@@ -45,23 +49,110 @@ namespace SkillEditor
 		public void AddActionEvent(ActionEvent type ){
 			switch (type) {
 				case ActionEvent.MovementActionBean:
-					ActionList.Add(SkillEditorWindow.Instance.movementActionBean);
+					ActionList.Add(SkillEditorWindow.Instance.movementActionBean.Clone());
 					break;
 				case ActionEvent.NormalEffectActionBean:
 					break;
+			case ActionEvent.AttackActionBean:
+				AttackEventBean bean = new AttackEventBean();
+				bean.startTime = SkillEditorWindow.Instance.eventInvokeTime;
+				bean.delayTime = SkillEditorWindow.Instance.eventInvokeDelayTime;
+				bean.bInvoke = false;
+				ActionList.Add(bean);
+				break;
+			}
+			PraseActionEvent ();
+		}
+
+        public void DeleteActionEvent()
+        {
+			if (ActionList.Count > 0 && SkillEditorWindow.Instance.roleActionEventIndex != -1) {
+				ActionList.RemoveAt(SkillEditorWindow.Instance.roleActionEventIndex);		
+			}
+			SkillEditorWindow.Instance.RestMovementActionBean ();
+			SkillEditorWindow.Instance.roleActionEventIndex = -1;
+			PraseActionEvent ();
+        }
+
+		/// <summary>
+		/// Prases the action event.  show in window
+		/// </summary>
+		void PraseActionEvent(){
+			SkillEditorWindow.Instance.roleActionEvents = null;
+			SkillEditorWindow.Instance.roleActionEvents = new string[ActionList.Count];
+			for (int i = 0; i< ActionList.Count; ++i) {
+				SkillEditorWindow.Instance.roleActionEvents[i] = " 特效，事件类型：" + ActionList[i].GetType().ToString();			
+			}
+		}
+		/// <summary>
+		/// window 事件选中item
+		/// </summary>
+		public void PraseWindowSelectActionEvent(){
+			if (ActionList.Count > SkillEditorWindow.Instance.roleActionEventIndex && SkillEditorWindow.Instance.roleActionEventIndex != -1) {
+				System.Object actionObj = ActionList[SkillEditorWindow.Instance.roleActionEventIndex];
+				if(actionObj is MovementActionBean ){
+					SkillEditorWindow.Instance.ActionEventType = ActionEvent.MovementActionBean;
+
+					MovementActionBean action = actionObj as MovementActionBean;
+					MovementActionBean movementActionBean = SkillEditorWindow.Instance.movementActionBean;
+					movementActionBean.moveTime = action.moveTime;
+					movementActionBean.moveAnimationClip = action.moveAnimationClip;
+					movementActionBean.endTime = action.endTime;
+					movementActionBean.startTime = action.startTime;
+					movementActionBean.isUseAnimationTime = action.isUseAnimationTime;
+					 
+				}	
+				if(actionObj is NormalEffectActionBean ){
+				}
+				if(actionObj is AttackEventBean ){
+					SkillEditorWindow.Instance.ActionEventType = ActionEvent.AttackActionBean;
+					AttackEventBean action = actionObj as AttackEventBean;
+					SkillEditorWindow.Instance.eventInvokeDelayTime = action.delayTime;
+					SkillEditorWindow.Instance.eventInvokeTime = action.startTime;
+				}
 			}
 		}
 
-        public void DeleteActionEvent(List<bool> selects)
-        {
-            for (int i = selects.Count - 1; i >= 0; --i )
-            {
-                if (selects[i])
-                {
-                    ActionList.RemoveAt(i);
-                }
-            }
-        }
+		/// <summary>
+		/// 计算触发时间
+		/// </summary>
+		/// <returns>The start invoke time.</returns>
+		public float GetStartInvokeTime(){
+			float value = 0;
+			SKillType type = GetSkillType();
+			AnimationClip[] modelAnimationClips = AnimationController.Instance.modelAnimationClips;
+			SkillEditorWindow window = SkillEditorWindow.Instance;
+			switch (type) {
+			case SKillType.SingleSkill:
+				value = modelAnimationClips[window.RoleAttackAction].length * window.ModelActionSlider;
+				break;
+			case SKillType.SingleSkillMovement: //0-0.2跑动
+				if(SkillEditorWindow.Instance.ModelActionSlider < 0.2){
+					EditorUtility.DisplayDialog("","跑动过程中无法添加事件","ok");
+				}else{
+					value = modelAnimationClips[window.RoleAttackAction].length * (window.ModelActionSlider - 0.2f) + window.movementActionBean.moveTime;
+				}
+				break;
+			case SKillType.DoubleSKill:
+				if(window.ModelActionSlider < 0.5f){
+					value = modelAnimationClips[window.RolePreAction].length * window.ModelActionSlider / 0.5f;
+				}else{
+					value = modelAnimationClips[window.RoleAttackAction].length * (window.ModelActionSlider - 0.5f) / 0.5f;
+				}
+				break;
+			case SKillType.DoubleSkillMovement:
+				if(window.ModelActionSlider >= 0.4f && window.ModelActionSlider < 0.6f){
+					EditorUtility.DisplayDialog("","跑动过程中无法添加事件","ok");
+				}else if(window.ModelActionSlider < 0.4f){
+					value = modelAnimationClips[window.RolePreAction].length * window.ModelActionSlider / 0.4f;
+				}else{
+					value = modelAnimationClips[window.RoleAttackAction].length * (window.ModelActionSlider - 0.6f) / 0.4f;
+				}
+				break;
+			}
+
+			return value;
+		}
 	}
 }
 
