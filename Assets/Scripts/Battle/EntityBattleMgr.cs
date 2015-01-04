@@ -6,22 +6,26 @@ public class EntityBattleMgr {
 
 	SkillBean currentSkillBean;
 	BattleEntity entity;
+	uint attackRound = 0;
+	bool fighting = false;
+
 	public EntityBattleMgr(BattleEntity entity){
 		this.entity = entity;
+		attackRound = 0;
+		fighting = false;
 		skillBeanPlayer = new SkillBeanPlayer ();
 	}
 
-	public bool CheckCanfire(){
+	bool CheckCanfire(){
 		//1 检测是否可以攻击
-		if (!skillBeanPlayer.IsPlaying ()) {
-			BeginAttack();		
+		if (!skillBeanPlayer.IsPlaying () && attackRound > 0) {		
 			return true;
 		}
 		return false;
 	}
 
-	public void BeginAttack(){
-
+	void BeginAttack(){
+		attackRound--;
 		InitSkillBean ("Test");
 		PlaySkillBean ();
 	}
@@ -33,13 +37,20 @@ public class EntityBattleMgr {
 	}
 
 	void PlaySkillBean(){
-
 		if (currentSkillBean.Movement) {
-			skillBeanPlayer.Init(entity.entityGo,currentSkillBean,BattleManager.Instance.TargetTeam.EntityList[0].entityGo.transform.position,ActionStatus.Play);		
+			skillBeanPlayer.Init(entity.entityGo,currentSkillBean,
+			                     BattleManager.Instance.TargetTeam.EntityList[0].entityGo.transform.position,ActionStatus.Play);		
 		}else
 		{
 			skillBeanPlayer.Init(entity.entityGo,currentSkillBean,ActionStatus.Play);		
 		}
+	}
 
+	public void AddAttackRound(){
+		attackRound++;
+		if (CheckCanfire ()) {
+			fighting = true;
+			BeginAttack();
+		}
 	}
 }

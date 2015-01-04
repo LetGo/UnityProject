@@ -4,26 +4,43 @@ using System.Collections;
 public class BattleEntity  
 {
 	public GameObject entityGo;
-	EntityAnimStatus animStatus = EntityAnimStatus.None;
 	public EntityComponent entityComponent;
 	public EntityBattleMgr entityBattleMgr;
+	public EntityProperties entityProperties;
+
+	public bool IsDead{ get; set;}
+
+	EntityAnimStatus animStatus = EntityAnimStatus.None;
+	float currentTime = 0;
 
 	public BattleEntity(){
+		IsDead = false;
+		animStatus = EntityAnimStatus.None;
+		currentTime = 0;
 		entityBattleMgr = new EntityBattleMgr (this);
+		entityProperties = new EntityProperties (this);
 	}
 
 	public void Destroy(){
 		GameObject.Destroy (entityGo);
+		entityBattleMgr = null;
+		entityProperties = null;
 	}
 
-	int frame = 0;
-	public void Update(){
-		if (++frame == 300) {
-			if( animStatus == EntityAnimStatus.Idel && entityBattleMgr.CheckCanfire() ){
-				frame = 0;
-			}
+	public void Update(float deltaTime){
+		if (!IsDead) {
+			UpdateAttackProgress(deltaTime);
 		}
-		entityBattleMgr.skillBeanPlayer.Update (Time.realtimeSinceStartup);
+	}
+
+	void UpdateAttackProgress(float deltaTime){
+		currentTime += deltaTime;
+		if(currentTime >= entityProperties.AttackSpeed){
+			currentTime = 0;
+			entityBattleMgr.AddAttackRound();
+		}
+
+		entityBattleMgr.skillBeanPlayer.Update (Time.realtimeSinceStartup);	
 	}
 
 	public void ChangeAnimStatus(EntityAnimStatus status){

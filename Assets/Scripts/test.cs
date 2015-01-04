@@ -44,7 +44,7 @@ public class Test : MonoBehaviour {
 
 	void Update(){
 		if(update)
-			BattleManager.Instance.Update ();
+			BattleManager.Instance.Update (Time.deltaTime);
 	}
 }
  

@@ -17,87 +17,89 @@ public class SkillBeanPlayer
 	public float startMoveTime = 0;
 	float startPlayTime = 0;
 
-public SkillBeanPlayer()
-{
-    //TODO 添加事件
-    animationPlay = new AnimationPlyer();
-    animationPlay.parent = this;
-}
+	public SkillBeanPlayer()
+	{
+	    //TODO 添加事件
+	    animationPlay = new AnimationPlyer();
+	    animationPlay.parent = this;
+	}
 
-public void Init(GameObject role, SkillBean bean, ActionStatus status)
-{
-    this.roleObj = role;
-    this.bean = bean;
-    animationPlay.Init(bean, roleObj);
-    bInit = true;
-    bPlayedPre = false;
-    ChangeStatus(status);
-}
+	public void Init(GameObject role, SkillBean bean, ActionStatus status)
+	{
+	    this.roleObj = role;
+	    this.bean = bean;
+	    animationPlay.Init(bean, roleObj);
+	    bInit = true;
+	    bPlayedPre = false;
+	    ChangeStatus(status);
+	}
 
-public void Init(GameObject role, SkillBean bean, Vector3 attackTargetPos, ActionStatus status)
-{
-    this.roleObj = role;
-    this.bean = bean;
-    animationPlay.Init(bean, roleObj, attackTargetPos);
-    bInit = true;
-    bPlayedPre = false;
-    bMovetEnd = false;
-    ChangeStatus(status);
-}
+	public void Init(GameObject role, SkillBean bean, Vector3 attackTargetPos, ActionStatus status)
+	{
+	    this.roleObj = role;
+	    this.bean = bean;
+	    animationPlay.Init(bean, roleObj, attackTargetPos);
+	    bInit = true;
+	    bPlayedPre = false;
+	    bMovetEnd = false;
+	    ChangeStatus(status);
+	}
+
 	public bool IsPlaying(){
 		return actionStatus == ActionStatus.Play;
 	}
-public void ChangeStatus(ActionStatus status)
-{
-    switch (status)
-    {
-        case ActionStatus.Idle:
 
-            break;
-        case ActionStatus.Play:
-            animationPlay.Start();
-			startPlayTime = Time.realtimeSinceStartup;
-            break;
-        case ActionStatus.Stop:
-            animationPlay.Stop();
-            break;
-        case ActionStatus.Pause:
-            animationPlay.Pause();
-            break;
-        case ActionStatus.Resume:
-            animationPlay.Resume();
-            break;
-    }
-    actionStatus = status;
-}
+	public void ChangeStatus(ActionStatus status)
+	{
+	    switch (status)
+	    {
+	        case ActionStatus.Idle:
 
-public void Update(float realtimeSinceStartup)
-{
-    if (!bInit || actionStatus != ActionStatus.Play)
-        return;
-		//触发事件
-		for (int i = 0; i <bean.attackEventBeanList.Count; ++i) {
-			if( !bean.attackEventBeanList[i].bInvoke ){
-				if(realtimeSinceStartup - startPlayTime >= bean.attackEventBeanList[i].startTime + bean.attackEventBeanList[i].delayTime){
-					Debug.Log("attackEventBeanList invoke");
-					bean.attackEventBeanList[i].bInvoke = true;
-				}
-			}			
-		}
+	            break;
+	        case ActionStatus.Play:
+	            animationPlay.Start();
+				startPlayTime = Time.realtimeSinceStartup;
+	            break;
+	        case ActionStatus.Stop:
+	            animationPlay.Stop();
+	            break;
+	        case ActionStatus.Pause:
+	            animationPlay.Pause();
+	            break;
+	        case ActionStatus.Resume:
+	            animationPlay.Resume();
+	            break;
+	    }
+	    actionStatus = status;
+	}
 
-    //1 准备动作
-		if ( !IsPreActionOver (realtimeSinceStartup)) {
-			return;		
-		}
-    //2 是否冲锋 移动
-		if (!IsMoveOver (realtimeSinceStartup)) {
-			return;			
-		}
-    //3攻击动作
-    CheckAttackOver ();
+	public void Update(float realtimeSinceStartup)
+	{
+	    if (!bInit || actionStatus != ActionStatus.Play)
+	        return;
+			//触发事件
+			for (int i = 0; i <bean.attackEventBeanList.Count; ++i) {
+				if( !bean.attackEventBeanList[i].bInvoke ){
+					if(realtimeSinceStartup - startPlayTime >= bean.attackEventBeanList[i].startTime + bean.attackEventBeanList[i].delayTime){
+						Debug.Log("attackEventBeanList invoke");
+						bean.attackEventBeanList[i].bInvoke = true;
+					}
+				}			
+			}
+
+	    //1 准备动作
+			if ( !IsPreActionOver (realtimeSinceStartup)) {
+				return;		
+			}
+	    //2 是否冲锋 移动
+			if (!IsMoveOver (realtimeSinceStartup)) {
+				return;			
+			}
+	    //3攻击动作
+	    CheckAttackOver ();
 
 
-}
+	}
 
 	bool IsPreActionOver (float realtimeSinceStartup)
 	{
@@ -151,10 +153,10 @@ public void Update(float realtimeSinceStartup)
 
 public enum ActionStatus
 {
-Idle,
-Play,
-Stop,
-Pause,
-Resume,
+	Idle,
+	Play,
+	Stop,
+	Pause,
+	Resume,
 }
 
