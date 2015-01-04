@@ -21,12 +21,22 @@ public class EntityProperties{
 
 	public EntityProperties(BattleEntity entity){
 		this.entity = entity;
-		AttackSpeed = 5f;
+        if (entity.IsSelfTeam)
+        {
+            AttackSpeed = 5f;
+        }
+        else
+        {
+            Hp = 30;
+            AttackSpeed = 9999999f;
+        }
+        CurrentHp = Hp;
 	}
 
-	public void BeAttack(int hurt,BattleEntity attackEntity){
+	public void BeAttack(int hurt){
 		if (!IsDead) {
 			CurrentHp -= hurt;
+            Debug.LogError("BeAttack " + CurrentHp);
 			if(IsDead){
 				entity.IsDead = true;
 			}

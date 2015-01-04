@@ -30,18 +30,26 @@ namespace SkillEditor
 			if (AnimationController.Instance.modelAnimationClips == null)
 								return type;
 			if (SkillEditorWindow.Instance.RoleAttackAction != AnimationController.Instance.modelAnimationClips.Length) {
-				if(SkillEditorWindow.Instance.RolePreAction != AnimationController.Instance.modelAnimationClips.Length){
+				if(SkillEditorWindow.Instance.RolePreAction != AnimationController.Instance.modelAnimationClips.Length &&
+                    null == SkillManager.Instance.ActionList.Find(C => (C as MovementActionBean) != null))
+                {
 					type = SKillType.DoubleSKill;
 				}		
-				else if(SkillEditorWindow.Instance.RolePreAction == AnimationController.Instance.modelAnimationClips.Length){
+				else if(SkillEditorWindow.Instance.RolePreAction == AnimationController.Instance.modelAnimationClips.Length &&
+                    null == SkillManager.Instance.ActionList.Find(C => (C as MovementActionBean) != null))
+                {
 					type = SKillType.SingleSkill;
 				}
-//				else if(SkillEditorWindow.Instance.RolePreAction != AnimationController.Instance.modelAnimationClips.Length){
-//					type = SKillType.SingleSkillMovement;
-//				}
-//				else if(SkillEditorWindow.Instance.RolePreAction != AnimationController.Instance.modelAnimationClips.Length){
-//					type = SKillType.SingleSkillMovement;
-//				}
+                else if (SkillEditorWindow.Instance.RolePreAction == AnimationController.Instance.modelAnimationClips.Length &&
+                   null != SkillManager.Instance.ActionList.Find(C => (C as MovementActionBean) != null ) )
+                {
+                    type = SKillType.SingleSkillMovement;
+                }
+                else if (SkillEditorWindow.Instance.RolePreAction != AnimationController.Instance.modelAnimationClips.Length &&
+                     null != SkillManager.Instance.ActionList.Find(C => (C as MovementActionBean) != null))
+                {
+                    type = SKillType.DoubleSkillMovement;
+                }
 			}
 			return type;
 		}
@@ -128,6 +136,7 @@ namespace SkillEditor
 				break;
 			case SKillType.SingleSkillMovement: //0-0.2跑动
 				if(SkillEditorWindow.Instance.ModelActionSlider < 0.2){
+                    SkillEditorWindow.Instance.ModelActionSlider = 0.2f;
 					EditorUtility.DisplayDialog("","跑动过程中无法添加事件","ok");
 				}else{
 					value = modelAnimationClips[window.RoleAttackAction].length * (window.ModelActionSlider - 0.2f) + window.movementActionBean.moveTime;

@@ -13,7 +13,7 @@ namespace SkillEditor
         public override void Initialize()
         {
             base.Initialize();
-            actionPlayer = new SkillBeanPlayer();
+            actionPlayer = new SkillBeanPlayer(null,null);
         }
 
 		public override void UnInitialize ()
@@ -85,16 +85,15 @@ namespace SkillEditor
 				return;
 			switch (type) {
 				case SKillType.SingleSkill:
+                case SKillType.SingleSkillMovement:
 					bean.attackAnimation = modelAnimationClips [SkillEditorWindow.Instance.RoleAttackAction];
 					break;
-				case SKillType.SingleSkillMovement:
-					break;
 				case SKillType.DoubleSKill:
+                case SKillType.DoubleSkillMovement:
 					bean.attackAnimation = modelAnimationClips [SkillEditorWindow.Instance.RoleAttackAction];
 					bean.preAnimation = modelAnimationClips [SkillEditorWindow.Instance.RolePreAction];
 					break;
-				case SKillType.DoubleSkillMovement:
-					break;
+				
 			}
 		}
 
@@ -105,6 +104,7 @@ namespace SkillEditor
 			}
 			SkillEditorWindow window = SkillEditorWindow.Instance;
 			SKillType type = SkillManager.Instance.GetSkillType ();
+            Debug.Log(type);
             float clipPoint = 0;
             AnimationClip clip = null;
 
@@ -114,7 +114,16 @@ namespace SkillEditor
                     clipPoint = clip.length * value;
 					break;
 				case SKillType.SingleSkillMovement:
-					
+					if (value < 0.4)
+					{
+                        clip = window.movementActionBean.moveAnimationClip;
+                        clipPoint = clip.length * value / 0.4f;
+					} 
+					else
+					{
+                        clip = modelAnimationClips[window.RoleAttackAction];
+                        clipPoint = clip.length * (value - 0.4f) / 0.6f;
+					}
 					break;
 				case SKillType.DoubleSKill:
                     if (value < 0.5) //准备动作

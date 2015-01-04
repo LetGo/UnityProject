@@ -8,15 +8,18 @@ public class BattleEntity
 	public EntityBattleMgr entityBattleMgr;
 	public EntityProperties entityProperties;
 
+    public bool IsSelfTeam { get; set; }
 	public bool IsDead{ get; set;}
-
+    public int Position { get; set; }
 	EntityAnimStatus animStatus = EntityAnimStatus.None;
 	float currentTime = 0;
 
-	public BattleEntity(){
+
+	public BattleEntity(bool self){
 		IsDead = false;
 		animStatus = EntityAnimStatus.None;
 		currentTime = 0;
+        IsSelfTeam = self;
 		entityBattleMgr = new EntityBattleMgr (this);
 		entityProperties = new EntityProperties (this);
 	}
@@ -28,9 +31,22 @@ public class BattleEntity
 	}
 
 	public void Update(float deltaTime){
-		if (!IsDead) {
-			UpdateAttackProgress(deltaTime);
-		}
+        if (!IsDead)
+        {
+            UpdateAttackProgress(deltaTime);
+        }
+        else
+        {
+            Debug.LogError("IsDead");
+            if (IsSelfTeam)
+            {
+                BattleManager.Instance.SelfTeamMgr.RemoveEntity(this);
+            }
+            else
+            {
+                BattleManager.Instance.TargetTeam.RemoveEntity(this);
+            }
+        }
 	}
 
 	void UpdateAttackProgress(float deltaTime){

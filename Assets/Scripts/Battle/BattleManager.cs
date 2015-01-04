@@ -85,7 +85,10 @@ public class BattleManager : Singleton<BattleManager> {
 	}
 
 	public void Update(float deltaTime){
-		SelfTeamMgr.EntityList.ApplyAll (C => C.Update (deltaTime));
-	//	TargetTeam.EntityList.ApplyAll (C => C.Update ());
+        if (SelfTeamMgr != null)
+        {
+            SelfTeamMgr.EntityList.ApplyAll(C => C.Update(deltaTime));
+           TargetTeam.EntityList.ApplyAll(C => C.Update(deltaTime));
+        }
 	}
 }

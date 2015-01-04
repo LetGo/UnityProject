@@ -15,6 +15,13 @@ public class BattleTeamMgr  {
 		EntityList.Add (entity);
 	}
 
+    public void RemoveEntity(BattleEntity entity)
+    {
+        Debug.Log("RemoveEntity :" + entity.IsSelfTeam);
+        EntityList.Remove(entity);
+        entity.Destroy();
+    }
+
 	public void ResetData(){
 		if (EntityList != null) {
 			EntityList.ApplyAll(C => C.Destroy());
@@ -29,4 +36,6 @@ public class BattleTeamMgr  {
 	public void SetAllRun(){
 		EntityList.ApplyAll(C => C.ChangeAnimStatus(EntityAnimStatus.Move));
 	}
+
+
 }
