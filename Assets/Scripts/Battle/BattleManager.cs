@@ -31,7 +31,7 @@ public class BattleManager : Singleton<BattleManager> {
 		Camera.main.transform.rotation = Quaternion.Euler (new Vector3 (20, -83, 0));
 
 		selfEntity = new List<EntityTest> ();
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 1; i++) {
 			EntityTest temp = new EntityTest(i,"player_1_1",true);
 			selfEntity.Add(temp);
 		}
@@ -86,6 +86,6 @@ public class BattleManager : Singleton<BattleManager> {
 
 	public void Update(){
 		SelfTeamMgr.EntityList.ApplyAll (C => C.Update ());
-		TargetTeam.EntityList.ApplyAll (C => C.Update ());
+	//	TargetTeam.EntityList.ApplyAll (C => C.Update ());
 	}
 }

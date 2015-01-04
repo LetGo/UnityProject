@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UniCommon;
+
 using System.Collections.Generic;
-namespace SkillEditor
-{
+
     public class SkillBean : ScriptableObject
     {
         public uint enityId;
@@ -13,6 +14,18 @@ namespace SkillEditor
         public List<MovementActionBean> movementActionBeanList = new List<MovementActionBean>();
         public List<NormalEffectActionBean> normalEffectActionBeanList = new List<NormalEffectActionBean>();
 		public List<AttackEventBean> attackEventBeanList = new List<AttackEventBean>();
+
+		public SkillBean Clone(){
+			SkillBean bean = ScriptableObject.CreateInstance<SkillBean> ();
+			bean.enityId = enityId;
+			bean.skillType = skillType;
+			bean.preAnimation = preAnimation;
+			bean.attackAnimation = attackAnimation;
+			this.movementActionBeanList.ApplyAll (c => bean.movementActionBeanList.Add (c.Clone ()));
+			this.normalEffectActionBeanList.ApplyAll (c => bean.normalEffectActionBeanList.Add (c.Clone ()));
+			this.attackEventBeanList.ApplyAll (c => bean.attackEventBeanList.Add (c.Clone ()));
+			return bean;
+		}
     }
 
     [System.Serializable]
@@ -91,4 +104,3 @@ namespace SkillEditor
         MovementActionBean,
 		AttackActionBean,
     }
-}

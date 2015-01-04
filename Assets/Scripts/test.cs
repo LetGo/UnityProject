@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -7,19 +7,30 @@ public class JsonText{
 	public int id;
 }
 
-public class test : MonoBehaviour {
+public class Test : MonoBehaviour {
 
-	void OnClik(){
-		JsonText jt = new JsonText ();
-		jt.id = 1;
-		jt.name = "nnd";
-		string str = JsonFx.Json.JsonWriter.Serialize (jt);
-		System.IO.File.WriteAllText (Application.streamingAssetsPath + "/test.json", str);
+	public GameObject btn1;
+	public GameObject btn2;
+
+	void OnClik1(GameObject go){
+		BattleManager.Instance.Initialize();
+//		JsonText jt = new JsonText ();
+//		jt.id = 1;
+//		jt.name = "nnd";
+//		string str = JsonFx.Json.JsonWriter.Serialize (jt);
+//		System.IO.File.WriteAllText (Application.streamingAssetsPath + "/test.json", str);
+	}
+	bool update = false;
+	void OnClik2(GameObject go){
+		BattleManager.Instance.InitBattleEntitys ();
+		update = true;
 	}
 
 	void Start(){
-		//OnClik ();
-		Des ();
+		UIEventListener.Get (btn1).onClick = OnClik1;
+		UIEventListener.Get (btn2).onClick = OnClik2;
+	//	//OnClik ();
+	//	Des ();
 	}
 
 	void Des(){
@@ -30,4 +41,10 @@ public class test : MonoBehaviour {
 			Debug.Log(jt.id);
 		}
 	}
+
+	void Update(){
+		if(update)
+			BattleManager.Instance.Update ();
+	}
 }
+ 
