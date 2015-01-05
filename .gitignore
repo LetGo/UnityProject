@@ -9,8 +9,9 @@
 
 
 
-UnityVS.meta
+Assets/UnityVS.meta
 Assets/UnityVS/
 Library/
 obj/
 Temp/
+bin/
