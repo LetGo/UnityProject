@@ -61,6 +61,7 @@ namespace SkillEditor
             if (prefab != null)
             {
 				go = GameObject.Instantiate(prefab) as GameObject;
+                go.AddComponent<EntityComponent>();
             }
             else
             {

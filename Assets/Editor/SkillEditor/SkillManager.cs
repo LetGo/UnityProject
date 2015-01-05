@@ -10,6 +10,8 @@ namespace SkillEditor
 	{
 		public List<System.Object> ActionList = new List<System.Object>();
 
+        //AnimationEvent
+        //    AnimationClip
 		public override void Initialize ()
 		{
 			base.Initialize ();
@@ -61,13 +63,22 @@ namespace SkillEditor
 					break;
 				case ActionEvent.NormalEffectActionBean:
 					break;
-			case ActionEvent.AttackActionBean:
-				AttackEventBean bean = new AttackEventBean();
-				bean.startTime = SkillEditorWindow.Instance.eventInvokeTime;
-				bean.delayTime = SkillEditorWindow.Instance.eventInvokeDelayTime;
-				bean.bInvoke = false;
-				ActionList.Add(bean);
-				break;
+			    case ActionEvent.AttackActionBean:
+				    AttackEventBean bean = new AttackEventBean();
+				    bean.startTime = SkillEditorWindow.Instance.eventInvokeTime;
+				    bean.delayTime = SkillEditorWindow.Instance.eventInvokeDelayTime;
+				    bean.bInvoke = false;
+				    ActionList.Add(bean);
+				    break;
+                case ActionEvent.CustomAnimationEvent:
+                    CustomAnimationEvent cae = new CustomAnimationEvent();
+                    cae.functionName = "OnAnimationMsg";
+                    cae.clipsIndex = 3;
+                    cae.time = GetStartInvokeTime();
+                    Debug.Log("time :" + cae.time);
+                    ActionList.Add(cae);
+                    //AnimationEvent
+                    break;
 			}
 			PraseActionEvent ();
 		}
@@ -133,6 +144,11 @@ namespace SkillEditor
 			switch (type) {
 			case SKillType.SingleSkill:
 				value = modelAnimationClips[window.RoleAttackAction].length * window.ModelActionSlider;
+                AnimationEvent[] all = AnimationUtility.GetAnimationEvents(modelAnimationClips[window.RoleAttackAction]);
+                    foreach (AnimationEvent e in all)
+                    {
+                        Debug.LogError(e.time);
+                    }
 				break;
 			case SKillType.SingleSkillMovement: //0-0.2跑动
 				if(SkillEditorWindow.Instance.ModelActionSlider < 0.2){

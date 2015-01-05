@@ -7,8 +7,7 @@ using System.Collections.Generic;
 
 namespace SkillEditor{
 	public class SkillEditorWindow : EditorWindow {
-
-		/// <summary>
+        /// <summary>
 		/// The SkillEditorWindow instance.
 		/// </summary>
 		public static SkillEditorWindow Instance = null;

@@ -9,4 +9,14 @@ public class EntityComponent : MonoBehaviour {
 			battleEntity.ChangeAnimStatus(EntityAnimStatus.Idel);		
 		}
 	}
+
+    public void Hurt(int a)
+    {
+
+    }
+
+    public void OnAnimationMsg()
+    {
+        Debug.Log("OnAnimationMsg");
+    }
 }

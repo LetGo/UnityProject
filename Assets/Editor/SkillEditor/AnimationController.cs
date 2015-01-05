@@ -55,7 +55,7 @@ namespace SkillEditor
 		
 		bool InitSkillBean(SkillBean bean){
 
-			SetSkillBeanAnimation (bean);
+			
 
 			//TODO 事件添加
 			List<System.Object> actionList = SkillManager.Instance.ActionList;
@@ -70,9 +70,14 @@ namespace SkillEditor
 				if(actionList[i] is AttackEventBean){
 					bean.attackEventBeanList.Add( (actionList[i] as AttackEventBean).Clone() );
 				}
+                if (actionList[i] is CustomAnimationEvent)
+                {
+                    CustomAnimationEvent ace = (actionList[i] as CustomAnimationEvent).Clone();
+                    bean.customAnimationEventList.Add(ace);
+                }
 			}
 
-
+            SetSkillBeanAnimation(bean);
 			return true;
 		}
 
@@ -93,8 +98,28 @@ namespace SkillEditor
 					bean.attackAnimation = modelAnimationClips [SkillEditorWindow.Instance.RoleAttackAction];
 					bean.preAnimation = modelAnimationClips [SkillEditorWindow.Instance.RolePreAction];
 					break;
-				
 			}
+
+            foreach (CustomAnimationEvent e in bean.customAnimationEventList)
+            {
+                if (e.clipsIndex == 1)
+                {
+
+                }
+                else if (e.clipsIndex == 2)
+                {
+
+                }
+                else if(e.clipsIndex == 3)
+                {
+                    AnimationEvent ae = new AnimationEvent();
+                    ae.functionName = e.functionName;
+                    ae.time = e.time;
+                    ae.messageOptions = SendMessageOptions.DontRequireReceiver;
+                    Debug.Log("ae.time :" + ae.time);
+                    bean.attackAnimation.AddEvent(ae);
+                }
+            }
 		}
 
 		public void SampleClipBySlider(float value){
