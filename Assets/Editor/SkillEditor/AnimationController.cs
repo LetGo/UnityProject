@@ -54,10 +54,6 @@ namespace SkillEditor
 		}
 		
 		bool InitSkillBean(SkillBean bean){
-
-			
-
-			//TODO 事件添加
 			List<System.Object> actionList = SkillManager.Instance.ActionList;
 			int count = actionList.Count;
 			for (int i = 0; i < count; ++i) {
@@ -100,27 +96,61 @@ namespace SkillEditor
 					break;
 			}
 
+            List<CustomAnimationEvent> preAnimEvent = new List<CustomAnimationEvent>();
+            List<CustomAnimationEvent> attackAnimEvent = new List<CustomAnimationEvent>();
+            List<CustomAnimationEvent> runAnimEvent = new List<CustomAnimationEvent>();
             foreach (CustomAnimationEvent e in bean.customAnimationEventList)
             {
                 if (e.clipsIndex == 1)
                 {
-
+                    preAnimEvent.Add(e);
                 }
                 else if (e.clipsIndex == 2)
                 {
-
+                    runAnimEvent.Add(e);
                 }
                 else if(e.clipsIndex == 3)
                 {
-                    AnimationEvent ae = new AnimationEvent();
-                    ae.functionName = e.functionName;
-                    ae.time = e.time;
-                    ae.messageOptions = SendMessageOptions.DontRequireReceiver;
-                    Debug.Log("ae.time :" + ae.time);
-                    bean.attackAnimation.AddEvent(ae);
+                    attackAnimEvent.Add(e);
                 }
             }
+
+            SetEvent(attackAnimEvent, bean.attackAnimation);
+            SetEvent(preAnimEvent, bean.preAnimation);
+            if (bean.movementActionBeanList.Count > 0)
+            {
+                SetEvent(runAnimEvent, bean.movementActionBeanList[0].moveAnimationClip);
+            }
+
+
+            AnimationEvent[] aes = UnityEditor.AnimationUtility.GetAnimationEvents(bean.attackAnimation);
+
+            for (int i = 0; i < aes.Length; ++i )
+            {
+                Debug.LogError("time :" + aes[i].time + "   length :" + bean.attackAnimation.length);
+            }
 		}
+
+        void SetEvent(List<CustomAnimationEvent> events,AnimationClip clip)
+        {
+            if (clip == null)
+            {
+                Debug.LogError("clip is null"); return;
+            }
+            if (events.Count > 0)
+            {
+                UnityEditor.AnimationUtility.SetAnimationEvents(clip, null);
+                for (int i = 0; i < events.Count; ++i)
+                {
+                    CustomAnimationEvent cae = events[i];
+                    AnimationEvent ae = new AnimationEvent();
+                    ae.time = cae.time;
+                   // ae.floatParameter = cae.floatParameter;
+                    ae.functionName = "OnAnimationMsg";
+                    clip.AddEvent(ae);
+                }
+            }
+        }
 
 		public void SampleClipBySlider(float value){
 			if (RoleLoader.Instance.roleObj == null) {

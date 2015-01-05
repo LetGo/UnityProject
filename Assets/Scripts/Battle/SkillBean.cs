@@ -59,6 +59,7 @@ public class CustomAnimationEvent//触发受击事件
     public float time;
     public int clipsIndex; // 1-准备 2-跑动 3-攻击
     public string functionName;
+    public float floatParameter;
     public CustomAnimationEvent Clone()
     {
         return MemberwiseClone() as CustomAnimationEvent;

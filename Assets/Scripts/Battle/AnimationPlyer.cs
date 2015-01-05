@@ -85,7 +85,8 @@ public class AnimationPlyer
 	public void PlayAttack()
 	{
 	    currentAnimationClip = skillBean.attackAnimation.name;
-	    roleAnimation.CrossFade(currentAnimationClip);
+        //如果用CrossFade 该动画最后一帧上的事件可能不会触发
+	    roleAnimation.Play(currentAnimationClip);
 	}
 
 	public void MoveToTarget()

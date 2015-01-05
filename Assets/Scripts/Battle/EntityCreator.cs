@@ -13,9 +13,9 @@ public class EntityCreator  {
 		entity.entityGo.transform.localEulerAngles = Vector3.zero;
         entity.Position = data.pos;
         entity.IsSelfTeam = data.self;
-		EntityComponent component = entity.entityGo.AddComponent<EntityComponent> ();
-		component.battleEntity = entity;
-		entity.entityComponent = component;
+// 		EntityComponent component = entity.entityGo.AddComponent<EntityComponent> ();
+// 		component.battleEntity = entity;
+// 		entity.entityComponent = component;
 		return entity;
 	}
 

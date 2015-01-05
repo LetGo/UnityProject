@@ -5,7 +5,7 @@ public class BattleDemo : MonoBehaviour {
 
     public GameObject btn1;
     public GameObject btn2;
-
+    public Animation anim;
 	// Use this for initialization
 	void Start () {
         UIEventListener.Get(btn1).onClick = OnClick1;
@@ -14,7 +14,8 @@ public class BattleDemo : MonoBehaviour {
 
     void OnClick1(GameObject go)
     {
-        BattleManager.Instance.Initialize();
+       anim.Play("run");
+       // BattleManager.Instance.Initialize();
     }
 
     void OnClick2(GameObject go)
@@ -23,6 +24,8 @@ public class BattleDemo : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
-        BattleManager.Instance.Update(Time.deltaTime);
+        Debug.Log("time :" + anim["run"].time);
+
+        //BattleManager.Instance.Update(Time.deltaTime);
 	}
 }
