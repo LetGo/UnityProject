@@ -6,6 +6,8 @@ using System.Collections;
 /// </summary>
 public class SkillBeanPlayer
 {
+    public delegate void AttackDelegate();
+
 	AnimationPlyer animationPlay;
 	GameObject roleObj;
 	SkillBean bean;
@@ -16,12 +18,16 @@ public class SkillBeanPlayer
 	bool bMovetEnd = false;         //是否移动完
 	public float startMoveTime = 0;
 	float startPlayTime = 0;
+    AttackDelegate attackEndDelegate;
+    AttackDelegate attackEventDelegate;
 
-	public SkillBeanPlayer()
+    public SkillBeanPlayer(AttackDelegate attackEndDelegate, AttackDelegate attackEventDelegate)
 	{
 	    //TODO 添加事件
 	    animationPlay = new AnimationPlyer();
 	    animationPlay.parent = this;
+        this.attackEndDelegate = attackEndDelegate;
+        this.attackEventDelegate = attackEventDelegate;
 	}
 
 	public void Init(GameObject role, SkillBean bean, ActionStatus status)
@@ -58,7 +64,7 @@ public class SkillBeanPlayer
 	            break;
 	        case ActionStatus.Play:
 	            animationPlay.Start();
-				startPlayTime = Time.realtimeSinceStartup;
+				//startPlayTime = Time.realtimeSinceStartup;
 	            break;
 	        case ActionStatus.Stop:
 	            animationPlay.Stop();
@@ -73,16 +79,28 @@ public class SkillBeanPlayer
 	    actionStatus = status;
 	}
 
+    bool bSet = false;
 	public void Update(float realtimeSinceStartup)
 	{
-	    if (!bInit || actionStatus != ActionStatus.Play)
-	        return;
+        if (!bInit || actionStatus != ActionStatus.Play)
+        {
+            return;
+        }
+        if(!bSet)
+        {
+            startPlayTime = realtimeSinceStartup;
+            bSet = true;
+        }
 			//触发事件
 			for (int i = 0; i <bean.attackEventBeanList.Count; ++i) {
 				if( !bean.attackEventBeanList[i].bInvoke ){
 					if(realtimeSinceStartup - startPlayTime >= bean.attackEventBeanList[i].startTime + bean.attackEventBeanList[i].delayTime){
 						Debug.Log("attackEventBeanList invoke");
 						bean.attackEventBeanList[i].bInvoke = true;
+                        if (attackEventDelegate != null)
+                        {
+                            attackEventDelegate();
+                        }
 					}
 				}			
 			}
@@ -147,6 +165,11 @@ public class SkillBeanPlayer
 			Debug.Log ("attackAnimation end " + bean.attackAnimation.name);
 			actionStatus = ActionStatus.Idle;
 			animationPlay.MoveBack ();
+            bSet = false;
+            if (attackEndDelegate != null)
+            {
+                attackEndDelegate();
+            }
 		}
 	}
 }
