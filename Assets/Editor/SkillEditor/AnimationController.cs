@@ -8,19 +8,19 @@ namespace SkillEditor
 	public class AnimationController: Singleton<AnimationController>
 	{
 		public AnimationClip[] modelAnimationClips;
-		public SkillBeanPlayer actionPlayer = null;
+		public SkillBeanPlayer skillbeanPlayer = null;
 
         public override void Initialize()
         {
             base.Initialize();
-            actionPlayer = new SkillBeanPlayer(null,null);
+            skillbeanPlayer = new SkillBeanPlayer(null,null);
         }
 
 		public override void UnInitialize ()
 		{
 			base.UnInitialize ();
-            if (actionPlayer != null)
-                actionPlayer = null;
+            if (skillbeanPlayer != null)
+                skillbeanPlayer = null;
 			if (modelAnimationClips != null) 
 				modelAnimationClips = null;		
 		}
@@ -41,12 +41,12 @@ namespace SkillEditor
 						return;
 					}
 					if(RoleLoader.Instance.enemyList.Count > 1){
-						actionPlayer.Init(RoleLoader.Instance.roleObj,bean,RoleLoader.Instance.enemyList[1].transform.position,ActionStatus.Play);
+						skillbeanPlayer.Init(RoleLoader.Instance.roleObj,bean,RoleLoader.Instance.enemyList[1].transform.position,ActionStatus.Play);
 					}else{
-						actionPlayer.Init(RoleLoader.Instance.roleObj,bean,RoleLoader.Instance.enemyList[0].transform.position,ActionStatus.Play);
+						skillbeanPlayer.Init(RoleLoader.Instance.roleObj,bean,RoleLoader.Instance.enemyList[0].transform.position,ActionStatus.Play);
 					}
 				}else	
-					actionPlayer.Init(RoleLoader.Instance.roleObj,bean,ActionStatus.Play);
+					skillbeanPlayer.Init(RoleLoader.Instance.roleObj,bean,ActionStatus.Play);
 			}else
 			{
 				Debug.Log ("无法播放 skill type " + bean.skillType);
@@ -96,67 +96,17 @@ namespace SkillEditor
 					break;
 			}
 
-            List<CustomAnimationEvent> preAnimEvent = new List<CustomAnimationEvent>();
-            List<CustomAnimationEvent> attackAnimEvent = new List<CustomAnimationEvent>();
-            List<CustomAnimationEvent> runAnimEvent = new List<CustomAnimationEvent>();
-            foreach (CustomAnimationEvent e in bean.customAnimationEventList)
-            {
-                if (e.clipsIndex == 1)
-                {
-                    preAnimEvent.Add(e);
-                }
-                else if (e.clipsIndex == 2)
-                {
-                    runAnimEvent.Add(e);
-                }
-                else if(e.clipsIndex == 3)
-                {
-                    attackAnimEvent.Add(e);
-                }
-            }
-
-            SetEvent(attackAnimEvent, bean.attackAnimation);
-            SetEvent(preAnimEvent, bean.preAnimation);
-            if (bean.movementActionBeanList.Count > 0)
-            {
-                SetEvent(runAnimEvent, bean.movementActionBeanList[0].moveAnimationClip);
-            }
-
-
-            AnimationEvent[] aes = UnityEditor.AnimationUtility.GetAnimationEvents(bean.attackAnimation);
-
-            for (int i = 0; i < aes.Length; ++i )
-            {
-                Debug.LogError("time :" + aes[i].time + "   length :" + bean.attackAnimation.length);
-            }
+            SkillEditor.SkillManager.AttachEvens(bean);
 		}
 
-        void SetEvent(List<CustomAnimationEvent> events,AnimationClip clip)
-        {
-            if (clip == null)
-            {
-                Debug.LogError("clip is null"); return;
-            }
-            if (events.Count > 0)
-            {
-                UnityEditor.AnimationUtility.SetAnimationEvents(clip, null);
-                for (int i = 0; i < events.Count; ++i)
-                {
-                    CustomAnimationEvent cae = events[i];
-                    AnimationEvent ae = new AnimationEvent();
-                    ae.time = cae.time;
-                   // ae.floatParameter = cae.floatParameter;
-                    ae.functionName = "OnAnimationMsg";
-                    clip.AddEvent(ae);
-                }
-            }
-        }
+      
 
 		public void SampleClipBySlider(float value){
 			if (RoleLoader.Instance.roleObj == null) {
 				Debug.LogError("RoleLoader.Instance.roleObj is null");
 				return;			
 			}
+            RoleLoader.Instance.roleObj.animation.Stop();
 			SkillEditorWindow window = SkillEditorWindow.Instance;
 			SKillType type = SkillManager.Instance.GetSkillType ();
             Debug.Log(type);
@@ -188,19 +138,26 @@ namespace SkillEditor
                     } 
                     else
                     {
-                        //0.5 - 0
-                        //0.55--0.1
-                        //0.6--0.2
-                        //0.65--0.3
-                        //0.7--0.4
-                        //0.75--0.5
-                        //1- 1
                         clip = modelAnimationClips[window.RoleAttackAction];
-                        clipPoint = clip.length * (value - 0.5f) / 0.05f * 0.1f;
+                        clipPoint = clip.length * (value - 0.5f) / 0.5f ;
                     }
 					break;
 				case SKillType.DoubleSkillMovement:
-					
+                    if (value < 0.4) //准备动作
+                    {
+                        clip = modelAnimationClips[window.RolePreAction];
+                        clipPoint = clip.length * value / 0.4f;
+                    }
+                    else if (value >= 0.4f && value <= 0.6f)
+                    {
+                        clip = SkillEditorWindow.Instance.movementActionBean.moveAnimationClip;
+                        clipPoint = clip.length * (value - 0.4f) / 0.2f;
+                    }
+                    else
+                    {
+                        clip = modelAnimationClips[window.RoleAttackAction];
+                        clipPoint = clip.length * (value - 0.6f) / 0.6f;
+                    }
 					break;
 			}
             RoleLoader.Instance.roleObj.SampleAnimation(clip, clipPoint);

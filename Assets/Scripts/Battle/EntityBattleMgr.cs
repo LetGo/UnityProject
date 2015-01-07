@@ -16,7 +16,7 @@ public class EntityBattleMgr {
 		this.entity = entity;
 		attackRound = 0;
         isFighting = false;
-        skillBeanPlayer = new SkillBeanPlayer(AttackEndCallBack, AttackCallBack);
+        skillBeanPlayer = new SkillBeanPlayer(entity,AttackCallBack, AttackEndCallBack);
         targetEntityList = new List<BattleEntity>();
         InitSkillDataInfo();
 	}

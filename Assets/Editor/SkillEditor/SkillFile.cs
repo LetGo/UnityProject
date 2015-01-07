@@ -14,6 +14,7 @@ namespace SkillEditor{
 				string path = EditorUtility.SaveFilePanelInProject("Save","deafult","asset","保存");
 				if(!string.IsNullOrEmpty(path)){
 					AssetDatabase.CreateAsset(bean,path);
+                    AssetDatabase.Refresh();
 				}
 			}else
 			{
@@ -35,6 +36,10 @@ namespace SkillEditor{
 				else if(actionList[i] is AttackEventBean){
 					bean.attackEventBeanList.Add(actionList[i] as AttackEventBean);
 				}
+                else if (actionList[i] is CustomAnimationEvent)
+                {
+                    bean.customAnimationEventList.Add(actionList[i] as CustomAnimationEvent);
+                }
 			}
 			return bean;
 		}

@@ -10,14 +10,14 @@ public class EntityMoveMgr {
 
 	const float moveDistance = 10f;
 
-	public void Begin(BattleTeamMgr team){
+	public void BeginMoveToPostion(BattleTeamMgr team){
 		team.EntityList.ApplyAll (C => Move(C,1.5f) );
 		team.SetAllRun ();
 	}
 
 	public void Begin(BattleTeamMgr team,MoveEndCallback callback){
 		moveEndCallback = callback;
-		Begin (team);
+		BeginMoveToPostion (team);
 	}
 
 	void Move(BattleEntity entity,float duration){
@@ -32,6 +32,6 @@ public class EntityMoveMgr {
 		tp.delay = 0.1f;
 		tp.duration = duration;
 		tp.eventReceiver = entity.entityGo;
-		tp.callWhenFinished = "SetIdle";
+        tp.callWhenFinished = "OnSkillPlayEnd";
 	}
 }

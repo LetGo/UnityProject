@@ -80,8 +80,8 @@ public class BattleManager : Singleton<BattleManager> {
 		SelfTeamMgr.SetAllIdel ();
 		TargetTeam.SetAllIdel ();
 		//move to position
-		entityMoveMgr.Begin (SelfTeamMgr);
-		entityMoveMgr.Begin (TargetTeam);
+		entityMoveMgr.BeginMoveToPostion (SelfTeamMgr);
+		entityMoveMgr.BeginMoveToPostion (TargetTeam);
 	}
 
 	public void Update(float deltaTime){

@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UniCommon;
-
 using System.Collections.Generic;
 
 public class SkillBean : ScriptableObject
@@ -26,8 +25,54 @@ public class SkillBean : ScriptableObject
 		this.normalEffectActionBeanList.ApplyAll (c => bean.normalEffectActionBeanList.Add (c.Clone ()));
 		this.attackEventBeanList.ApplyAll (c => bean.attackEventBeanList.Add (c.Clone ()));
         this.customAnimationEventList.ApplyAll(c => bean.customAnimationEventList.Add(c.Clone()));
+        AttachEvens(bean);
 		return bean;
 	}
+
+    void AttachEvens(SkillBean bean)
+    {
+        List<CustomAnimationEvent> preAnimEvent = new List<CustomAnimationEvent>();
+        List<CustomAnimationEvent> attackAnimEvent = new List<CustomAnimationEvent>();
+        List<CustomAnimationEvent> runAnimEvent = new List<CustomAnimationEvent>();
+        foreach (CustomAnimationEvent e in bean.customAnimationEventList)
+        {
+            if (e.clipsIndex == 1)
+            {
+                preAnimEvent.Add(e);
+            }
+            else if (e.clipsIndex == 2)
+            {
+                runAnimEvent.Add(e);
+            }
+            else if (e.clipsIndex == 3)
+            {
+                attackAnimEvent.Add(e);
+            }
+        }
+
+        SetEvent(attackAnimEvent, bean.attackAnimation);
+        SetEvent(preAnimEvent, bean.preAnimation);
+        if (bean.movementActionBeanList.Count > 0)
+            SetEvent(runAnimEvent, bean.movementActionBeanList[0].moveAnimationClip);
+    }
+
+    void SetEvent(List<CustomAnimationEvent> events, AnimationClip clip)
+    {
+        if (clip == null) return;
+
+        if (events.Count > 0)
+        {
+            UnityEditor.AnimationUtility.SetAnimationEvents(clip, null);
+            for (int i = 0; i < events.Count; ++i)
+            {
+                CustomAnimationEvent cae = events[i];
+                AnimationEvent ae = new AnimationEvent();
+                ae.time = cae.time;
+                ae.functionName = "OnAnimationMsg";
+                clip.AddEvent(ae);
+            }
+        }
+    }
 }
 
 [System.Serializable]

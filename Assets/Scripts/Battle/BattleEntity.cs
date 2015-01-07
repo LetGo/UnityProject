@@ -15,8 +15,9 @@ public class BattleEntity
 	float currentTime = 0;
 
 
-	public BattleEntity(bool self){
+	public BattleEntity(GameObject go,bool self){
 		IsDead = false;
+        entityGo = go;
 		animStatus = EntityAnimStatus.None;
 		currentTime = 0;
         IsSelfTeam = self;

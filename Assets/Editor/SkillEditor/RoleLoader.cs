@@ -6,7 +6,6 @@ namespace SkillEditor
 {
 	public class RoleLoader: Singleton<RoleLoader>
 	{
-
         string modelPath = "Character/player_1";
 		public GameObject roleObj;
 		public List<GameObject> enemyList = new List<GameObject>();
@@ -16,9 +15,8 @@ namespace SkillEditor
 
 		public override void UnInitialize ()
 		{
-			if (roleObj != null) {
-				GameObject.Destroy(roleObj);			
-			}
+            DeleteEnemy();
+            Delete();
 			base.UnInitialize ();
 		}
 
@@ -61,7 +59,11 @@ namespace SkillEditor
             if (prefab != null)
             {
 				go = GameObject.Instantiate(prefab) as GameObject;
-                go.AddComponent<EntityComponent>();
+                EntityComponent c = go.GetComponent<EntityComponent>();
+                if(c == null)
+                   c = go.AddComponent<EntityComponent>();
+                c.OnAnimationMsgCallBack = AnimationController.Instance.skillbeanPlayer.OnAnimationMsg;
+                c.OnSkillPlayEndCallBack = AnimationController.Instance.skillbeanPlayer.OnSkillPlayEnd;
             }
             else
             {
@@ -80,7 +82,7 @@ namespace SkillEditor
 
 		public void DeleteEnemy(){
 			for (int i = 0; i< enemyList.Count; ++i) {
-				GameObject.Destroy(enemyList[i]);			
+                GameObject.DestroyImmediate(enemyList[i]);			
 			}	
 			enemyList.Clear ();
 		}

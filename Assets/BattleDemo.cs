@@ -14,8 +14,8 @@ public class BattleDemo : MonoBehaviour {
 
     void OnClick1(GameObject go)
     {
-       anim.Play("run");
-       // BattleManager.Instance.Initialize();
+      // anim.Play("run");
+        BattleManager.Instance.Initialize();
     }
 
     void OnClick2(GameObject go)
@@ -24,8 +24,7 @@ public class BattleDemo : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
-        Debug.Log("time :" + anim["run"].time);
 
-        //BattleManager.Instance.Update(Time.deltaTime);
+        BattleManager.Instance.Update(Time.deltaTime);
 	}
 }

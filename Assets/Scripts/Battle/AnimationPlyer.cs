@@ -12,17 +12,30 @@ public class AnimationPlyer
 	public Vector3 attackTargetPos { get; set; }
 	public SkillBeanPlayer parent;
 
-	protected string currentAnimationClip = string.Empty;
+    public string currentAnimationClip = string.Empty;
 	public bool havePreAction = false;
-
+    public int actionType = 0;
 	Vector3 roleLoacalPos;
+
+    public AnimationPlyer()
+    {
+
+    }
+
+    public AnimationPlyer(GameObject role)
+    {
+        roleObj = role;
+        Debug.Log("role :" + role);
+        roleAnimation = role.animation;
+        roleLoacalPos = role.transform.localPosition;
+    }
 
 	public void Init(SkillBean bean, GameObject role)
 	{
 	    skillBean = bean;
 	    roleObj = role;
 	    roleAnimation = role.animation;
-			roleLoacalPos = role.transform.localPosition;
+	    roleLoacalPos = role.transform.localPosition;
 	    Stop();
 	}
 
@@ -78,19 +91,22 @@ public class AnimationPlyer
 
 	public void PlayPreAnim()
 	{
+        actionType = 1;
 	    currentAnimationClip = skillBean.preAnimation.name;
 	    roleAnimation.CrossFade(currentAnimationClip);
 	}
 
 	public void PlayAttack()
 	{
+        actionType = 3;
 	    currentAnimationClip = skillBean.attackAnimation.name;
         //如果用CrossFade 该动画最后一帧上的事件可能不会触发
-	    roleAnimation.Play(currentAnimationClip);
+        roleAnimation.CrossFade(currentAnimationClip);
 	}
 
 	public void MoveToTarget()
 	{
+        actionType = 2;
 	    roleAnimation.Stop();
 	    parent.startMoveTime = Time.realtimeSinceStartup;
 	    Debug.Log("move now :" + parent.startMoveTime);
@@ -106,18 +122,18 @@ public class AnimationPlyer
 
 	void Move(MovementActionBean moveBean)
 	{
-			Vector3 desPos = Vector3.zero; //目标位置
+		Vector3 desPos = Vector3.zero; //目标位置
 
-			Vector3 dir = Vector3.Normalize (attackTargetPos - roleObj.transform.position); //目标位置与自身的单位向量
-			desPos = attackTargetPos - dir;
+		Vector3 dir = Vector3.Normalize (attackTargetPos - roleObj.transform.position); //目标位置与自身的单位向量
+		desPos = attackTargetPos - dir;
 
-			roleObj.transform.position = desPos; //设置自身到目标点 用于计算目标点的相对位置
-			desPos = roleObj.transform.localPosition; //目标点的相对位置
-			roleObj.transform.localPosition = roleLoacalPos; //设置回原来的位置
+		roleObj.transform.position = desPos; //设置自身到目标点 用于计算目标点的相对位置
+		desPos = roleObj.transform.localPosition; //目标点的相对位置
+		roleObj.transform.localPosition = roleLoacalPos; //设置回原来的位置
 
-			float time = moveBean.moveTime * (moveBean.endTime - moveBean.startTime);
+		float time = moveBean.moveTime * (moveBean.endTime - moveBean.startTime);
 
-			TweenPosition.Begin(roleObj,time, desPos);
+		TweenPosition.Begin(roleObj,time, desPos);
 
 	    Debug.Log("Move");
 	}
@@ -132,6 +148,12 @@ public class AnimationPlyer
 		tp.delay = 0.01f;
 		tp.duration = 0.01f;
 		tp.eventReceiver = roleObj;
-		tp.callWhenFinished = "SetIdle";
+        tp.callWhenFinished = "OnSkillPlayEnd";
 	}
+
+    public void SetIdle()
+    {
+        roleAnimation["idle"].wrapMode = WrapMode.Loop;
+        roleAnimation.Play("idle");
+    }
 }

@@ -6,8 +6,6 @@ using System.Collections;
 /// </summary>
 public class SkillBeanPlayer
 {
-    public delegate void AttackDelegate();
-
 	AnimationPlyer animationPlay;
 	GameObject roleObj;
 	SkillBean bean;
@@ -17,18 +15,28 @@ public class SkillBeanPlayer
 	bool bPlayedPre = false;        //是否播放完准备动作
 	bool bMovetEnd = false;         //是否移动完
 	public float startMoveTime = 0;
-	float startPlayTime = 0;
-    AttackDelegate attackEndDelegate;
-    AttackDelegate attackEventDelegate;
 
-    public SkillBeanPlayer(AttackDelegate attackEndDelegate, AttackDelegate attackEventDelegate)
+    private OnAnimationMsgDelegate m_onAnimationMsgDelegate;
+    private OnSkillPlayEndDelegate m_oSkillPlayEndDelegate;
+    BattleEntity entity;
+
+    public SkillBeanPlayer(OnAnimationMsgDelegate attackDelegate, OnSkillPlayEndDelegate skillPlayEndDelegate)
 	{
 	    //TODO 添加事件
 	    animationPlay = new AnimationPlyer();
 	    animationPlay.parent = this;
-        this.attackEndDelegate = attackEndDelegate;
-        this.attackEventDelegate = attackEventDelegate;
+        this.m_onAnimationMsgDelegate = attackDelegate;
+        this.m_oSkillPlayEndDelegate = skillPlayEndDelegate;
 	}
+
+    public SkillBeanPlayer(BattleEntity parent,OnAnimationMsgDelegate attackDelegate, OnSkillPlayEndDelegate skillPlayEndDelegate)
+    {
+        entity = parent;
+        animationPlay = new AnimationPlyer(parent.entityGo);
+        animationPlay.parent = this;
+        this.m_onAnimationMsgDelegate = attackDelegate;
+        this.m_oSkillPlayEndDelegate = skillPlayEndDelegate;
+    }
 
 	public void Init(GameObject role, SkillBean bean, ActionStatus status)
 	{
@@ -64,7 +72,6 @@ public class SkillBeanPlayer
 	            break;
 	        case ActionStatus.Play:
                 animationPlay.Start();
-				//startPlayTime = Time.realtimeSinceStartup;
 	            break;
 	        case ActionStatus.Stop:
 	            animationPlay.Stop();
@@ -87,44 +94,24 @@ public class SkillBeanPlayer
             return;
         }
 
-        if(!bSet)
-        {
-            startPlayTime = realtimeSinceStartup;
-            bSet = true;
-        }
-		//触发事件
-		for (int i = 0; i <bean.attackEventBeanList.Count; ++i) {
-			if( !bean.attackEventBeanList[i].bInvoke ){
-				if(realtimeSinceStartup - startPlayTime >= bean.attackEventBeanList[i].startTime + bean.attackEventBeanList[i].delayTime){
-					Debug.Log("attackEventBeanList invoke");
-					bean.attackEventBeanList[i].bInvoke = true;
-                    if (attackEventDelegate != null)
-                    {
-                        attackEventDelegate();
-                    }
-				}
-			}			
-		}
-
 	    //1 准备动作
-			if ( !IsPreActionOver (realtimeSinceStartup)) {
-				return;		
-			}
+		if ( !IsPreActionOver (realtimeSinceStartup)) {
+			return;		
+		}
 	    //2 是否冲锋 移动
-			if (!IsMoveOver (realtimeSinceStartup)) {
-				return;			
-			}
+        if (!IsMoveOver(realtimeSinceStartup))
+        {
+            return;
+        }
 	    //3攻击动作
 	    CheckAttackOver ();
-
-
 	}
 
 	bool IsPreActionOver (float realtimeSinceStartup)
 	{
 		if (animationPlay.havePreAction && !bPlayedPre) {
 			if (!roleObj.animation.IsPlaying (bean.preAnimation.name)) {
-				Debug.Log ("actionPreTime end");
+				Debug.Log ("actionPre end");
 				bPlayedPre = true;
 				//1-1判断是否冲锋 是播放冲锋 否播放攻击
 				if (bean.Movement) {
@@ -164,16 +151,38 @@ public class SkillBeanPlayer
 	{
         if (bean.attackAnimation != null && !roleObj.animation.IsPlaying(bean.attackAnimation.name))
         {
-            Debug.Log("attackAnimation end " + bean.attackAnimation.name);
             actionStatus = ActionStatus.Idle;
             animationPlay.MoveBack();
-            bSet = false;
-            if (attackEndDelegate != null)
-            {
-                attackEndDelegate();
-            }
         }
 	}
+
+    public void OnAnimationStart(int actionType)
+    {
+
+    }
+
+    public void OnAnimationMsg()
+    {
+        Debug.Log("OnAnimationMsg");
+        if (m_onAnimationMsgDelegate != null)
+        {
+            m_onAnimationMsgDelegate();
+        }
+    }
+
+
+
+    public void OnSkillPlayEnd()
+    {
+        Debug.Log("OnSkillPlayEnd ");
+        if (m_oSkillPlayEndDelegate != null)
+        {
+            m_oSkillPlayEndDelegate();
+        }
+
+        animationPlay.SetIdle();
+    }
+
 }
 
 public enum ActionStatus

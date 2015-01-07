@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
+public delegate void OnAnimationMsgDelegate();
+public delegate void OnSkillPlayEndDelegate();
 
 public class EntityComponent : MonoBehaviour {
-    public delegate void OnAnimationMsgDelegate();
 
     private OnAnimationMsgDelegate m_onAnimationMsgDelegate;
     public OnAnimationMsgDelegate OnAnimationMsgCallBack
@@ -11,21 +12,25 @@ public class EntityComponent : MonoBehaviour {
         set { m_onAnimationMsgDelegate += value; }
     }
 
-	public void SetIdle(){
-        //if (battleEntity != null) {
-        //    battleEntity.ChangeAnimStatus(EntityAnimStatus.Idel);		
-        //}
-	}
-
-    public void Hurt(int a)
+    private OnSkillPlayEndDelegate m_oSkillPlayEndDelegate;
+    public OnSkillPlayEndDelegate OnSkillPlayEndCallBack
     {
-
+        get { return m_oSkillPlayEndDelegate; }
+        set { m_oSkillPlayEndDelegate += value; }
     }
+
+    /// <summary>
+    /// 一次技能播放完成回调
+    /// </summary>
+	public void OnSkillPlayEnd(){
+        if (m_oSkillPlayEndDelegate != null)
+        {
+            m_oSkillPlayEndDelegate();
+        }
+	}
 
     public void OnAnimationMsg()
     {
-
-        Debug.Log("OnAnimationMsg :" + animation["run"].time + " ::: " + animation["run"].length);
         if (m_onAnimationMsgDelegate != null)
         {
             m_onAnimationMsgDelegate();

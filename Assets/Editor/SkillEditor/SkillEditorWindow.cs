@@ -262,13 +262,18 @@ namespace SkillEditor{
             EditorGUILayout.EndHorizontal();
 
         }
-		public void RestMovementActionBean(){
-			movementActionBean.moveTime = 0;
-			movementActionBean.moveAnimationClip = null;
-			movementActionBean.endTime = 1;
-			movementActionBean.startTime = 0;
-			movementActionBean.isUseAnimationTime = true;
-		}
+        public void RestMovementActionBean()
+        {
+            if (movementActionBean != null)
+            {
+                movementActionBean.moveTime = 0;
+                if (movementActionBean.moveAnimationClip != null)
+                    movementActionBean.moveAnimationClip = null;
+                movementActionBean.endTime = 1;
+                movementActionBean.startTime = 0;
+                movementActionBean.isUseAnimationTime = true;
+            }
+        }
 
 		float currModelActionSlider = 0;
 		void Update(){
@@ -276,8 +281,8 @@ namespace SkillEditor{
 				currModelActionSlider = ModelActionSlider;
 				AnimationController.Instance.SampleClipBySlider(currModelActionSlider);
 			}
-			if(AnimationController.Instance.actionPlayer != null)
-				AnimationController.Instance.actionPlayer.Update (Time.realtimeSinceStartup);
+			if(AnimationController.Instance.skillbeanPlayer != null)
+				AnimationController.Instance.skillbeanPlayer.Update (Time.realtimeSinceStartup);
 
 			if (!EditorApplication.isPlaying) {
 				if(Instance != null)

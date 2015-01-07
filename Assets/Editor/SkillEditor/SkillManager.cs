@@ -57,7 +57,11 @@ namespace SkillEditor
             }
             return type;
         }
-
+        
+        /// <summary>
+        /// 添加事件
+        /// </summary>
+        /// <param name="type"></param>
         public void AddActionEvent(ActionEvent type)
         {
             switch (type)
@@ -81,7 +85,6 @@ namespace SkillEditor
                     cae.time = GetStartInvokeTime();
                     Debug.Log("time :" + cae.time);
                     ActionList.Add(cae);
-                    //AnimationEvent
                     break;
             }
             PraseActionEvent();
@@ -238,9 +241,49 @@ namespace SkillEditor
             return index;
         }
 
-        public void OnAnimationMsg()
+       public static void AttachEvens(SkillBean bean)
         {
+            List<CustomAnimationEvent> preAnimEvent = new List<CustomAnimationEvent>();
+            List<CustomAnimationEvent> attackAnimEvent = new List<CustomAnimationEvent>();
+            List<CustomAnimationEvent> runAnimEvent = new List<CustomAnimationEvent>();
+            foreach (CustomAnimationEvent e in bean.customAnimationEventList)
+            {
+                if (e.clipsIndex == 1)
+                {
+                    preAnimEvent.Add(e);
+                }
+                else if (e.clipsIndex == 2)
+                {
+                    runAnimEvent.Add(e);
+                }
+                else if (e.clipsIndex == 3)
+                {
+                    attackAnimEvent.Add(e);
+                }
+            }
 
+            SetEvent(attackAnimEvent, bean.attackAnimation);
+            SetEvent(preAnimEvent, bean.preAnimation);
+            if (bean.movementActionBeanList.Count > 0)
+                SetEvent(runAnimEvent, bean.movementActionBeanList[0].moveAnimationClip);
+        }
+
+        static void SetEvent(List<CustomAnimationEvent> events,AnimationClip clip)
+        {
+            if (clip == null) return;
+                
+            if (events.Count > 0)
+            {
+                UnityEditor.AnimationUtility.SetAnimationEvents(clip, null);
+                for (int i = 0; i < events.Count; ++i)
+                {
+                    CustomAnimationEvent cae = events[i];
+                    AnimationEvent ae = new AnimationEvent();
+                    ae.time = cae.time;
+                    ae.functionName = "OnAnimationMsg";
+                    clip.AddEvent(ae);
+                }
+            }
         }
     }
 }
