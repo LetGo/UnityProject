@@ -24,11 +24,12 @@ public class EntityProperties{
         if (entity.IsSelfTeam)
         {
             AttackSpeed = 5f;
+            Hp = 100;
         }
         else
         {
-            Hp = 30;
-            AttackSpeed = 9999999f;
+            Hp = Random.Range(30,50);
+            AttackSpeed = Random.Range(7.0f,10.0f);
         }
         CurrentHp = Hp;
 	}
@@ -38,7 +39,7 @@ public class EntityProperties{
 			CurrentHp -= hurt;
             Debug.LogError("BeAttack " + CurrentHp);
 			if(IsDead){
-				entity.IsDead = true;
+				entity.Dead();
 			}
 		}
 	}

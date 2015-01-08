@@ -66,13 +66,12 @@ public class BattleManager : Singleton<BattleManager> {
 
 	public void InitBattleEntitys(){
 		CurrentBattleStatus = BattleStatus.Preparing;
-
 		//self
 		for (int i = 0; i < selfEntity.Count; i++) {
 			BattleEntity temp = EntityCreator.Create (selfEntity[i]);
 			SelfTeamMgr.AddEntity (temp);
 		}
-		//selfEntity.ApplyAll (C => SelfTeamMgr.AddEntity (EntityCreator.Create (C)));
+		
 		//target
 		targetEntity.ApplyAll (C => TargetTeam.AddEntity (EntityCreator.Create (C)));
 
@@ -84,11 +83,41 @@ public class BattleManager : Singleton<BattleManager> {
 		entityMoveMgr.BeginMoveToPostion (TargetTeam);
 	}
 
+    public List<BattleEntity> GetTargetEntity(bool isSelf)
+    {
+        List<BattleEntity> targetList = new List<BattleEntity>();
+        List<BattleEntity> entityList = isSelf ? TargetTeam.EntityList : SelfTeamMgr.EntityList;
+        entityList.ApplyAll(C =>
+        {
+            if (!C.IsDead && !C.entityBattleMgr.isFighting)
+            {
+                targetList.Add(C);
+            }
+        });
+
+        return targetList;
+    }
+
 	public void Update(float deltaTime){
         if (SelfTeamMgr != null)
         {
-            SelfTeamMgr.EntityList.ApplyAll(C => C.Update(deltaTime));
-           TargetTeam.EntityList.ApplyAll(C => C.Update(deltaTime));
+            SelfTeamMgr.EntityList.ApplyAll(C => { 
+                if (!C.IsDead)
+                {
+                    C.Update(deltaTime);
+                }
+            });
+        }
+
+        if (TargetTeam != null)
+        {
+            TargetTeam.EntityList.ApplyAll(C =>
+            {
+                if (!C.IsDead)
+                {
+                    C.Update(deltaTime);
+                }
+            });
         }
 	}
 }

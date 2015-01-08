@@ -18,13 +18,11 @@ public class BattleTeamMgr  {
     public void RemoveEntity(BattleEntity entity)
     {
         Debug.Log("RemoveEntity :" + entity.IsSelfTeam);
-        EntityList.Remove(entity);
-        entity.Destroy();
     }
 
 	public void ResetData(){
 		if (EntityList != null) {
-			EntityList.ApplyAll(C => C.Destroy());
+			EntityList.ApplyAll(C => C.DestroyEntityObj());
 			EntityList.Clear ();
 		}
 	}

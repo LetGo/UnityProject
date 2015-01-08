@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UniCommon;
 
 public class EntityBattleMgr {
 	public SkillBeanPlayer skillBeanPlayer;
@@ -9,12 +10,14 @@ public class EntityBattleMgr {
 	BattleEntity entity;
     SkillDataInfo skillDataInfo;
 	uint attackRound = 0;
-	bool isFighting = false;
+	public bool isFighting = false;
     List<BattleEntity> targetEntityList;
+    public bool beLock { get; set; } //被攻击方锁定无法发动攻击
 
 	public EntityBattleMgr(BattleEntity entity){
 		this.entity = entity;
 		attackRound = 0;
+        beLock = false;
         isFighting = false;
         skillBeanPlayer = new SkillBeanPlayer(entity,AttackCallBack, AttackEndCallBack);
         targetEntityList = new List<BattleEntity>();
@@ -30,8 +33,14 @@ public class EntityBattleMgr {
 
 	bool CheckCanfire(){
 		//1 检测是否可以攻击
-		if ( !isFighting && !skillBeanPlayer.IsPlaying () && attackRound > 0 ) {		
-			return true;
+        if (!isFighting && !skillBeanPlayer.IsPlaying() && attackRound > 0 && !beLock) 
+        {   
+            targetEntityList = BattleManager.Instance.GetTargetEntity(entity.IsSelfTeam);
+            if (targetEntityList.Count > 0)
+            {
+                targetEntityList.ApplyAll(C => C.entityBattleMgr.beLock = true);
+                return true;
+            }
 		}
 		return false;
 	}
@@ -50,12 +59,9 @@ public class EntityBattleMgr {
 	}
 
 	void PlaySkillBean(){
-        targetEntityList.Clear();
-        targetEntityList.Add(BattleManager.Instance.TargetTeam.EntityList[0]);
-        EntityComponent Component = BattleManager.Instance.TargetTeam.EntityList[0].entityGo.GetComponent<EntityComponent>();
 		if (currentSkillBean.Movement) {
 			skillBeanPlayer.Init(entity.entityGo,currentSkillBean,
-                                 Component.transform.position, ActionStatus.Play);		
+            targetEntityList[0].entityGo.transform.position, ActionStatus.Play);		
 		}else
 		{
 			skillBeanPlayer.Init(entity.entityGo,currentSkillBean,ActionStatus.Play);		
@@ -65,17 +71,24 @@ public class EntityBattleMgr {
     public void BeAttack(int hurt)
     {
         entity.entityProperties.BeAttack(hurt);
+        beLock = false;
     }
 
+    /// <summary>
+    /// 技能施放完成回调
+    /// </summary>
     public void AttackEndCallBack()
     {
         Debug.Log("AttackEndCallBack");
         isFighting = false;
     }
 
+    /// <summary>
+    /// 攻击回调
+    /// </summary>
     public void AttackCallBack()
     {
-        Debug.Log("AttackCallBack num = " + targetEntityList.Count);
+        Debug.Log("AttackCallBack   = " + targetEntityList.Count);
         for (int i = 0; i < targetEntityList.Count; ++i )
         {
             targetEntityList[i].entityBattleMgr.BeAttack(skillDataInfo.hurt);

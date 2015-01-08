@@ -14,7 +14,6 @@ public class BattleEntity
 	EntityAnimStatus animStatus = EntityAnimStatus.None;
 	float currentTime = 0;
 
-
 	public BattleEntity(GameObject go,bool self){
 		IsDead = false;
         entityGo = go;
@@ -25,30 +24,39 @@ public class BattleEntity
 		entityProperties = new EntityProperties (this);
 	}
 
-	public void Destroy(){
-		GameObject.Destroy (entityGo);
-		entityBattleMgr = null;
-		entityProperties = null;
+	public void DestroyEntityObj(){
+        if (entityGo != null)
+		    GameObject.Destroy (entityGo);
 	}
 
-	public void Update(float deltaTime){
+    public void DestroyEntity()
+    {
+        DestroyEntityObj();
+        entityBattleMgr = null;
+        entityProperties = null;
+    }
+    /// <summary>
+    /// 更新实体状态并返回是否死亡
+    /// </summary>
+    /// <param name="deltaTime"></param>
+    /// <returns>是否死亡</returns>
+	public bool Update(float deltaTime){
         if (!IsDead)
         {
             UpdateAttackProgress(deltaTime);
+            return false;
         }
-        else
-        {
-            Debug.LogError("IsDead");
-            if (IsSelfTeam)
-            {
-                BattleManager.Instance.SelfTeamMgr.RemoveEntity(this);
-            }
-            else
-            {
-                BattleManager.Instance.TargetTeam.RemoveEntity(this);
-            }
-        }
+
+        Debug.LogError("IsDead");
+
+        return true;
 	}
+
+    public void Dead()
+    {
+        IsDead = true;
+        DestroyEntityObj();
+    }
 
 	void UpdateAttackProgress(float deltaTime){
 		currentTime += deltaTime;
