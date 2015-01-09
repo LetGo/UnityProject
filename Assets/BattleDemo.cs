@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BattleDemo : MonoBehaviour {
+public class BattleDemo : GameUIPanelBase {
 
     public GameObject btn1;
     public GameObject btn2;
@@ -27,4 +27,9 @@ public class BattleDemo : MonoBehaviour {
 
         BattleManager.Instance.Update(Time.deltaTime);
 	}
+
+    public override bool OnMsg(PanelMsgID msgID, object obj = null)
+    {
+        throw new System.NotImplementedException();
+    }
 }

@@ -6,7 +6,7 @@ using System.Text;
 public class GameSceneBase
 {
     public virtual bool OnProcessTransition() { return true; }
-    public virtual void OnEnterScene() { }
+    public virtual void OnEnterScene() { UIManager.Instance.OpenUIpanel(UIPanelID.ePanel_Loading); }
     public virtual void OnExitScene() { }
     public virtual void OnBeginRender() { }
     public virtual void OnEndRender() { }
