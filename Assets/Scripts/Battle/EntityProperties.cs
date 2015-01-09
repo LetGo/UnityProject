@@ -8,16 +8,19 @@ public class EntityProperties{
 	public List<int> SkillList = new List<int>();
 
 	public int Attack;
+	public int Deffend;
 	public int RunSpeed;
 	public float AttackSpeed;
 	public int Hp;	
 	public int CurrentHp;
 	public int Pos;
 	public bool IsEnemy;
+	public uint HitRate = 0;
+	public uint MisRate = 0;
 	public bool IsDead{get {return CurrentHp <= 0;}}
-
+	public uint Block = 0;
 	BattleEntity entity;
-
+	public uint Level = 0;
 
 	public EntityProperties(BattleEntity entity){
 		this.entity = entity;

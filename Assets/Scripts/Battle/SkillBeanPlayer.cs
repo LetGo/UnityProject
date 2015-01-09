@@ -18,7 +18,6 @@ public class SkillBeanPlayer
 
     private OnAnimationMsgDelegate m_onAnimationMsgDelegate;
     private OnSkillPlayEndDelegate m_oSkillPlayEndDelegate;
-    BattleEntity entity;
 
     public SkillBeanPlayer(OnAnimationMsgDelegate attackDelegate, OnSkillPlayEndDelegate skillPlayEndDelegate)
 	{
@@ -31,7 +30,6 @@ public class SkillBeanPlayer
 
     public SkillBeanPlayer(BattleEntity parent,OnAnimationMsgDelegate attackDelegate, OnSkillPlayEndDelegate skillPlayEndDelegate)
     {
-        entity = parent;
         animationPlay = new AnimationPlyer(parent.entityGo);
         animationPlay.parent = this;
         this.m_onAnimationMsgDelegate = attackDelegate;
@@ -86,7 +84,6 @@ public class SkillBeanPlayer
 	    actionStatus = status;
 	}
 
-    bool bSet = false;
 	public void Update(float realtimeSinceStartup)
 	{
         if (!bInit || actionStatus != ActionStatus.Play)

@@ -123,8 +123,13 @@ public class Excel2XML : EditorWindow
                    string name = ReadExeleData(m_lstFiles[i].Name);
                    EditorUtility.DisplayDialog("提示", "生成文件" + name +"成功", "OK");
                 }
-                if (GUILayout.Button("导出并加密", GUILayout.Width(80)))
-                {
+				if (GUILayout.Button("导出Json", GUILayout.Width(50)))
+				{
+					string name = ReadExeleData(m_lstFiles[i].Name,true);
+					EditorUtility.DisplayDialog("提示", "生成文件" + name +"成功", "OK");
+				}
+				if (GUILayout.Button("导出并加密", GUILayout.Width(80)))
+				{
                     string path = ReadExeleData(m_lstFiles[i].Name);
                     FileStream stream = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Read);
                     StreamReader sr = new StreamReader(stream);
@@ -148,7 +153,7 @@ public class Excel2XML : EditorWindow
 
     }
 
-    string ReadExeleData(string fileName)
+    string ReadExeleData(string fileName,bool bjson = false)
     {
         if (string.IsNullOrEmpty(m_strTargetPath))
         {
@@ -189,12 +194,18 @@ public class Excel2XML : EditorWindow
         }
         
         List<string> attributeTitleList = new List<string>();
+		List<object> aDataRowList = new List<object>();
         for (int i = 0; i < colCount; ++i )
         {
             attributeTitleList.Add(table0.Rows[0][i].ToString());
+			object o = table0.Rows[1][i];
+			aDataRowList.Add(o);
             //Debug.Log(i +" : "+ table0.Rows[0][i].ToString());
         }
 
+		if (bjson) {
+			WriteClass(tabelName,attributeTitleList,aDataRowList)	;	
+		}
         List<string> attributeList = new List<string>();
         attributeList.Clear();
         StringBuilder builder = new StringBuilder();
@@ -237,5 +248,35 @@ public class Excel2XML : EditorWindow
         stream.Close();
         return strTargetPath;
     }
+
+	void WriteClass(string flilNmae,List<string> attributeTitleList,List<object> aDataRowList){
+		string path = Application.dataPath +"/Scripts/DataBase/" + flilNmae +".cs";
+		Debug.Log ("json path :" + path);
+		if (File.Exists(path))
+		{
+			File.Delete(path);
+		}
+		FileStream stream = new FileStream(path,FileMode.Create,FileAccess.Write);
+		StreamWriter sw = new StreamWriter(stream);
+		sw.WriteLine ("using System;");
+		sw.WriteLine ("using System.Collections;");
+		sw.WriteLine ("public class " + flilNmae +"{");
+		int m_int = 0;
+		float m_float = 0;
+		for (int i = 0; i < aDataRowList.Count && i < attributeTitleList.Count; ++i) {
+			if( Int32.TryParse(aDataRowList[i].ToString(),out m_int) ){
+				sw.WriteLine ("\tpublic " + "int" + " " + attributeTitleList[i] + ";");	
+			}else if(float.TryParse(aDataRowList[i].ToString(),out m_float)){
+				sw.WriteLine ("\tpublic " + "float" + " " + attributeTitleList[i] + ";");	
+			}
+			else{
+				sw.WriteLine ("\tpublic " + aDataRowList[i].GetType() + " " + attributeTitleList[i] + ";");	
+			}
+		}
+
+		sw.WriteLine ("}");
+		sw.Close();
+		stream.Close();
+	}
 }
 

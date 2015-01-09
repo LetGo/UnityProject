@@ -13,13 +13,16 @@ public class EntityBattleMgr {
 	public bool isFighting = false;
     List<BattleEntity> targetEntityList;
     public bool beLock { get; set; } //被攻击方锁定无法发动攻击
+	public bool IsSkillHurt{get{return skillDataInfo.IsHurt;}}
+	public uint SkillHurePercent{get{return skillDataInfo.hurtPercentage;}}
+	public uint SkillRealHurt{get{return skillDataInfo.realHurt;}}
 
 	public EntityBattleMgr(BattleEntity entity){
 		this.entity = entity;
 		attackRound = 0;
         beLock = false;
         isFighting = false;
-        skillBeanPlayer = new SkillBeanPlayer(entity,AttackCallBack, AttackEndCallBack);
+		skillBeanPlayer = new SkillBeanPlayer(this.entity,AttackCallBack, AttackEndCallBack);
         targetEntityList = new List<BattleEntity>();
         InitSkillDataInfo();
 	}

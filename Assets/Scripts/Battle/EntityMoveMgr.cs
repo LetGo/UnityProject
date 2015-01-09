@@ -6,18 +6,12 @@ public class EntityMoveMgr {
 	public delegate void MoveEndCallback();
 
 	float moveTime;
-	MoveEndCallback moveEndCallback;
 
 	const float moveDistance = 10f;
 
 	public void BeginMoveToPostion(BattleTeamMgr team){
 		team.EntityList.ApplyAll (C => Move(C,1.5f) );
 		team.SetAllRun ();
-	}
-
-	public void Begin(BattleTeamMgr team,MoveEndCallback callback){
-		moveEndCallback = callback;
-		BeginMoveToPostion (team);
 	}
 
 	void Move(BattleEntity entity,float duration){
