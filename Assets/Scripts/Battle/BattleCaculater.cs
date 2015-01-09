@@ -196,8 +196,8 @@ class BattleCaculater :Singleton<BattleCaculater>
 	uint GetBaseHit(BattleEntity fire,BattleEntity beAttack){
 		uint attackValue = 0;
 		int def = 0;
-		int parmB = fire.entityProperties.Level >= beAttack.entityProperties.Level ? 1 : (beAttack.entityProperties.Level - fire.entityProperties.Level) / 100.0f;
-		def = beAttack.entityProperties.Deffend / 1000f * parmB;
+		int parmB = (int)( ( fire.entityProperties.Level >= beAttack.entityProperties.Level ? 1 : (beAttack.entityProperties.Level - fire.entityProperties.Level) / 100.0f));
+		def = (int)(beAttack.entityProperties.Deffend / 1000f * parmB);
 		attackValue = (uint)( fire.entityProperties.Attack * (1 - def) );
 		return attackValue;
 	}
