@@ -25,4 +25,5 @@ public enum EntityAnimStatus{
 	Idel,
 	Move,
 	Dead,
+	Win,
 }

@@ -20,6 +20,14 @@ public class BattleTeamMgr  {
         Debug.Log("RemoveEntity :" + entity.IsSelfTeam);
     }
 
+	public bool CheckIfAllDead(){
+		for (int i= 0; i< EntityList.Count; ++i) {
+		if(!EntityList[i].IsDead)		
+			return false;
+		}
+		return true;
+	}
+
 	public void ResetData(){
 		if (EntityList != null) {
 			EntityList.ApplyAll(C => C.DestroyEntityObj());
@@ -35,5 +43,7 @@ public class BattleTeamMgr  {
 		EntityList.ApplyAll(C => C.ChangeAnimStatus(EntityAnimStatus.Move));
 	}
 
-
+	 public void SetAllWin(){
+		EntityList.ApplyAll(C => {if(!C.IsDead)C.ChangeAnimStatus(EntityAnimStatus.Win);});
+	}
 }

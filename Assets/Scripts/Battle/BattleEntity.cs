@@ -55,6 +55,7 @@ public class BattleEntity
     public void Dead()
     {
         IsDead = true;
+		BattleManager.Instance.CheckBattleOver (IsSelfTeam);
         DestroyEntityObj();
     }
 
@@ -70,6 +71,7 @@ public class BattleEntity
 
 	public void ChangeAnimStatus(EntityAnimStatus status){
 		animStatus = status;
+		Debug.Log ("ChangeAnimStatus :" + animStatus);
 		switch (animStatus) {
 		case EntityAnimStatus.Idel:
 			entityGo.animation["idle"].wrapMode = WrapMode.Loop;
@@ -80,6 +82,10 @@ public class BattleEntity
 			entityGo.animation.Play("run");
 			break;
 		case EntityAnimStatus.Dead:
+			break;
+		case EntityAnimStatus.Win:
+			entityGo.animation["victory"].wrapMode = WrapMode.Loop;
+			entityGo.animation.Play("victory");
 			break;
 		}
 	}

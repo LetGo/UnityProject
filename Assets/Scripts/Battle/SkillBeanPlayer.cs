@@ -176,8 +176,8 @@ public class SkillBeanPlayer
         {
             m_oSkillPlayEndDelegate();
         }
-
-        animationPlay.SetIdle();
+		if(!BattleManager.Instance.IsBattleOver)
+        	animationPlay.SetIdle();
     }
 
 }

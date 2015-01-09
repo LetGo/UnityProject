@@ -20,6 +20,7 @@ public class BattleManager : Singleton<BattleManager> {
 	public BattleTeamMgr SelfTeamMgr;
 	public BattleTeamMgr TargetTeam;
 	public BattleStatus CurrentBattleStatus = BattleStatus.None;
+	public bool IsBattleOver{ get; set;}
 	EntityMoveMgr entityMoveMgr = null;
 	//TEST
 	List<EntityTest> selfEntity;
@@ -27,6 +28,7 @@ public class BattleManager : Singleton<BattleManager> {
 	public override void Initialize ()
 	{
 		base.Initialize ();
+		IsBattleOver = false;
 		Camera.main.transform.position = new Vector3 (9,4,-1);
 		Camera.main.transform.rotation = Quaternion.Euler (new Vector3 (20, -83, 0));
 
@@ -119,5 +121,17 @@ public class BattleManager : Singleton<BattleManager> {
                 }
             });
         }
+	}
+
+	public void CheckBattleOver(bool IsSelfTeam){
+		if (IsSelfTeam && SelfTeamMgr.CheckIfAllDead()) {
+			Debug.Log("BattleOver enimy win");
+			TargetTeam.SetAllWin();
+			IsBattleOver = true;
+		}else if(TargetTeam.CheckIfAllDead()){
+			Debug.Log("BattleOver self win");
+			SelfTeamMgr.SetAllWin();
+			IsBattleOver = true;
+		}
 	}
 }
