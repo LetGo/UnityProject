@@ -16,6 +16,7 @@ public class EntityBattleMgr {
 	public bool IsSkillHurt{get{return skillDataInfo.IsHurt;}}
 	public uint SkillHurePercent{get{return skillDataInfo.hurtPercentage;}}
 	public uint SkillRealHurt{get{return skillDataInfo.realHurt;}}
+	public uint SkillBlock{get{return skillDataInfo.realHurt;}}
 
 	public EntityBattleMgr(BattleEntity entity){
 		this.entity = entity;
