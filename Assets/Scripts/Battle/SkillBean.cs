@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class SkillBean : ScriptableObject
 {
     public uint enityId;
+	public string model;
     public SKillType skillType;
     public AnimationClip preAnimation;
     public AnimationClip attackAnimation;

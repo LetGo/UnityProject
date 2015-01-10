@@ -259,6 +259,7 @@ public class Excel2XML : EditorWindow
 		StreamWriter sw = new StreamWriter(stream);
 		sw.WriteLine ("using System;");
 		sw.WriteLine ("using System.Collections;");
+		sw.WriteLine ("using System.Collections.Generic;");
 		sw.WriteLine ("public class " + flilNmae +"{");
 		int m_int = 0;
 		float m_float = 0;
@@ -267,6 +268,14 @@ public class Excel2XML : EditorWindow
 				sw.WriteLine ("\tpublic " + "int" + " " + attributeTitleList[i] + ";");	
 			}else if(float.TryParse(aDataRowList[i].ToString(),out m_float)){
 				sw.WriteLine ("\tpublic " + "float" + " " + attributeTitleList[i] + ";");	
+			}
+			else if(aDataRowList[i].ToString().Contains('#')){
+				string[] split = aDataRowList[i].ToString().Split('#');
+				if( Int32.TryParse(split[0],out m_int) ){
+					sw.WriteLine ("\tpublic " + "List<int" + "> " + attributeTitleList[i] + ";");	
+				}else {
+					sw.WriteLine ("\tpublic " + "List<"  + aDataRowList[i].GetType()+ ">" + attributeTitleList[i] + ";");
+				}
 			}
 			else{
 				sw.WriteLine ("\tpublic " + aDataRowList[i].GetType() + " " + attributeTitleList[i] + ";");	

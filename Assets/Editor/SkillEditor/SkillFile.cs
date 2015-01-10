@@ -25,6 +25,7 @@ namespace SkillEditor{
 
 		static SkillBean InitSkillBean(){
 			SkillBean bean = ScriptableObject.CreateInstance<SkillBean> ();
+			bean.model = SkillEditorWindow.Instance.GetCurrentModel ();
 			List<System.Object> actionList = SkillManager.Instance.ActionList;
 			int count = actionList.Count;
 			for (int i = 0; i< count; ++i) {
