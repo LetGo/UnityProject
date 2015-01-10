@@ -104,7 +104,7 @@ namespace SkillEditor
         /// <summary>
         /// Prases the action event.  show in window
         /// </summary>
-        void PraseActionEvent()
+      	 public void PraseActionEvent()
         {
             SkillEditorWindow.Instance.roleActionEvents = null;
             SkillEditorWindow.Instance.roleActionEvents = new string[ActionList.Count];

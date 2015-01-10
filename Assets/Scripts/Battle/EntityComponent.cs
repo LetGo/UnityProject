@@ -5,14 +5,14 @@ public delegate void OnSkillPlayEndDelegate();
 
 public class EntityComponent : MonoBehaviour {
 
-    private OnAnimationMsgDelegate m_onAnimationMsgDelegate;
+    private OnAnimationMsgDelegate m_onAnimationMsgDelegate = null;
     public OnAnimationMsgDelegate OnAnimationMsgCallBack
     {
         get { return m_onAnimationMsgDelegate; }
         set { m_onAnimationMsgDelegate += value; }
     }
 
-    private OnSkillPlayEndDelegate m_oSkillPlayEndDelegate;
+    private OnSkillPlayEndDelegate m_oSkillPlayEndDelegate = null;
     public OnSkillPlayEndDelegate OnSkillPlayEndCallBack
     {
         get { return m_oSkillPlayEndDelegate; }

@@ -56,15 +56,16 @@ namespace SkillEditor
 			string path = string.Format ("{0}/{1}", modelPath, model);
             GameObject prefab = Resources.Load(path) as GameObject;
 			GameObject go = null;
-            if (prefab != null)
-            {
-				go = GameObject.Instantiate(prefab) as GameObject;
-                EntityComponent c = go.GetComponent<EntityComponent>();
-                if(c == null)
-                   c = go.AddComponent<EntityComponent>();
-                c.OnAnimationMsgCallBack = AnimationController.Instance.skillbeanPlayer.OnAnimationMsg;
-                c.OnSkillPlayEndCallBack = AnimationController.Instance.skillbeanPlayer.OnSkillPlayEnd;
-            }
+            if (prefab != null) {
+				go = GameObject.Instantiate (prefab) as GameObject;
+				EntityComponent c = go.GetComponent<EntityComponent> ();
+				if (c == null)
+						c = go.AddComponent<EntityComponent> ();
+				if (AnimationController.Instance.skillbeanPlayer != null) {
+						c.OnAnimationMsgCallBack = AnimationController.Instance.skillbeanPlayer.OnAnimationMsg;
+						c.OnSkillPlayEndCallBack = AnimationController.Instance.skillbeanPlayer.OnSkillPlayEnd;
+				}
+			}
             else
             {
                 Debug.LogError("load error :" + path);

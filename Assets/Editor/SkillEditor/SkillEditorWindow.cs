@@ -86,6 +86,10 @@ namespace SkillEditor{
 			Reset();		
 		}
 
+		public string GetCurrentModel(){
+			return roleModels [RoleIndex];		
+		}
+
 		public void Reset(){
 			RolePreAction = 0;	
 			RoleAttackAction = 0;
@@ -300,9 +304,43 @@ namespace SkillEditor{
 		}
 
 		public void UpdateLoadSkillBean(SkillBean bean){
-			Reset ();
-			SkillManager.Instance.UnInitialize ();
+			RoleLoader.Instance.Delete();
 
+			int index = roleModels.IndexOf (bean.model);
+			if (index != -1) {
+				RoleIndex = index; 
+			}
+			RoleLoader.Instance.Load(bean.model);
+			if (bean.preAnimation != null) {
+				RolePreAction = GetIndex(bean.preAnimation.name);
+			}
+			if (bean.attackAnimation != null) {
+				RoleAttackAction = GetIndex(bean.attackAnimation.name);
+			}
+			if (bean.movementActionBeanList.Count > 0) {
+				movementActionBean = bean.movementActionBeanList[0];			
+			}
+
+			SkillManager.Instance.ActionList.AddRange(bean.movementActionBeanList.ConvertAll(new System.Converter<MovementActionBean, System.Object>(ChangeToObj)));
+			SkillManager.Instance.ActionList.AddRange(bean.customAnimationEventList.ConvertAll(new System.Converter<CustomAnimationEvent, System.Object>(ChangeToObj)));
+			SkillManager.Instance.ActionList.AddRange(bean.attackEventBeanList.ConvertAll(new System.Converter<AttackEventBean, System.Object>(ChangeToObj)));
+			SkillManager.Instance.ActionList.AddRange(bean.normalEffectActionBeanList.ConvertAll(new System.Converter<NormalEffectActionBean, System.Object>(ChangeToObj)));
+			SkillManager.Instance.PraseActionEvent ();
+		}
+
+		System.Object ChangeToObj(System.Object o){
+			return o;
+		}	
+
+		int GetIndex(string name){
+			int index = -1;
+			for (int i = 0; i< roleModelAnimations.Length; ++i) {
+				if(roleModelAnimations[i].Equals(name))
+				{
+					index = i;break;
+				}
+			}
+			return index;
 		}
 	}
 }
