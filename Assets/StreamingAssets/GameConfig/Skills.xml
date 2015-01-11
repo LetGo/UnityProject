@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><Root>
-	<Skills ID="10001" Name="普工单个" Type="1" AttackAssets="asd" BeAttackAssets="asd" TargetType="2" AttackNum="1" AI="1" Position="1" IsHurt="1" Hurt_percent="100" RealHurt="10" Random="1"/>
-	<Skills ID="10002" Name="攻击竖列" Type="2" TargetType="2" AttackNum="2" Position="3" IsHurt="1" Hurt_percent="100" RealHurt="0" Random="1"/>
-	<Skills ID="10003" Name="攻击前排" Type="2" TargetType="2" AttackNum="3" Position="1" IsHurt="1" Hurt_percent="100" RealHurt="0" Random="0"/>
+	<Skills ID="1001" Name="普工单个" Type="1" AttackAssets="1001" BeAttackAssets="asd" TargetType="2" AttackNum="1" AI="3" Position="1" IsHurt="1" Hurt_percent="100" RealHurt="10" Random="1"/>
+	<Skills ID="1002" Name="攻击单个2" Type="2" AttackAssets="1002" TargetType="2" AttackNum="1" AI="2" Position="1" IsHurt="1" Hurt_percent="100" RealHurt="0" Random="1"/>
+	<Skills ID="1003" Name="冲击" Type="2" AttackAssets="1003" TargetType="2" AttackNum="1" AI="1" Position="1" IsHurt="1" Hurt_percent="100" RealHurt="0" Random="0"/>
+	<Skills ID="1004" Name="锤击" Type="2" AttackAssets="1004" TargetType="2" AttackNum="1" AI="3" Position="1" IsHurt="1" Hurt_percent="100" RealHurt="0" Random="0"/>
 </Root>

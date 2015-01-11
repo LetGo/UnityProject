@@ -15,6 +15,9 @@ public class BattleDemo : GameUIPanelBase {
     void OnClick1(GameObject go)
     {
       // anim.Play("run");
+        UIManager.Instance.Log("ceshi");
+        HerosManager.Instance.Initialize();
+//         HerosManager.Instance.AddNewHero(1001);
         BattleManager.Instance.Initialize();
     }
 

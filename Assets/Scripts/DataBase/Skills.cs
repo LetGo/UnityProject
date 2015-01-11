@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 public class Skills{
 	public int ID;
 	public System.String Name;
 	public int Type;
-	public System.String AttackAssets;
+	public int AttackAssets;
 	public System.String BeAttackAssets;
 	public int TargetType;
 	public int AttackNum;

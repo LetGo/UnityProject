@@ -18,6 +18,7 @@ public class DictMgr : Singleton<DictMgr>
     {
         base.Initialize();
         UIConfigDic = new Dictionary<int, UIConfigData>();
+        LoadHeros();
         LoadSkillsData();
         LoadUIManagerData();
     }
@@ -89,7 +90,7 @@ public class DictMgr : Singleton<DictMgr>
         nodeValue = node.Attributes["Type"];
         data.Type = GetNodeInt(nodeValue);
         nodeValue = node.Attributes["AttackAssets"];
-        data.AttackAssets = GetNodetString(nodeValue);
+        data.AttackAssets = GetNodeInt(nodeValue);
         nodeValue = node.Attributes["BeAttackAssets"];
         data.BeAttackAssets = GetNodetString(nodeValue);
         nodeValue = node.Attributes["TargetType"];
@@ -117,7 +118,50 @@ public class DictMgr : Singleton<DictMgr>
         }
     }
 #endregion
+#region Heros
+    public Dictionary<int, Heros> HerosDic = new Dictionary<int, Heros>();
+    bool bLoadHeros = false;
+    void LoadHeros(){
+        if(!bLoadHeros)
+        {
+            bLoadHeros = true;
+            Load_XMLData("Heros", OnLoadHerosData, null);
+        }
+    }
 
+    void OnLoadHerosData(XmlNode node)
+    {
+        Heros data = new Heros();
+        XmlAttribute nodeValue = null;
+        nodeValue = node.Attributes["ID"];
+        data.ID = GetNodeInt(nodeValue);
+        nodeValue = node.Attributes["Name"];
+        data.Name = GetNodetString(nodeValue);
+        nodeValue = node.Attributes["AttackSpeed"];
+        data.AttackSpeed = GetNodeInt(nodeValue);
+        nodeValue = node.Attributes["Model"];
+        data.Model = GetNodetString(nodeValue);
+        nodeValue = node.Attributes["Attack"];
+        data.Attack = GetNodeInt(nodeValue);
+        nodeValue = node.Attributes["HP"];
+        data.HP = GetNodeInt(nodeValue);
+        nodeValue = node.Attributes["Skills"];
+        string strSkills = GetNodetString(nodeValue);
+        string[] skills = strSkills.Split('#');
+        for (int i = 0; i < skills.Length; ++i )
+        {
+            data.Skills.Add(int.Parse(skills[i]));
+        }
+
+        if (!HerosDic.ContainsKey(data.ID))
+        {
+            HerosDic.Add(data.ID, data);
+        } 
+        else
+        {
+        }
+    }
+#endregion
     void LoadComplete()
     {
         GameState.GameSceneManager.Instance.Initialize();

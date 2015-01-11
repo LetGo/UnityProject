@@ -13,7 +13,7 @@ public class EntityProperties{
 	public float AttackSpeed;
 	public int Hp;	
 	public int CurrentHp;
-	public int Pos;
+    public uint Pos;
 	public bool IsEnemy;
 	public uint HitRate = 0;
 	public uint MisRate = 0;
@@ -22,18 +22,12 @@ public class EntityProperties{
 	BattleEntity entity;
 	public uint Level = 0;
 
-	public EntityProperties(BattleEntity entity){
+	public EntityProperties(BattleEntity entity,HeroDada herodata){
 		this.entity = entity;
-        if (entity.IsSelfTeam)
-        {
-            AttackSpeed = 5f;
-            Hp = 100;
-        }
-        else
-        {
-            Hp = Random.Range(30,50);
-            AttackSpeed = Random.Range(7.0f,10.0f);
-        }
+        Hp = herodata.HP;
+        AttackSpeed = herodata.AttackSpeed;
+        Attack = herodata.Attack;
+        Pos = herodata.pos;
         CurrentHp = Hp;
 	}
 

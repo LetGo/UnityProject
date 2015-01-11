@@ -8,32 +8,30 @@ public class EntityBattleMgr {
 
 	SkillBean currentSkillBean;
 	BattleEntity entity;
-    SkillDataInfo skillDataInfo;
+    Skills skillDataInfo; //当前使用的技能
 	uint attackRound = 0;
 	public bool isFighting = false;
     List<BattleEntity> targetEntityList;
+    public uint BeAttackNum { get; set; }
     public bool beLock { get; set; } //被攻击方锁定无法发动攻击
-	public bool IsSkillHurt{get{return skillDataInfo.IsHurt;}}
-	public uint SkillHurePercent{get{return skillDataInfo.hurtPercentage;}}
-	public uint SkillRealHurt{get{return skillDataInfo.realHurt;}}
-	public uint SkillBlock{get{return skillDataInfo.realHurt;}}
+	public bool IsSkillHurt{get{return skillDataInfo.IsHurt == 1;}}
+	public int SkillHurePercent{get{return skillDataInfo.Hurt_percent;}}
+	public int SkillRealHurt{get{return skillDataInfo.RealHurt;}}
+	public int SkillBlock{get{return skillDataInfo.RealHurt;}}
 
-	public EntityBattleMgr(BattleEntity entity){
+    List<int> skillList = new List<int>();
+    int m_currSkillIndex = 0;
+    int m_heroID = 0;
+	public EntityBattleMgr(BattleEntity entity,List<int> skillList,int heroID){
 		this.entity = entity;
 		attackRound = 0;
         beLock = false;
         isFighting = false;
+        m_heroID = heroID;
+        this.skillList = skillList;
 		skillBeanPlayer = new SkillBeanPlayer(this.entity,AttackCallBack, AttackEndCallBack);
         targetEntityList = new List<BattleEntity>();
-        InitSkillDataInfo();
 	}
-
-    void InitSkillDataInfo()
-    {
-        skillDataInfo = new SkillDataInfo();
-        skillDataInfo.hurt = 5;
-        skillDataInfo.targetPos = 1;
-    }
 
 	bool CheckCanfire(){
 		//1 检测是否可以攻击
@@ -52,14 +50,52 @@ public class EntityBattleMgr {
 	void BeginAttack(){
         isFighting = true;
 		attackRound--;
-		InitSkillBean ("Test");
-		PlaySkillBean ();
+        skillDataInfo = InitSkillInfo();
+        if (skillDataInfo != null)
+        {
+            InitSkillBean(skillDataInfo.ID.ToString());
+            PlaySkillBean();
+        }
 	}
+
+    Skills InitSkillInfo()
+    {
+        Skills skill = null;
+        int skillid = GetNextSkillID();
+        if (skillid > 0)
+        {
+            skill = DictMgr.Instance.SkillsDic[skillid];
+        }
+        return skill;
+    }
+
+    int GetNextSkillID()
+    {
+        int indexID = 0;
+        if (m_currSkillIndex < skillList.Count)
+        {
+            indexID = m_currSkillIndex;
+        }
+        else
+        {
+            m_currSkillIndex = 0;
+            indexID = m_currSkillIndex;
+        }
+        m_currSkillIndex++;
+        return skillList[indexID];
+    }
 
 	void InitSkillBean(string skill){
 
-		SkillBean bean = Resources.Load ("Skills/" + skill) as SkillBean;
-		currentSkillBean = bean.Clone ();
+        SkillBean bean = Resources.Load(string.Format("Skills/{0}/{1}" ,m_heroID ,skill) )as SkillBean;
+        if (bean != null)
+        {
+            currentSkillBean = bean.Clone();
+        }
+        else
+        {
+            Debug.LogError("InitSkillBean fail id " + skill);
+        }
 	}
 
 	void PlaySkillBean(){
@@ -76,6 +112,7 @@ public class EntityBattleMgr {
     {
         entity.entityProperties.BeAttack(hurt);
         beLock = false;
+        BeAttackNum++;
     }
 
     /// <summary>
@@ -95,7 +132,7 @@ public class EntityBattleMgr {
         Debug.Log("AttackCallBack   = " + targetEntityList.Count);
         for (int i = 0; i < targetEntityList.Count; ++i )
         {
-            targetEntityList[i].entityBattleMgr.BeAttack(skillDataInfo.hurt);
+            targetEntityList[i].entityBattleMgr.BeAttack(5);
         }
     }
 
