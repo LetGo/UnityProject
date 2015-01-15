@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><Root>
+	<Heros ID="1001" Name="战士" Model="player_1_1" Skills="1001#1002#1003#1004" AttackSpeed="5" Attack="5" HP="100"/>
+</Root>
