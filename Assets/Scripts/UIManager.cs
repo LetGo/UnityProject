@@ -269,4 +269,9 @@ public class UIManager :Singleton<UIManager>
             Resources.UnloadUnusedAssets();
         }
     }
+
+    public void Log(string text)
+    {
+        m_UIMgrComponent.Add(text);
+    }
 }

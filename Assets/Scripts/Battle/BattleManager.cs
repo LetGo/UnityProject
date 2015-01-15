@@ -3,17 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UniCommon;
 
-public class EntityTest{
-	public int pos;//1-6
-	public string model;
-	public bool self;
-	public EntityTest(int p,string m,bool s){
-		pos = p;
-		model = m;
-		self = s;
-	}
-}
-
 public class BattleManager : Singleton<BattleManager> {
 
 	public BattlePositionMgr battlePositionMgr;
@@ -23,8 +12,8 @@ public class BattleManager : Singleton<BattleManager> {
 	public bool IsBattleOver{ get; set;}
 	EntityMoveMgr entityMoveMgr = null;
 	//TEST
-	List<EntityTest> selfEntity;
-	List<EntityTest> targetEntity;
+	List<HeroDada> selfEntity;
+    List<HeroDada> targetEntity;
 	public override void Initialize ()
 	{
 		base.Initialize ();
@@ -32,16 +21,25 @@ public class BattleManager : Singleton<BattleManager> {
 		Camera.main.transform.position = new Vector3 (9,4,-1);
 		Camera.main.transform.rotation = Quaternion.Euler (new Vector3 (20, -83, 0));
 
-		selfEntity = new List<EntityTest> ();
+        selfEntity = new List<HeroDada>();
 		for (int i = 0; i < 1; i++) {
-			EntityTest temp = new EntityTest(i,"player_1_1",true);
-			selfEntity.Add(temp);
+            HeroDada data = HerosManager.Instance.Clone(1001,10);
+            if (data != null)
+            {
+                data.pos = (uint)(i + 1);
+                selfEntity.Add(data);
+            }
 		}
 
-		targetEntity = new List<EntityTest> ();
+        targetEntity = new List<HeroDada>();
 		for (int i = 0; i < 3; i++) {
-			EntityTest temp = new EntityTest(i,"player_1_2",false);
-			targetEntity.Add(temp);
+            HeroDada data = HerosManager.Instance.Clone(1001,Random.Range(1,11));
+
+            if (data != null)
+            {
+                data.pos = (uint)(i + 1);
+                targetEntity.Add(data);
+            }
 		}
 
 		entityMoveMgr = new EntityMoveMgr ();
@@ -70,12 +68,12 @@ public class BattleManager : Singleton<BattleManager> {
 		CurrentBattleStatus = BattleStatus.Preparing;
 		//self
 		for (int i = 0; i < selfEntity.Count; i++) {
-			BattleEntity temp = EntityCreator.Create (selfEntity[i]);
+			BattleEntity temp = EntityCreator.Create (selfEntity[i],true);
 			SelfTeamMgr.AddEntity (temp);
 		}
 		
 		//target
-		targetEntity.ApplyAll (C => TargetTeam.AddEntity (EntityCreator.Create (C)));
+		targetEntity.ApplyAll (C => TargetTeam.AddEntity (EntityCreator.Create (C,false)));
 
 		//set idle
 		SelfTeamMgr.SetAllIdel ();

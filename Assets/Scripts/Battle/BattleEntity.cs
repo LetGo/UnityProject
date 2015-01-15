@@ -10,18 +10,19 @@ public class BattleEntity
 
     public bool IsSelfTeam { get; set; }
 	public bool IsDead{ get; set;}
-    public int Position { get; set; }
+    public uint Position { get; set; }
 	EntityAnimStatus animStatus = EntityAnimStatus.None;
 	float currentTime = 0;
 
-	public BattleEntity(GameObject go,bool self){
+    public BattleEntity(GameObject go, HeroDada herodata,bool self)
+    {
 		IsDead = false;
         entityGo = go;
 		animStatus = EntityAnimStatus.None;
 		currentTime = 0;
         IsSelfTeam = self;
-		entityBattleMgr = new EntityBattleMgr (this);
-		entityProperties = new EntityProperties (this);
+        entityBattleMgr = new EntityBattleMgr(this, herodata.Skills, herodata.ID);
+		entityProperties = new EntityProperties (this,herodata);
 	}
 
 	public void DestroyEntityObj(){
@@ -65,7 +66,12 @@ public class BattleEntity
 			currentTime = 0;
 			entityBattleMgr.AddAttackRound();
 		}
-
+        if (entityBattleMgr.BeAttackNum >= 3 )
+        {
+            currentTime = 0;
+            entityBattleMgr.BeAttackNum = 0;
+            entityBattleMgr.AddAttackRound();
+        }
 		entityBattleMgr.skillBeanPlayer.Update (Time.realtimeSinceStartup);	
 	}
 

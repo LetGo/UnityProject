@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using System.IO;
-using System.Linq;
 using Excel;
 using System.Data;
 using UniCommon;
@@ -257,7 +256,7 @@ public class Excel2XML : EditorWindow
 			File.Delete(path);
 		}
 		FileStream stream = new FileStream(path,FileMode.Create,FileAccess.Write);
-		StreamWriter sw = new StreamWriter(stream);
+        StreamWriter sw = new StreamWriter(stream, System.Text.Encoding.UTF8);
 		sw.WriteLine ("using System;");
 		sw.WriteLine ("using System.Collections;");
 		sw.WriteLine ("using System.Collections.Generic;");
@@ -270,12 +269,12 @@ public class Excel2XML : EditorWindow
 			}else if(float.TryParse(aDataRowList[i].ToString(),out m_float)){
 				sw.WriteLine ("\tpublic " + "float" + " " + attributeTitleList[i] + ";");	
 			}
-			else if(aDataRowList[i].ToString().Contains('#')){
+			else if(aDataRowList[i].ToString().Contains("#")){
 				string[] split = aDataRowList[i].ToString().Split('#');
 				if( Int32.TryParse(split[0],out m_int) ){
-					sw.WriteLine ("\tpublic " + "List<int" + "> " + attributeTitleList[i] + ";");	
+                    sw.WriteLine("\tpublic " + "List<int> " + attributeTitleList[i] + " = new List<int>();");	
 				}else {
-					sw.WriteLine ("\tpublic " + "List<"  + aDataRowList[i].GetType()+ ">" + attributeTitleList[i] + ";");
+                    sw.WriteLine("\tpublic " + "List<" + aDataRowList[i].GetType() + ">" + attributeTitleList[i] + "= new List<" + aDataRowList[i].GetType() + ">();");
 				}
 			}
 			else{

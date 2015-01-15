@@ -3,9 +3,11 @@ using System.Collections;
 
 public class EntityCreator  {
 	static string modelPath = "Character/player_1";
-	public static BattleEntity Create(EntityTest data){
-        BattleEntity entity = new BattleEntity(LoadModle(data.model),data.self);
-		Transform positionTransform = BattleManager.Instance.battlePositionMgr.GetPositionTransform ((BattlePositionType)data.pos, data.self);
+    public static BattleEntity Create(HeroDada data,bool self)
+    {
+        BattleEntity entity = new BattleEntity(LoadModle(data.Model),data,self);
+        Debug.LogError(data.pos);
+		Transform positionTransform = BattleManager.Instance.battlePositionMgr.GetPositionTransform ((BattlePositionType)data.pos, self);
 		entity.entityGo.transform.parent = positionTransform;
 		entity.entityGo.transform.localPosition = Vector3.zero;
 		entity.entityGo.transform.localEulerAngles = Vector3.zero;
