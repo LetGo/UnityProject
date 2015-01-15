@@ -15,6 +15,7 @@ public class SkillBean : ScriptableObject
     public List<NormalEffectActionBean> normalEffectActionBeanList = new List<NormalEffectActionBean>();
 	public List<AttackEventBean> attackEventBeanList = new List<AttackEventBean>();
     public List<CustomAnimationEvent> customAnimationEventList = new List<CustomAnimationEvent>();
+    public List<CameraShanekActionBean> CameraShanekActionBeanList = new List<CameraShanekActionBean>();
 
 	public SkillBean Clone(){
 		SkillBean bean = ScriptableObject.CreateInstance<SkillBean> ();
@@ -26,6 +27,7 @@ public class SkillBean : ScriptableObject
 		this.normalEffectActionBeanList.ApplyAll (c => bean.normalEffectActionBeanList.Add (c.Clone ()));
 		this.attackEventBeanList.ApplyAll (c => bean.attackEventBeanList.Add (c.Clone ()));
         this.customAnimationEventList.ApplyAll(c => bean.customAnimationEventList.Add(c.Clone()));
+        this.CameraShanekActionBeanList.ApplyAll(c => bean.CameraShanekActionBeanList.Add(c.Clone()));
         AttachEvens(bean);
 		return bean;
 	}
@@ -140,6 +142,16 @@ public class NormalEffectActionBean
     public NormalEffectActionBean Clone()
     {
         return MemberwiseClone() as NormalEffectActionBean;
+    }
+}
+
+[System.Serializable]
+public class CameraShanekActionBean
+{
+    public int Level;
+    public CameraShanekActionBean Clone()
+    {
+        return MemberwiseClone() as CameraShanekActionBean;
     }
 }
 
