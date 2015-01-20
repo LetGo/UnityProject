@@ -6,7 +6,7 @@
 *.sln
 *.DotSettings
 *.suo
-
+*.userprefs
 
 
 Assets/UnityVS.meta
