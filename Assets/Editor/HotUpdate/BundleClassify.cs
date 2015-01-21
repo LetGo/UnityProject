@@ -10,9 +10,14 @@ public class BundleClassify
 {
 	string m_resourceRootPath = string.Empty;
 	
-	DirectoryInfo m_ioSceneDirInfo;
-	
-	List<FileInfo> m_ioSceneFileInfo = new List<FileInfo>();
+    /// <summary>
+    /// 将要打包的资源目录
+    /// </summary>
+	DirectoryInfo m_ioResourcesDirInfo;
+	/// <summary>
+	/// 将要打包的资源文件
+	/// </summary>
+	List<FileInfo> m_ioResourcesFileInfos = new List<FileInfo>();
 	
 	bool m_guiListing = false;
 	
@@ -65,9 +70,9 @@ public class BundleClassify
 	void InitDirInfo(){
 		LoadBundleRecordFile ();
 		
-		m_ioSceneDirInfo = new DirectoryInfo(m_resourceRootPath);
-		
-		m_ioSceneFileInfo.Clear ();
+		m_ioResourcesDirInfo = new DirectoryInfo(m_resourceRootPath);
+
+		m_ioResourcesFileInfos.Clear ();
 		
 		m_bundleFiles.Clear ();
 		
@@ -75,10 +80,10 @@ public class BundleClassify
 		
 		m_dicIfBundleFileListing.Clear ();
 		
-		GetFiles (m_ioSceneDirInfo, ref m_ioSceneFileInfo);
+		GetFiles (m_ioResourcesDirInfo, ref m_ioResourcesFileInfos);
 		
-		for (int i = 0; i < m_ioSceneFileInfo.Count; ++i) {
-			BundleFile bundleFile = new BundleFile(m_ioSceneDirInfo,m_ioSceneFileInfo[i],m_assetType,m_needFoldClassify);
+		for (int i = 0; i < m_ioResourcesFileInfos.Count; ++i) {
+			BundleFile bundleFile = new BundleFile(m_ioResourcesDirInfo,m_ioResourcesFileInfos[i],m_assetType,m_needFoldClassify);
 			
 			BundleFileStatus state = GetBundleFileState(bundleFile.bundleDataInfo);
 			bundleFile.SetBundleState(state);

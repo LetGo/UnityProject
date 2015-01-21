@@ -23,6 +23,7 @@ public class HotUpdateMrg : EditorWindow
 	}
 	
 	void Awake(){
+
 		LoadVersion ();
 		
 		Dictionary<string,string> sceneFilte = new Dictionary<string, string> ();

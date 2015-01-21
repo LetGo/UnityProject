@@ -29,6 +29,7 @@ public enum BundleFileStatus{
 	Same,
 	Count
 }
+
 public class BundleFile  {
 	static System.Security.Cryptography.SHA1CryptoServiceProvider sha1 = new System.Security.Cryptography.SHA1CryptoServiceProvider ();
 
@@ -37,24 +38,23 @@ public class BundleFile  {
 	//文件名
 	public string fileName = string.Empty;
 
-	//相对于根目录的相对目录
+	/// <summary>
+    /// 相对于该资源类型根目录的相对目录
+	/// </summary>
 	public string relativePath = string.Empty;
 
 	//全路径
 	string m_fileFullPath = string.Empty;
 
-	//打包成bundle的全路径
+	/// <summary>
+    /// 打包成bundle的全路径
+	/// </summary>
 	string m_bundelFilePath = string.Empty;
 
 	//准备加入打包列表
 	public bool readyToPack = false;
 
-	private BundleFileStatus m_state = 0;
-	/// <summary>
-	/// 0  new  1 updat 2 same.
-	/// </summary>
-	/// <value>The state.</value>
-	public BundleFileStatus State{get{return m_state;}}
+    private BundleFileStatus m_state = BundleFileStatus.None;
 
 	public bool buildSuccess = false;
 
@@ -196,6 +196,9 @@ public class BundleFile  {
 		}
 	}
 
+    /// <summary>
+    /// 若果没有保存的目录就创建该目录
+    /// </summary>
 	void CheckBundleDataPath(){
 		if (!Directory.Exists (Path.GetDirectoryName (m_bundelFilePath))) {
 			Directory.CreateDirectory(Path.GetDirectoryName (m_bundelFilePath));
