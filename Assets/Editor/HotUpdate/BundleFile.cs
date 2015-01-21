@@ -7,21 +7,28 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class BundleDataInfo{
-	public string m_assetPath = string.Empty;
-	public AssetType m_assetType = AssetType.Default;
-	public string m_hashCode = string.Empty;
+	public string assetPath = string.Empty;
+	public AssetType assetType = AssetType.Default;
+	public string hashCode = string.Empty;
 
 	public bool IsEqual(BundleDataInfo other){
-		if(m_assetPath == other.m_assetPath && m_assetType == other.m_assetType)
+		if(assetPath == other.assetPath && assetType == other.assetType)
 			return true;
 		return false;
 	}
 
 	public bool IsSame(BundleDataInfo o){
-		return m_hashCode == o.m_hashCode;
+		return hashCode == o.hashCode;
 	}
 }
 
+public enum BundleFileStatus{
+	None,
+	New,
+	Update,
+	Same,
+	Count
+}
 public class BundleFile  {
 	static System.Security.Cryptography.SHA1CryptoServiceProvider sha1 = new System.Security.Cryptography.SHA1CryptoServiceProvider ();
 
@@ -42,12 +49,12 @@ public class BundleFile  {
 	//准备加入打包列表
 	public bool readyToPack = false;
 
-	private int m_state = 0;
+	private BundleFileStatus m_state = 0;
 	/// <summary>
 	/// 0  new  1 updat 2 same.
 	/// </summary>
 	/// <value>The state.</value>
-	public int State{get{return m_state;}}
+	public BundleFileStatus State{get{return m_state;}}
 
 	public bool buildSuccess = false;
 
@@ -60,7 +67,7 @@ public class BundleFile  {
 
 		bundleDataInfo = new BundleDataInfo ();
 
-		bundleDataInfo.m_assetType = assetype;
+		bundleDataInfo.assetType = assetype;
 
 		fileName = Path.GetFileNameWithoutExtension (fileInfo.FullName);
 
@@ -71,10 +78,11 @@ public class BundleFile  {
 		if (needFoldClassfy) {
 				
 		}else{ 
-		
+			m_bundelFilePath = HotUpdateMrg.GetBundleRoot() + GetTypePath(assetype) + relativePath + fileName + HotUpdateMrg.GetBundleExtensionName();
+			bundleDataInfo.assetPath = fileName;
 		}
 
-		bundleDataInfo.m_hashCode = GetFileHashCode (m_fileFullPath);
+		bundleDataInfo.hashCode = GetFileHashCode (m_fileFullPath);
 	}
 
 	string GetFileHashCode (string path){
@@ -87,17 +95,17 @@ public class BundleFile  {
 		return code;
 	}
 
-	public void SetBundleState(int state){
+	public void SetBundleState(BundleFileStatus state){
 		m_state = state;
 	}
 
 	public string GetBundleStateName(){
 		switch (m_state) {
-		case 0:
+		case BundleFileStatus.New:
 			return "新增";
-		case 1:
+		case BundleFileStatus.Update:
 			return "更新";
-		case 2:
+		case BundleFileStatus.Same:
 			return "无改变";
 		}
 		return "";
@@ -119,7 +127,7 @@ public class BundleFile  {
 	public void CreateAssetBundle(){
 		CheckBundleDataPath ();
 
-		switch (bundleDataInfo.m_assetType) {
+		switch (bundleDataInfo.assetType) {
 		case AssetType.Scene :
 			BuildSceneAssentBundle();
 			break;
