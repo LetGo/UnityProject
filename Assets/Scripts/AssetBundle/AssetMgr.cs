@@ -29,7 +29,7 @@ public class AssetMgr : MonoBehaviour {
 	
 	public static Dictionary<string, AssetData> AnalysisAssetJsonData(string data)
 	{
-//		Dictionary<string, AssetData> dictionary;
+		Dictionary<string, AssetData> dictionary;
 //		Hashtable hashtable;
 //		AssetData[] dataArray;
 //		AssetData data2;
@@ -43,14 +43,14 @@ public class AssetMgr : MonoBehaviour {
 //		string str2;
 //		AssetData data4;
 //		string str3;
-//		dictionary = new Dictionary<string, AssetData>();
+		dictionary = new Dictionary<string, AssetData>();
 //		hashtable = JsonReader.Deserialize<Hashtable>(data);
 //		if (hashtable != null)
 //		{
 //			goto Label_0025;
 //		}
 //		Debug.LogError("load json data error! : " + data);
-//		return dictionary;
+		return dictionary;
 //	Label_0025:
 //			if (hashtable.ContainsKey("scenes") == null)
 //		{
@@ -143,9 +143,9 @@ public class AssetMgr : MonoBehaviour {
 	
 	public string GetAssetPath(AssetType assetType, string assetName = "", string relativePath = "")
 	{
-//		string str;
+		string str;
 //		AssetType type;
-//		str = string.Empty;
+		str = string.Empty;
 //		type = assetType;
 //		switch ((type - 1))
 //		{
@@ -183,7 +183,7 @@ public class AssetMgr : MonoBehaviour {
 //		}
 //		str = str + assetName + ".unity3d";
 //	Label_00B0:
-//			return str;
+			return str;
 //	}
 //	
 //	public string GetCsvData(string name)
@@ -236,7 +236,7 @@ public class AssetMgr : MonoBehaviour {
 	
 	public string GetFbJsonData(string name)
 	{
-//		TextAsset asset;
+		//TextAsset asset;
 //		string str;
 //		string str2;
 //		str = "JsonData/FbEvent/" + name;
@@ -247,9 +247,9 @@ public class AssetMgr : MonoBehaviour {
 //		asset = Resources.Load(str, typeof(TextAsset)) as TextAsset;
 //		goto Label_003D;
 //	Label_0037:
-//			return string.Empty;
+		return string.Empty;
 //	Label_003D:
-//			return asset.text;
+	//return asset.text;
 	}
 	
 	public void InitAssetBundlePath()
@@ -303,18 +303,18 @@ public class AssetMgr : MonoBehaviour {
 	public void ReleaseAssetMemory(AssetType type, string name)
 	{
 		string str;
-		AssetData data;
-		string str2;
-		str = GetAssetDataKey(type, name);
-		if (this.m_dicAssetData.ContainsKey(str) == null)
-		{
-			goto Label_0059;
-		}
-		data = this.m_dicAssetData[str];
-		data.m_bundleLoadedAsset = null;
-		data.m_LoadedStatus = 0;
-		AssetBundleManager.Unload(this.GetAssetPath(data.m_AssetType, data.m_strAssetPath, string.Empty), data.m_strCode, 1);
-	Label_0059:
+//		AssetData data;
+//		string str2;
+//		str = GetAssetDataKey(type, name);
+//		if (this.m_dicAssetData.ContainsKey(str) == null)
+//		{
+//			goto Label_0059;
+//		}
+//		data = this.m_dicAssetData[str];
+//		data.m_bundleLoadedAsset = null;
+//		data.m_LoadedStatus = 0;
+//		AssetBundleManager.Unload(this.GetAssetPath(data.m_AssetType, data.m_strAssetPath, string.Empty), data.m_strCode, 1);
+//	Label_0059:
 			return;
 	}
 	
@@ -329,7 +329,7 @@ public class AssetMgr : MonoBehaviour {
 			return;
 	}
 	
-	public unsafe void Run()
+	public void Run()
 	{
 //		KeyValuePair<string, getAssetCompleteCallBack> pair;
 //		Dictionary<string, getAssetCompleteCallBack>.Enumerator enumerator;
@@ -420,4 +420,3 @@ public class AssetMgr : MonoBehaviour {
 	public delegate void InitAssetLoadCompleteCallBack();
 }
 
-}
