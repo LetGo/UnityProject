@@ -16,7 +16,8 @@ public class MonsterController : MonoBehaviour {
 	public state m_state = state.idle;
 	public int index = 0;
 	Vector3 HatredZonePos;
-	public LayerMask maskTarget;
+	public LayerMask maskTarget = LayerMask.NameToLayer("role");
+
 	void Start () {
 		HatredZonePos = transform.position;
 		animation.wrapMode = WrapMode.Loop;
