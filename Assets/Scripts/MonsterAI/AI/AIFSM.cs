@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using UnityEngine;
 
 namespace MonsterAI.AI
 {
@@ -13,7 +13,9 @@ namespace MonsterAI.AI
         protected AIBaseState m_defaultState = null;
         protected object m_goalStateParam = null;
 
-       
+		protected Vector3 m_initPosition = Vector3.zero;
+		public Vector3 initPosition { get { return m_initPosition; } }
+
         protected Dictionary<AIStateId, AIBaseState> m_states = new Dictionary<AIStateId, AIBaseState>();
         
         public bool AddState<StateType>() where StateType : AIBaseState, new()
@@ -105,6 +107,7 @@ namespace MonsterAI.AI
             {
                 m_defaultState = m_states.First().Value;
             }
+			m_initPosition = param.Owner.Node.transform.position;
             return true;
         }
     }

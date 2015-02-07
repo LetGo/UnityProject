@@ -7,7 +7,7 @@ public class Grid : MonoBehaviour {
     public Vector2 gridSize;
     public Transform player;
     public Transform target;
-    public FindPath findPath;
+    //public FindPath findPath;
     public Transform Plane;
     private Transform mPlaneTrans;
     public float NodeRadius;
@@ -44,7 +44,7 @@ public class Grid : MonoBehaviour {
 
     void Update()
     {
-        findPath.FindingPath(player.transform.position, target.position);
+      //  findPath.FindingPath(player.transform.position, target.position);
     }
 
     private void CreateGrid()

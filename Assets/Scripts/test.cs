@@ -17,15 +17,20 @@ public class Test : MonoBehaviour {
 	}
 	IEnumerator down(){
 		string path = "file://" + Application.streamingAssetsPath + "/AssetBundles/Windows/Prefab/LoadingPanel.unity3d";
+		path = "http://119.147.215.92/ServerList_bs.xml";
 		Debug.Log (path);
 		WWW www = new WWW ( path );
 
 		yield return www;
 
-		AssetBundle bundle = www.assetBundle;
+		//AssetBundle bundle = www.assetBundle;
 
 		if (www.isDone) {
-			GameObject go = GameObject.Instantiate (bundle.mainAsset ) as GameObject;
+			Debug.Log (www.error);
+			if(www.error == null)
+				Debug.Log (www.text);
+
+			//GameObject go = GameObject.Instantiate (bundle.mainAsset ) as GameObject;
 		}
 
 	}

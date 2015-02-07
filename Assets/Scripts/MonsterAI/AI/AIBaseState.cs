@@ -47,15 +47,33 @@ namespace MonsterAI.AI
             m_aiFSM = aifsm;
         }
 
-        public void Action_MoveTo(Vector3 target) 
+		public bool Action_MoveTo(Vector3 target) 
         {
-            
+			//如果不能寻路返回false
+
+			var ctrl = m_roleFSM.GetController();
+			Vector3 startPos = m_roleFSM.Owner.Node.transform.position;
+			Vector3 endPos = target;
+			ctrl.BeginPushAction();
+			GameEvent act = new GameEvent (GameEventID.GEMove,new MoveData(startPos,endPos));
+			ctrl.PostAction( act );
+			return true;
         }
 
         public virtual void OnUpdate(float _dt)
         {
             //NGUIDebug.Log("OnUpdate :" + m_AIStateId);
         }
+
+		public bool Action_MoveToPlayer( out Vector3 pos ) {
+			GameObject p = GameObject.FindGameObjectWithTag("Player"); //玩家
+			if ( p == null ) {
+				pos = Vector3.zero;
+				return false;
+			}
+			pos = p.transform.position;
+			return Action_MoveTo( pos );
+		}
 
         public AIStateId CheckTrans(float _dt) { return CheckTransImp(_dt); }
 

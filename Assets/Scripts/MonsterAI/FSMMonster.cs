@@ -12,12 +12,15 @@ public enum State
     Num
 }
 
-public class FSMMonster : FSMComponent, IActionCmdTranslator
+public class FSMMonster : FSMComponent//, IActionCmdTranslator
 {
     private State m_preState;
     private State m_activeState;
     private BaseState[] m_states;
     private MonsterAI.AI.BaseActionController m_actionCtrl = null;
+	public MonsterAI.AI.BaseActionController GetController() {
+		return m_actionCtrl;
+	}
     public override void Initialize()
     {
         m_states = new BaseState[(int)State.Num];
@@ -81,10 +84,10 @@ public class FSMMonster : FSMComponent, IActionCmdTranslator
         return true;
     }
 
-    public  bool MoveCmd_Translating(SubActionCmd movSCmd, GameEvent dirCmd) 
-    {
-        return true;
-    }
-    public bool ActionCmd_translating(SubActionCmd actSCmd, GameEvent actCmd) { return true; }
-    public bool AuxActionCmd_translating(SubActionCmd actSCmd, GameEvent auxActCmd) { return true; }
+//    public  bool MoveCmd_Translating(SubActionCmd movSCmd, GameEvent dirCmd) 
+//    {
+//        return true;
+//    }
+//    public bool ActionCmd_translating(SubActionCmd actSCmd, GameEvent actCmd) { return true; }
+//    public bool AuxActionCmd_translating(SubActionCmd actSCmd, GameEvent auxActCmd) { return true; }
 }
