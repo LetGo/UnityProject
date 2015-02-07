@@ -10,12 +10,12 @@ public class GridNode
     public int GridX;
     public int GridY;
 
-    public uint Gcost;
-    public uint Hcost;
+    public int Gcost;
+    public int Hcost;
 
-    public uint Fcost
+    public int Fcost
     {
-        get { return Gcost + Fcost; }
+        get { return Gcost + Hcost; }
     }
 
     public GridNode Parent;
@@ -29,5 +29,8 @@ public class GridNode
     }
 
 
-
+    public override string ToString()
+    {
+        return "g :" + Gcost +" h :" + Hcost +" f:" + Fcost;
+    }
 }

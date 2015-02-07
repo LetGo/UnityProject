@@ -63,18 +63,18 @@ public class SkillBean : ScriptableObject
     {
         if (clip == null) return;
 
-        if (events.Count > 0)
-        {
-            UnityEditor.AnimationUtility.SetAnimationEvents(clip, null);
-            for (int i = 0; i < events.Count; ++i)
-            {
-                CustomAnimationEvent cae = events[i];
-                AnimationEvent ae = new AnimationEvent();
-                ae.time = cae.time;
-                ae.functionName = "OnAnimationMsg";
-                clip.AddEvent(ae);
-            }
-        }
+        //if (events.Count > 0)
+        //{
+        //    UnityEditor.AnimationUtility.SetAnimationEvents(clip, null);
+        //    for (int i = 0; i < events.Count; ++i)
+        //    {
+        //        CustomAnimationEvent cae = events[i];
+        //        AnimationEvent ae = new AnimationEvent();
+        //        ae.time = cae.time;
+        //        ae.functionName = "OnAnimationMsg";
+        //        clip.AddEvent(ae);
+        //    }
+        //}
     }
 }
 
