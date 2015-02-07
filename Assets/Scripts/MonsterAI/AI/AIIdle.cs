@@ -14,12 +14,12 @@ namespace MonsterAI.AI
 
         public override void OnEnter()
         {
-           
+			base.OnEnter ();
         }
 
         public override void OnExit()
         {
-            
+			base.OnExit ();
         }
 
         protected override AIStateId CheckTransImp(float _dt) 
@@ -32,7 +32,9 @@ namespace MonsterAI.AI
                 {
                     return AIStateId.Chase;
                 }
-                else { Debug.Log("dir.magnitude :" + dir.magnitude); }
+                else { 
+					//Debug.Log("dir.magnitude :" + dir.magnitude); 
+				}
             }
             else { Debug.Log("no player "); }
            

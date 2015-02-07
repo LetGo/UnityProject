@@ -19,7 +19,8 @@ namespace MonsterAI.AI
             base.Initialize();
             m_aiFSM.AddState<AIIdle>();
             m_aiFSM.AddState<AIPatrol>();
-            m_aiFSM.SetDefaultStateId(AIStateId.Idle);
+			m_aiFSM.AddState<AIChase>();
+			m_aiFSM.SetDefaultStateId(AIStateId.Idle);
             m_aiFSM.Init( m_fsm );
         }
 
