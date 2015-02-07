@@ -12,6 +12,24 @@ public class Test : MonoBehaviour {
 	public GameObject btn1;
 	public GameObject btn2;
 
+	void OnClick(){
+		StartCoroutine (down ());
+	}
+	IEnumerator down(){
+		string path = "file://" + Application.streamingAssetsPath + "/AssetBundles/Windows/Prefab/LoadingPanel.unity3d";
+		Debug.Log (path);
+		WWW www = new WWW ( path );
+
+		yield return www;
+
+		AssetBundle bundle = www.assetBundle;
+
+		if (www.isDone) {
+			GameObject go = GameObject.Instantiate (bundle.mainAsset ) as GameObject;
+		}
+
+	}
+
 	void OnClik1(GameObject go){
 		BattleManager.Instance.Initialize();
 //		JsonText jt = new JsonText ();
@@ -27,8 +45,8 @@ public class Test : MonoBehaviour {
 	}
 
 	void Start(){
-		UIEventListener.Get (btn1).onClick = OnClik1;
-		UIEventListener.Get (btn2).onClick = OnClik2;
+	//	UIEventListener.Get (btn1).onClick = OnClik1;
+	//	UIEventListener.Get (btn2).onClick = OnClik2;
 	//	//OnClik ();
 	//	Des ();
 	}

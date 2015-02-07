@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -33,7 +34,7 @@ public class HotUpdateMrg : EditorWindow
 		
 		Dictionary<string,string> prefabFilte = new Dictionary<string, string> ();
 		prefabFilte.Add("extensionName",".prefab");
-		m_bundlePrefabPart = new BundleClassify ("打包prefab文件","Assets/ArtResource/prefab/",AssetType.Prefab,prefabFilte,false,OnBuildBundleOver);
+		m_bundlePrefabPart = new BundleClassify ("打包prefab文件","Assets/ArtResource/prefab/",AssetType.Prefab,prefabFilte,true,OnBuildBundleOver);
 		
 		//TODO 配置文件打包
 	}
@@ -65,8 +66,30 @@ public class HotUpdateMrg : EditorWindow
 
 	void OnBuildBundleOver(){
 		SaveVersionCode ();
+		SaveConfigFile ();
 	}
-	
+
+	void SaveConfigFile(){
+		Hashtable data = new Hashtable ();
+		if (m_bundlePrefabPart != null) {
+			string txt = ReadFile(m_bundlePrefabPart.GetSaveConfigFilePath());
+			if(!string.IsNullOrEmpty(txt)){
+				data.Add("prefabs",txt);
+			}
+		}
+		if (m_bundleScenePart != null) {
+			string txt = ReadFile(m_bundleScenePart.GetSaveConfigFilePath());
+			if(!string.IsNullOrEmpty(txt)){
+				data.Add("scenes",txt);
+			}
+		}
+
+		if (data.Count > 0) {
+			string jsondata = JsonFx.Json.JsonWriter.Serialize(data);
+			File.WriteAllText(GetBundleRoot() +"Assets.json",jsondata);
+		}
+	}
+
 	void OnGUI(){
 		m_vectorScorllPos = EditorGUILayout.BeginScrollView (m_vectorScorllPos, GUILayout.Width (640), GUILayout.Height (480));
 		

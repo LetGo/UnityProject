@@ -8,6 +8,9 @@ public delegate void DelegateBuildBundle();
 
 public class BundleClassify
 {
+	/// <summary>
+	/// 资源相对目录的根目录
+	/// </summary>
 	string m_resourceRootPath = string.Empty;
 	
     /// <summary>
@@ -21,28 +24,42 @@ public class BundleClassify
 	
 	bool m_guiListing = false;
 	
-	//过滤命令格式
+	/// <summary>
+	/// 过滤命令格式 
+	/// </summary>
 	Dictionary<string ,string > m_dicFilterCmd = new Dictionary<string, string>();
 	
-	//每一个文件资源
+	/// <summary>
+	/// 每一个Bundle文件资源
+	/// </summary>
 	List<BundleFile> m_bundleFiles = new List<BundleFile>();
 	
-	//资源类型中文名
+	/// <summary>
+	/// 资源类型中文名
+	/// </summary>
 	string m_bundleClassifyName = string.Empty;
 	
-	//资源类型
+	/// <summary>
+	/// 资源类型
+	/// </summary>
 	AssetType m_assetType = AssetType.Default;
 	
-	//是否需要已目录路径在分类
+	/// <summary>
+	/// 是否需要已目录路径在分类
+	/// </summary>
 	bool m_needFoldClassify = false;
 	
 	//需要分局牡蛎显示的话，在进行bundle file 的路径在分类
 	Dictionary<string, List<BundleFile>> m_dicSortPathBundleFile = new Dictionary<string, List<BundleFile>>();
 	
 	Dictionary<string,bool> m_dicIfBundleFileListing = new Dictionary<string, bool>();
-	
+	/// <summary>
+	/// 打包完成委托
+	/// </summary>
 	DelegateBuildBundle m_DelegateBuildBundleOver;
-	
+	/// <summary>
+	/// 上次打包的记录信息
+	/// </summary>
 	BundleDataInfo[] m_lstLastBundleDataInfo = null;
 	
 	public BundleClassify (string bundleClassifyName,string resourceRootPath,AssetType assetType,Dictionary<string ,string > dicFilterCmd,bool needFoldClassify = false,DelegateBuildBundle callback = null)
@@ -68,6 +85,7 @@ public class BundleClassify
 	/// 初始化文件数据列表
 	/// </summary>
 	void InitDirInfo(){
+
 		LoadBundleRecordFile ();
 		
 		m_ioResourcesDirInfo = new DirectoryInfo(m_resourceRootPath);
@@ -105,7 +123,7 @@ public class BundleClassify
 	public void ShowEditorGUI(){
 		EditorGUILayout.BeginHorizontal ();
 		m_guiListing = EditorGUILayout.Foldout (m_guiListing, m_bundleClassifyName);
-		
+		GUILayout.TextField ("资源目录：" + m_resourceRootPath);
 		if ( GUILayout.Button ( "刷新", GUILayout.Width (70) ) ) {
 			InitDirInfo();		
 		}
@@ -137,7 +155,11 @@ public class BundleClassify
 	
 	void SelectAll(){
 		if (m_needFoldClassify) {
-			
+			foreach(KeyValuePair<string,List<BundleFile>> data in m_dicSortPathBundleFile){
+				foreach(BundleFile bundleFile in data.Value){
+					bundleFile.readyToPack = true;
+				}	
+			}
 		}else{ 
 			foreach(BundleFile bundleFile in m_bundleFiles){
 				bundleFile.readyToPack = true;
@@ -147,14 +169,36 @@ public class BundleClassify
 	
 	void ClearAll(){
 		if (m_needFoldClassify) {
-			
+			foreach(KeyValuePair<string,List<BundleFile>> data in m_dicSortPathBundleFile){
+				foreach(BundleFile bundleFile in data.Value){
+					bundleFile.readyToPack = false;
+				}	
+			}
 		}else{ 
 			foreach(BundleFile bundleFile in m_bundleFiles){
 				bundleFile.readyToPack = false;
 			}
 		}
 	}
-	
+
+	void SelectUpdateBundle(){
+		if (m_needFoldClassify) {
+			foreach(KeyValuePair<string,List<BundleFile>> data in m_dicSortPathBundleFile){
+				foreach(BundleFile bundleFile in data.Value){
+					if(bundleFile.State == BundleFileStatus.New || bundleFile.State == BundleFileStatus.Update){
+						bundleFile.readyToPack = true;
+					}
+				}	
+			}
+		}else{ 
+			foreach(BundleFile bundleFile in m_bundleFiles){
+				if(bundleFile.State == BundleFileStatus.New || bundleFile.State == BundleFileStatus.Update){
+					bundleFile.readyToPack = true;
+				}
+			}
+		}
+	}
+
 	/// <summary>
 	/// 打包选中的文件.
 	/// </summary>
@@ -171,27 +215,40 @@ public class BundleClassify
 				if(success)
 				{
 					lstPackBundle.Add(bundleFile.bundleDataInfo);
-					bundleFile.buildSuccess = false;
 				}else
 				{
-					Debug.LogError("打包出错");
+					Debug.LogError("打包出错 :" + bundleFile.m_strFileName);
 				}
 			}
 			
 		}
 		SaveBundleRecordFile (lstPackBundle);
 	}
-	
+
+	/// <summary>
+	/// 显示资源目录下可以打包的列表.
+	/// </summary>
 	void ShowBundleFileList(){
 		EditorGUILayout.BeginVertical ();
 		if (!m_needFoldClassify) {
 			foreach(BundleFile bundleFile in m_bundleFiles){
 				EditorGUILayout.BeginHorizontal ();
-				bundleFile.readyToPack = GUILayout.Toggle(bundleFile.readyToPack,bundleFile.GetBundleStateName() + bundleFile.fileName);
+				bundleFile.readyToPack = GUILayout.Toggle(bundleFile.readyToPack,bundleFile.GetBundleStateName() + bundleFile.m_strFileName);
 				EditorGUILayout.EndHorizontal ();
 			}		
 		}else{ 
-			
+			foreach(KeyValuePair<string,List<BundleFile>> data in m_dicSortPathBundleFile){
+
+				m_dicIfBundleFileListing[data.Key] = EditorGUILayout.Foldout(m_dicIfBundleFileListing[data.Key],data.Key);
+
+				if(m_dicIfBundleFileListing[data.Key] == true){
+					foreach(BundleFile bundleFile in data.Value){
+						EditorGUILayout.BeginHorizontal ();
+						bundleFile.readyToPack = GUILayout.Toggle(bundleFile.readyToPack,bundleFile.GetBundleStateName() + bundleFile.m_strFileName);
+						EditorGUILayout.EndHorizontal ();
+					}	
+				}
+			}
 		}
 		EditorGUILayout.EndVertical ();
 	}
@@ -224,8 +281,9 @@ public class BundleClassify
 				break;
 			}		
 		}
-		
-		return f.IsSame (bundleInfo) == true ? BundleFileStatus.Same : BundleFileStatus.Update;
+		if(f != null)
+			return f.IsSame (bundleInfo) == true ? BundleFileStatus.Same : BundleFileStatus.Update;
+		return BundleFileStatus.New;
 	}
 	
 	bool IfCanAddToClassify(FileInfo file){
@@ -245,7 +303,7 @@ public class BundleClassify
 	}
 	
 	/// <summary>
-	/// 加载配置文件，反序列化
+	/// 加载bundle记录文件，反序列化得到先前的bundle记录m_lstLastBundleDataInfo
 	/// </summary>
 	void LoadBundleRecordFile(){
 		string savePath = GetSaveConfigFilePath ();
@@ -269,7 +327,11 @@ public class BundleClassify
 		}
 		return HotUpdateMrg.GetBundleRoot () + fileName;
 	}
-	
+
+	/// <summary>
+	/// 根据资源类型获取保存的文件名
+	/// </summary>
+	/// <returns>The recod file name.</returns>
 	string GetRecodFileName(){
 		string path = "";
 		switch (m_assetType) {
@@ -282,7 +344,11 @@ public class BundleClassify
 		}
 		return path;
 	}
-	
+
+	/// <summary>
+	/// 保存生成bundle的记录
+	/// </summary>
+	/// <param name="lstPackBundle">Lst pack bundle.</param>
 	void SaveBundleRecordFile(List<BundleDataInfo> lstPackBundle){
 		if (lstPackBundle.Count > 0) {
 			AddLastBundles(ref lstPackBundle);
@@ -297,7 +363,11 @@ public class BundleClassify
 			}
 		}
 	}
-	
+
+	/// <summary>
+	/// 添加之前已经保存的记录
+	/// </summary>
+	/// <param name="lstPackBundle">Lst pack bundle.</param>
 	void AddLastBundles(ref List<BundleDataInfo> lstPackBundle){
 		if (m_lstLastBundleDataInfo != null) {
 			foreach(BundleDataInfo info in m_lstLastBundleDataInfo){
@@ -308,6 +378,7 @@ public class BundleClassify
 						exist = true;break;
 					}
 				}
+				//如果当前打包的文件不存在于之前的记录中添加到当前的记录
 				if(!exist){
 					lstPackBundle.Add(info);
 				}

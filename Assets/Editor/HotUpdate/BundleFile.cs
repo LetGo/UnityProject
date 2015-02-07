@@ -6,9 +6,12 @@ using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// 用于保存到文件记录中的
+/// </summary>
 public class BundleDataInfo{
-	public string assetPath = string.Empty;
 	public AssetType assetType = AssetType.Default;
+	public string assetPath = string.Empty;
 	public string hashCode = string.Empty;
 
 	public bool IsEqual(BundleDataInfo other){
@@ -35,32 +38,34 @@ public class BundleFile  {
 
 	public BundleDataInfo bundleDataInfo;
 
-	//文件名
-	public string fileName = string.Empty;
+	/// <summary>
+	/// 文件名
+	/// </summary>
+	public string m_strFileName = string.Empty;
 
 	/// <summary>
     /// 相对于该资源类型根目录的相对目录
 	/// </summary>
 	public string relativePath = string.Empty;
 
-	//全路径
+	/// <summary>
+	/// 要打包文件的全路径
+	/// </summary>
 	string m_fileFullPath = string.Empty;
 
 	/// <summary>
     /// 打包成bundle的全路径
 	/// </summary>
-	string m_bundelFilePath = string.Empty;
+	string m_bundelFileSavePath = string.Empty;
 
 	//准备加入打包列表
 	public bool readyToPack = false;
 
     private BundleFileStatus m_state = BundleFileStatus.None;
-
-	public bool buildSuccess = false;
-
-	public BundleFile(){
-
+	public BundleFileStatus State{
+		get{return m_state;}
 	}
+	public bool buildSuccess = false;
 
 	public BundleFile(DirectoryInfo relativeDirectoryInfo,FileInfo fileInfo,AssetType assetype,bool needFoldClassfy){
 		buildSuccess = false;
@@ -69,17 +74,18 @@ public class BundleFile  {
 
 		bundleDataInfo.assetType = assetype;
 
-		fileName = Path.GetFileNameWithoutExtension (fileInfo.FullName);
+		m_strFileName = Path.GetFileNameWithoutExtension (fileInfo.FullName);
 
 		m_fileFullPath = fileInfo.FullName;
 
 		relativePath = fileInfo.FullName.Replace(relativeDirectoryInfo.FullName,"").Replace(fileInfo.Name,"").Replace("\\","/");
 
 		if (needFoldClassfy) {
-				
+			m_bundelFileSavePath = HotUpdateMrg.GetBundleRoot() + GetTypePath(assetype) + relativePath + m_strFileName + HotUpdateMrg.GetBundleExtensionName();
+			bundleDataInfo.assetPath = relativePath + m_strFileName;
 		}else{ 
-			m_bundelFilePath = HotUpdateMrg.GetBundleRoot() + GetTypePath(assetype) + relativePath + fileName + HotUpdateMrg.GetBundleExtensionName();
-			bundleDataInfo.assetPath = fileName;
+			m_bundelFileSavePath = HotUpdateMrg.GetBundleRoot() + GetTypePath(assetype) + m_strFileName + HotUpdateMrg.GetBundleExtensionName();
+			bundleDataInfo.assetPath = m_strFileName;
 		}
 
 		bundleDataInfo.hashCode = GetFileHashCode (m_fileFullPath);
@@ -140,22 +146,22 @@ public class BundleFile  {
 	void BuildSceneAssentBundle(){
 		string[] res = new string[1];
 		res [0] = m_fileFullPath;
-		Debug.Log("create bundle :" + m_fileFullPath + "  to " + m_bundelFilePath);
+		Debug.Log("create bundle :" + m_fileFullPath + "  to " + m_bundelFileSavePath);
 
 		FileInfo file = null;
 		FileInfo newFile = null;
 		
 		string timeStr = "";
 		
-		if(File.Exists(m_bundelFilePath)){
-			file = new FileInfo(m_bundelFilePath);
+		if(File.Exists(m_bundelFileSavePath)){
+			file = new FileInfo(m_bundelFileSavePath);
 			timeStr = file.LastWriteTime.ToShortTimeString();
 		}
 		
-		BuildPipeline.BuildStreamedSceneAssetBundle (res, m_bundelFilePath, EditorUserBuildSettings.activeBuildTarget);
+		BuildPipeline.BuildStreamedSceneAssetBundle (res, m_bundelFileSavePath, EditorUserBuildSettings.activeBuildTarget);
 		
-		if(File.Exists(m_bundelFilePath)){
-			newFile = new FileInfo(m_bundelFilePath);
+		if(File.Exists(m_bundelFileSavePath)){
+			newFile = new FileInfo(m_bundelFileSavePath);
 		}
 		if(newFile != null){
 			if(!timeStr.Equals(newFile.LastWriteTime.ToShortTimeString())){
@@ -172,22 +178,22 @@ public class BundleFile  {
 		//指定路径加载主资源
 		UnityEngine.Object obj = AssetDatabase.LoadMainAssetAtPath (relativeAssetPath);
 
-		Debug.Log("create bundle :" + relativeAssetPath + "  to " + m_bundelFilePath);
+		Debug.Log("create bundle :" + relativeAssetPath + "  to " + m_bundelFileSavePath);
 
 		FileInfo file = null;
 		FileInfo newFile = null;
 
 		string timeStr = "";
 
-		if(File.Exists(m_bundelFilePath)){
-			file = new FileInfo(m_bundelFilePath);
+		if(File.Exists(m_bundelFileSavePath)){
+			file = new FileInfo(m_bundelFileSavePath);
 			timeStr = file.LastWriteTime.ToShortTimeString();
 		}
 
-		BuildPipeline.BuildAssetBundle(obj,null,m_bundelFilePath,options,EditorUserBuildSettings.activeBuildTarget);
+		BuildPipeline.BuildAssetBundle(obj,null,m_bundelFileSavePath,options,EditorUserBuildSettings.activeBuildTarget);
 
-		if(File.Exists(m_bundelFilePath)){
-			newFile = new FileInfo(m_bundelFilePath);
+		if(File.Exists(m_bundelFileSavePath)){
+			newFile = new FileInfo(m_bundelFileSavePath);
 		}
 		if(newFile != null){
 			if(!timeStr.Equals(newFile.LastWriteTime.ToShortTimeString())){
@@ -200,8 +206,8 @@ public class BundleFile  {
     /// 若果没有保存的目录就创建该目录
     /// </summary>
 	void CheckBundleDataPath(){
-		if (!Directory.Exists (Path.GetDirectoryName (m_bundelFilePath))) {
-			Directory.CreateDirectory(Path.GetDirectoryName (m_bundelFilePath));
+		if (!Directory.Exists (Path.GetDirectoryName (m_bundelFileSavePath))) {
+			Directory.CreateDirectory(Path.GetDirectoryName (m_bundelFileSavePath));
 		}
 	}
 }
