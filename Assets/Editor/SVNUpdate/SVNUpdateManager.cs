@@ -46,7 +46,7 @@ public class SVNUpdateManager : EditorWindow {
 	[MenuItem("GameTool/SVN更新管理")]
 	private static void Init(){
 		SVNUpdateManager window = EditorWindow.GetWindow<SVNUpdateManager> (false, "SVN更新管理", true);
-
+		window.Show ();
 	}
 
 	void Awake(){
